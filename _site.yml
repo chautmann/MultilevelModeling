@@ -4,7 +4,7 @@ navbar:
   title: "Multilevel Modeling"
   left:
    - text: "Home"
-     href: MultilevelModeling01.html
+     href: index.html
 output:
   html_document:
     toc: true
