@@ -11,7 +11,7 @@
 
 
 
-<title>Test</title>
+<title>Lösungen Übungsaufgaben</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -354,16 +354,14 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Test</h1>
+<h1 class="title toc-ignore">Lösungen Übungsaufgaben</h1>
 
 </div>
 
 
-<div id="datenaufbereitung" class="section level2">
-<h2>Datenaufbereitung</h2>
-<ol style="list-style-type: lower-alpha">
-<li>Laden sie die Pakete <code>tidyverse</code>, <code>nlme</code>, <code>knitr</code> und <code>broom.mixed</code> mit dem Befehl <code>library()</code>.</li>
-</ol>
+<div id="pakete-laden" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Pakete laden</h1>
+<p>Laden sie die Pakete <code>tidyverse</code>, <code>nlme</code>, <code>knitr</code> und <code>broom.mixed</code> mit dem Befehl <code>library()</code>.</p>
 <pre class="r"><code># Sammlung von Paketen, viel zu Datenmanipulation
 library(&quot;tidyverse&quot;)
 # Für die Berechnung der Multilevel Modelle
@@ -372,9 +370,10 @@ library(&quot;nlme&quot;)
 library(&quot;broom.mixed&quot;)
 # Wird einmal für die Darstellung einer Tabelle benötigt
 library(&quot;kableExtra&quot;)</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Laden Sie die Datendatei <code>gpa2.csv</code> mit dem Befehl <code>read_csv2()</code>. Speichern Sie die Daten in einem neuen Objekt unter dem Namen <code>gpa_data</code>. Betrachten Sie die Daten in dem Objekt <code>gpa_data</code> näher. Benutzen Sie hierzu die Befehle <code>head()</code> und <code>str()</code>.</li>
-</ol>
+</div>
+<div id="daten-laden" class="section level1" number="2">
+<h1 number="2"><span class="header-section-number">2</span> Daten laden</h1>
+<p>Laden Sie die Datendatei <code>gpa2.csv</code> mit dem Befehl <code>read_csv2()</code>. Speichern Sie die Daten in einem neuen Objekt unter dem Namen <code>gpa_data</code>. Betrachten Sie die Daten in dem Objekt <code>gpa_data</code> näher. Benutzen Sie hierzu die Befehle <code>head()</code> und <code>str()</code>.</p>
 <pre class="r"><code>gpa_data &lt;- read.csv2(file = &quot;./data/gpa2.csv&quot;)
 head(gpa_data)</code></pre>
 <pre><code>##   student sex highgpa gpa1 gpa2 gpa3 gpa4 gpa5 gpa6 job1 job2 job3 job4 job5 job6 admitted
@@ -402,9 +401,10 @@ head(gpa_data)</code></pre>
 ##  $ job5    : int  2 2 2 2 2 3 2 2 2 2 ...
 ##  $ job6    : int  2 2 2 2 2 3 2 2 2 2 ...
 ##  $ admitted: int  1 0 1 0 1 0 1 1 9 1 ...</code></pre>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>Wählen Sie mit dem Befehl <code>select()</code> die für die Analyse relevanten Daten <code>student</code>, <code>sex</code> und <code>gpa1</code> bis <code>gpa6</code> aus. Im Anschluss benennen Sie mit dem Befehl <code>rename()</code> den Variablennamen <code>student</code> in <code>student_id</code> um. Betrachten Sie die Ergebnisse der Datenmanipulation.</li>
-</ol>
+</div>
+<div id="auswählen-daten" class="section level1" number="3">
+<h1 number="3"><span class="header-section-number">3</span> Auswählen Daten</h1>
+<p>Wählen Sie mit dem Befehl <code>select()</code> die für die Analyse relevanten Daten <code>student</code>, <code>sex</code> und <code>gpa1</code> bis <code>gpa6</code> aus. Im Anschluss benennen Sie mit dem Befehl <code>rename()</code> den Variablennamen <code>student</code> in <code>student_id</code> um. Betrachten Sie die Ergebnisse der Datenmanipulation.</p>
 <pre class="r"><code>gpa_data &lt;- select(gpa_data, student, sex, starts_with(&quot;gpa&quot;))
 gpa_data &lt;- rename(gpa_data, student_id = student)
 head(gpa_data)</code></pre>
@@ -415,13 +415,14 @@ head(gpa_data)</code></pre>
 ## 4          4   0  2.5  2.7  2.4  2.7  2.9  2.7
 ## 5          5   0  2.8  2.8  2.8  3.0  2.9  3.1
 ## 6          6   1  2.5  2.4  2.4  2.3  2.7  2.8</code></pre>
-<ol start="5" style="list-style-type: lower-alpha">
-<li>Strukturieren Sie die Daten mit dem Befehl <code>pivot_longer()</code> um. Überführen Sie dabei die Variablen <code>gpa1</code> bis <code>gpa6</code> von dem Wide-Format in das Long-Format. Die neu entstehende Spalte mit den GPA-Werten für alle Messzeitpunkte soll dabei den Variablennamen <code>gpa</code> erhalten und die Namen der Variablen <code>gpa1</code> bis <code>gpa6</code> sollen in eine Spalte mit dem Namen <code>time</code> überführt werden. Betrachten Sie die Ergebnisse der Umstrukturierung.</li>
-</ol>
+</div>
+<div id="umstrukturieren-daten" class="section level1" number="4">
+<h1 number="4"><span class="header-section-number">4</span> Umstrukturieren Daten</h1>
+<p>Strukturieren Sie die Daten mit dem Befehl <code>pivot_longer()</code> um. Überführen Sie dabei die Variablen <code>gpa1</code> bis <code>gpa6</code> von dem Wide-Format in das Long-Format. Die neu entstehende Spalte mit den GPA-Werten für alle Messzeitpunkte soll dabei den Variablennamen <code>gpa</code> erhalten und die Namen der Variablen <code>gpa1</code> bis <code>gpa6</code> sollen in eine Spalte mit dem Namen <code>time</code> überführt werden. Betrachten Sie die Ergebnisse der Umstrukturierung.</p>
 <pre class="r"><code>gpa_data_long &lt;- pivot_longer(gpa_data, 
-                    cols = c(&quot;gpa1&quot;, &quot;gpa2&quot;, &quot;gpa3&quot;, &quot;gpa4&quot;, &quot;gpa5&quot;, &quot;gpa6&quot;),
-                    names_to = &quot;time&quot;,
-                    values_to = &quot;gpa&quot;)
+                              cols = starts_with(&quot;gpa&quot;),
+                              names_to = &quot;time&quot;,
+                              values_to = &quot;gpa&quot;)
 gpa_data_long</code></pre>
 <pre><code>## # A tibble: 1,200 × 4
 ##    student_id   sex time    gpa
@@ -437,9 +438,10 @@ gpa_data_long</code></pre>
 ##  9          2     0 gpa3    2.6
 ## 10          2     0 gpa4    2.6
 ## # … with 1,190 more rows</code></pre>
-<ol start="6" style="list-style-type: lower-alpha">
-<li>Im Folgenden wird die Variable <code>time</code> überschrieben und eine neue Zeitvariable mit den Werten 0 bis 5 gebildet. Überprüfen Sie mit der Funktion <code>print()</code>, ob die Werte korrekt erstellt wurden. Wie beurteilen Sie, dass der erste Messzeitpunkt den Wert 0 erhalten hat?</li>
-</ol>
+</div>
+<div id="bildung-zeitvariable" class="section level1" number="5">
+<h1 number="5"><span class="header-section-number">5</span> Bildung Zeitvariable</h1>
+<p>Im Folgenden wird die Variable <code>time</code> überschrieben und eine neue Zeitvariable mit den Werten 0 bis 5 gebildet. Überprüfen Sie mit der Funktion <code>print()</code>, ob die Werte korrekt erstellt wurden. Wie beurteilen Sie, dass der erste Messzeitpunkt den Wert 0 erhalten hat?</p>
 <pre class="r"><code>gpa_data_long &lt;- gpa_data_long%&gt;%
   group_by(student_id)%&gt;%
   mutate(time = 1:n()-1)
@@ -464,9 +466,10 @@ print(gpa_data_long, n = 15)</code></pre>
 ## 14          3     1     1   2.9
 ## 15          3     1     2   3  
 ## # … with 1,185 more rows</code></pre>
-<ol start="7" style="list-style-type: lower-alpha">
-<li>Das Objekt <code>gpa_subsample</code> enthält die Messwerte von vier Personen (IDs 14, 21, 43, 68). Im Folgenden soll für diese Personen der Verlauf der GPA-Werte über die Zeit dargestellt werden. Dabei werden verschiedene Funktionen des Pakets <code>ggplot2</code> benutzt. Hierzu müssen zunächst in der Funktion <code>ggplot()</code> die Variablen <code>time</code> und <code>gpa</code> als x- bzw. y-Wert angegeben werden. Damit die GPA-Werte einer Person eindeutig zugeordnet werden können, muss für das Argument <code>group</code> zusätzlich die Variable <code>student_id</code> angegeben werden. Betrachten Sie die Ergebnisse der im Objekt <code>graph_cases</code> abgespeicherten Graphik.</li>
-</ol>
+</div>
+<div id="graphik-einzelverläufe-i" class="section level1" number="6">
+<h1 number="6"><span class="header-section-number">6</span> Graphik Einzelverläufe I</h1>
+<p>Das Objekt <code>gpa_subsample</code> enthält die Messwerte von vier Personen (IDs 14, 21, 43, 68). Im Folgenden soll für diese Personen der Verlauf der GPA-Werte über die Zeit dargestellt werden. Dabei werden verschiedene Funktionen des Pakets <code>ggplot2</code> benutzt. Hierzu müssen zunächst in der Funktion <code>ggplot()</code> die Variablen <code>time</code> und <code>gpa</code> als x- bzw. y-Wert angegeben werden. Damit die GPA-Werte einer Person eindeutig zugeordnet werden können, muss für das Argument <code>group</code> zusätzlich die Variable <code>student_id</code> angegeben werden. Betrachten Sie die Ergebnisse der im Objekt <code>graph_cases</code> abgespeicherten Graphik.</p>
 <pre class="r"><code>gpa_subsample &lt;- gpa_data_long%&gt;%
   filter(student_id %in% c(14, 21, 43, 68))
 gpa_subsample</code></pre>
@@ -499,11 +502,9 @@ gpa_subsample</code></pre>
 graph_cases</code></pre>
 <p><img src="loesungen_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
-<div id="multilevel-modeling" class="section level2">
-<h2>Multilevel Modeling</h2>
-<ol style="list-style-type: lower-alpha">
-<li>Berechnen Sie das Random-Intercept, Random-Slope Modell mit der Funktion <code>lme()</code> aus dem Paket <code>lmer</code>. Die Funktion benötigt die Daten dabei im Longformat, die in dem Objekt <code>gpa_data_long</code> gespeichert sind. Als Variablen müssen dabei die Variable <code>gpa</code> als Ergebnisvariable und die Variable <code>time</code> als Prädiktorvariable angegeben werden. Betrachten Sie die Ergebnisse anschließend mit der Funktion <code>summary()</code>. Welche festen Effekte sind signfikant? Können Sie beurteilen, ob die zufälligen Effekte signifikant sind?</li>
-</ol>
+<div id="mehrebenenmodell" class="section level1" number="7">
+<h1 number="7"><span class="header-section-number">7</span> Mehrebenenmodell</h1>
+<p>Berechnen Sie das Random-Intercept, Random-Slope Modell mit der Funktion <code>lme()</code> aus dem Paket <code>lmer</code>. Die Funktion benötigt die Daten dabei im Longformat, die in dem Objekt <code>gpa_data_long</code> gespeichert sind. Als Variablen müssen <code>gpa</code> als Ergebnisvariable und <code>time</code> als Prädiktorvariable angegeben werden. Betrachten Sie die Ergebnisse anschließend mit der Funktion <code>summary()</code>. Welche festen Effekte sind signfikant? Können Sie beurteilen, ob die zufälligen Effekte signifikant sind?</p>
 <pre class="r"><code>mod1 &lt;- lme(gpa ~ time, random = ~ 1 + time | student_id, data = gpa_data_long)
 summary(mod1)</code></pre>
 <pre><code>## Linear mixed-effects model fit by REML
@@ -533,9 +534,10 @@ summary(mod1)</code></pre>
 ## 
 ## Number of Observations: 1200
 ## Number of Groups: 200</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Das Objekt <code>mod1</code> enthält die Ergebnisse des Random-Intercept, Random-Slope Modells. Wenden Sie auf das Objekt <code>mod1</code> die Funktion <code>tidy()</code>aus dem Paket <code>broom.mixed</code> an. In der Funktion setzen Sie dabei den Wert des Arguments <code>conf.int</code> auf <code>TRUE</code> und geben für das Argument <code>conf.level</code> den Wert <code>0.95</code> an. Dadurch werden die Konfidenzintervalle der Parameter geschätzt und die Signifikanz der zufälligen Effekte kann nun zusätzlich beurteilt werden.</li>
-</ol>
+</div>
+<div id="konfidenzintervalle" class="section level1" number="8">
+<h1 number="8"><span class="header-section-number">8</span> Konfidenzintervalle</h1>
+<p>Das Objekt <code>mod1</code> enthält die Ergebnisse des Random-Intercept, Random-Slope Modells. Wenden Sie die Funktion <code>tidy()</code>aus dem Paket <code>broom.mixed</code> auf das Objekt <code>mod1</code> an. In der Funktion setzen Sie dabei den Wert des Arguments <code>conf.int</code> auf <code>TRUE</code> und geben für das Argument <code>conf.level</code> den Wert <code>0.95</code> an. Dadurch werden die Konfidenzintervalle der Parameter geschätzt und die Signifikanz der zufälligen Effekte kann nun zusätzlich beurteilt werden. Welche der zufälligen Effekte werden signikant?</p>
 <pre class="r"><code>mod1_coef &lt;- tidy(mod1, conf.int = TRUE, conf.level = 0.95)
 kbl(mod1_coef, digits = 2) %&gt;%
   kable_styling(bootstrap_options = &quot;striped&quot;)</code></pre>
@@ -751,9 +753,10 @@ sd_Observation
 </tr>
 </tbody>
 </table>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>Die Objekte <code>fix_intercept</code> und <code>fix_slope</code> enthalten die festen Effekte vom Random-Intercept, Random-Slope Modell aus dem Objekt <code>mod1</code>. Erweitern Sie die erste Graphik im Objekt <code>graph_cases</code> und stellen Sie zusätzlich die Gerade dar, die über die festen Effekte geschätzt wird. Für die Erweiterung nehmen Sie die Funktion <code>geom_abline()</code> aus dem Paket <code>ggplot2</code>. Betrachten Sie im Anschluss die Ergebnisse der neuen Graphik. Entspricht die Graphik Ihren Erwartungen?</li>
-</ol>
+</div>
+<div id="graphik-feste-effekte" class="section level1" number="9">
+<h1 number="9"><span class="header-section-number">9</span> Graphik feste Effekte</h1>
+<p>Die Objekte <code>fix_intercept</code> und <code>fix_slope</code> enthalten die festen Effekte vom Random-Intercept, Random-Slope Modell. Erweitern Sie die erste Graphik im Objekt <code>graph_cases</code> und stellen Sie zusätzlich die Gerade dar, die über die festen Effekte geschätzt wird. Für die Erweiterung nehmen Sie die Funktion <code>geom_abline()</code> aus dem Paket <code>ggplot2</code>. Betrachten Sie im Anschluss die Ergebnisse der neuen Graphik. Entspricht die Graphik Ihren Erwartungen?</p>
 <pre class="r"><code>fix_intercept &lt;- summary(mod1)$coef$fixed[[1]]
 fix_slope &lt;- summary(mod1)$coef$fixed[[2]]
 
@@ -761,9 +764,10 @@ graph_fixed &lt;- graph_cases +
                geom_abline(intercept = fix_intercept, slope = fix_slope)
 graph_fixed</code></pre>
 <p><img src="loesungen_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>In dem Objekt <code>mod1</code> sind die Ergebnisse des Random-Intercept, Random-Slope Modell gespeichert. Wenden Sie die Funktion <code>augment()</code> aus dem Paket <code>broom.mixed</code> auf das Objekt an. Betrachten Sie im Anschluss die von der Funktion ausgegebenen Werte und versuchen ihre Bedeutung zu erfassen. Bei der Variable <code>.fitted</code> handelt es sich um individuell vorhergesagten Werte der Personen. Um die Bedeutung dieser Werte noch besser zu verstehen, sollen sie in der nächsten Übung graphisch dargestellt werden.</li>
-</ol>
+</div>
+<div id="daten-modellschätzung" class="section level1" number="10">
+<h1 number="10"><span class="header-section-number">10</span> Daten Modellschätzung</h1>
+<p>In dem Objekt <code>mod1</code> sind die Ergebnisse des Random-Intercept, Random-Slope Modell gespeichert. Wenden Sie die Funktion <code>augment()</code> aus dem Paket <code>broom.mixed</code> auf das Objekt an. Betrachten Sie im Anschluss die von der Funktion ausgegebenen Werte und versuchen ihre Bedeutung zu erfassen. Bei der Variable <code>.fitted</code> handelt es sich um die individuell vorhergesagten Werte der Personen. Um die Werte noch besser zu verstehen, sollen sie in der nächsten Übung graphisch dargestellt werden.</p>
 <pre class="r"><code>mod1_data &lt;- augment(mod1)
 mod1_data</code></pre>
 <pre><code>## # A tibble: 1,200 × 7
@@ -780,9 +784,10 @@ mod1_data</code></pre>
 ##  9          2     0     2   2.6    2.60  0.00228   2.81
 ## 10          2     0     3   2.6    2.70 -0.102     2.92
 ## # … with 1,190 more rows</code></pre>
-<ol start="5" style="list-style-type: lower-alpha">
-<li>Das Objekt <code>mod1_subsample</code> enthält die Daten der Substichprobe, die über die <code>augment</code>-Funktion gewonnen wurde. Erweitern Sie die zweite Graphik <code>graph_fixed</code>, um die individuell geschätzten Geradengleichungen. Hierzu müssen in der Funktion <code>geom_line</code> als x- und als y-Wert die Variablen <code>time</code> und <code>fitted</code> angegeben werden.</li>
-</ol>
+</div>
+<div id="graphik-einzelverläufe-ii" class="section level1" number="11">
+<h1 number="11"><span class="header-section-number">11</span> Graphik Einzelverläufe II</h1>
+<p>Erweitern Sie die zweite Graphik <code>graph_fixed</code>, um die individuell geschätzten Geradengleichungen. Benutzen Sie hierzu die im Objekt <code>mod1_subsample</code> gespeicherten Daten. Dabei müssen in der Funktion <code>geom_line</code> als x- und als y-Wert die Variablen <code>time</code> und <code>.fitted</code> angegeben werden.</p>
 <pre class="r"><code>mod1_subsample &lt;- filter(mod1_data, student_id %in% c(14, 21, 43, 68))
 mod1_subsample</code></pre>
 <pre><code>## # A tibble: 24 × 7
@@ -804,14 +809,12 @@ mod1_subsample</code></pre>
                         aes(x = time, y = .fitted,
                             color = as.factor(student_id)),
                         linetype = &quot;dotted&quot;,
-                        size = 0.7
-                        )
-
+                        size = 0.7)
 graph_indi</code></pre>
 <p><img src="loesungen_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGVzdCIKb3V0cHV0OgogaHRtbF9kb2N1bWVudDoKICAgdG9jOiB0cnVlCiAgIHRvY19kZXB0aDogMgogICB0b2NfZmxvYXQ6IHRydWUKICAgY29kZV9kb3dubG9hZDogdHJ1ZQojICBjb2RlX2ZvbGRpbmc6IGhpZGUKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQprbml0cjo6b3B0c19jaHVuayRzZXQobWVzc2FnZT1GQUxTRSkKb3B0aW9ucyhrbml0ci5rYWJsZS5OQSA9ICcnKQoKYGBgCgojIyBEYXRlbmF1ZmJlcmVpdHVuZwphLiBMYWRlbiBzaWUgZGllIFBha2V0ZSBgdGlkeXZlcnNlYCwgYG5sbWVgLCBga25pdHJgIHVuZCBgYnJvb20ubWl4ZWRgIG1pdCBkZW0gQmVmZWhsIGBsaWJyYXJ5KClgLgoKYGBge3J9CiMgU2FtbWx1bmcgdm9uIFBha2V0ZW4sIHZpZWwgenUgRGF0ZW5tYW5pcHVsYXRpb24KbGlicmFyeSgidGlkeXZlcnNlIikKIyBGw7xyIGRpZSBCZXJlY2hudW5nIGRlciBNdWx0aWxldmVsIE1vZGVsbGUKbGlicmFyeSgibmxtZSIpCiMgRsO8ciBkaWUgV2VpdGVydmVyYXJiZWl0dW5nIGRlciBFcmdlYm5pc3NlIGRlcyBQYWtldHMgbmxtZQpsaWJyYXJ5KCJicm9vbS5taXhlZCIpCiMgV2lyZCBlaW5tYWwgZsO8ciBkaWUgRGFyc3RlbGx1bmcgZWluZXIgVGFiZWxsZSBiZW7DtnRpZ3QKbGlicmFyeSgia2FibGVFeHRyYSIpCmBgYAoKYi4gTGFkZW4gU2llIGRpZSBEYXRlbmRhdGVpIGBncGEyLmNzdmAgbWl0IGRlbSBCZWZlaGwgYHJlYWRfY3N2MigpYC4gU3BlaWNoZXJuIFNpZSBkaWUgRGF0ZW4gaW4gZWluZW0gbmV1ZW4gT2JqZWt0IHVudGVyIGRlbSBOYW1lbiBgZ3BhX2RhdGFgLiBCZXRyYWNodGVuIFNpZSBkaWUgRGF0ZW4gaW4gZGVtIE9iamVrdCBgZ3BhX2RhdGFgIG7DpGhlci4gQmVudXR6ZW4gU2llIGhpZXJ6dSBkaWUgQmVmZWhsZSBgaGVhZCgpYCB1bmQgYHN0cigpYC4KCmBgYHtyfQpncGFfZGF0YSA8LSByZWFkLmNzdjIoZmlsZSA9ICIuL2RhdGEvZ3BhMi5jc3YiKQpoZWFkKGdwYV9kYXRhKQpzdHIoZ3BhX2RhdGEpCmBgYAoKZC4gV8OkaGxlbiBTaWUgIG1pdCBkZW0gQmVmZWhsIGBzZWxlY3QoKWAgZGllIGbDvHIgZGllIEFuYWx5c2UgcmVsZXZhbnRlbiBEYXRlbiBgc3R1ZGVudGAsIGBzZXhgIHVuZCBgZ3BhMWAgYmlzIGBncGE2YCBhdXMuIEltIEFuc2NobHVzcyBiZW5lbm5lbiBTaWUgbWl0IGRlbSBCZWZlaGwgYHJlbmFtZSgpYCBkZW4gVmFyaWFibGVubmFtZW4gYHN0dWRlbnRgIGluIGBzdHVkZW50X2lkYCB1bS4gQmV0cmFjaHRlbiBTaWUgZGllIEVyZ2Vibmlzc2UgZGVyIERhdGVubWFuaXB1bGF0aW9uLgoKYGBge3J9CmdwYV9kYXRhIDwtIHNlbGVjdChncGFfZGF0YSwgc3R1ZGVudCwgc2V4LCBzdGFydHNfd2l0aCgiZ3BhIikpCmdwYV9kYXRhIDwtIHJlbmFtZShncGFfZGF0YSwgc3R1ZGVudF9pZCA9IHN0dWRlbnQpCmhlYWQoZ3BhX2RhdGEpCmBgYAoKZS4gU3RydWt0dXJpZXJlbiBTaWUgZGllIERhdGVuIG1pdCBkZW0gQmVmZWhsIGBwaXZvdF9sb25nZXIoKWAgdW0uIMOcYmVyZsO8aHJlbiBTaWUgZGFiZWkgZGllIFZhcmlhYmxlbiBgZ3BhMWAgYmlzIGBncGE2YCB2b24gZGVtIFdpZGUtRm9ybWF0IGluIGRhcyBMb25nLUZvcm1hdC4gRGllIG5ldSBlbnRzdGVoZW5kZSBTcGFsdGUgbWl0IGRlbiBHUEEtV2VydGVuIGbDvHIgYWxsZSBNZXNzemVpdHB1bmt0ZSBzb2xsIGRhYmVpIGRlbiBWYXJpYWJsZW5uYW1lbiBgZ3BhYCBlcmhhbHRlbiB1bmQgZGllIE5hbWVuIGRlciBWYXJpYWJsZW4gYGdwYTFgIGJpcyBgZ3BhNmAgc29sbGVuIGluIGVpbmUgU3BhbHRlIG1pdCBkZW0gTmFtZW4gYHRpbWVgIMO8YmVyZsO8aHJ0IHdlcmRlbi4gQmV0cmFjaHRlbiBTaWUgZGllIEVyZ2Vibmlzc2UgZGVyIFVtc3RydWt0dXJpZXJ1bmcuCgpgYGB7cn0KZ3BhX2RhdGFfbG9uZyA8LSBwaXZvdF9sb25nZXIoZ3BhX2RhdGEsIAogICAgICAgICAgICAgICAgICAgIGNvbHMgPSBjKCJncGExIiwgImdwYTIiLCAiZ3BhMyIsICJncGE0IiwgImdwYTUiLCAiZ3BhNiIpLAogICAgICAgICAgICAgICAgICAgIG5hbWVzX3RvID0gInRpbWUiLAogICAgICAgICAgICAgICAgICAgIHZhbHVlc190byA9ICJncGEiKQpncGFfZGF0YV9sb25nCmBgYAoKZi4gSW0gRm9sZ2VuZGVuIHdpcmQgZGllIFZhcmlhYmxlIGB0aW1lYCDDvGJlcnNjaHJpZWJlbiB1bmQgZWluZSBuZXVlIFplaXR2YXJpYWJsZSBtaXQgZGVuIFdlcnRlbiAwIGJpcyA1IGdlYmlsZGV0LiDDnGJlcnByw7xmZW4gU2llIG1pdCBkZXIgRnVua3Rpb24gYHByaW50KClgLCBvYiBkaWUgV2VydGUga29ycmVrdCBlcnN0ZWxsdCB3dXJkZW4uIFdpZSBiZXVydGVpbGVuIFNpZSwgZGFzcyBkZXIgZXJzdGUgTWVzc3plaXRwdW5rdCBkZW4gV2VydCAwIGVyaGFsdGVuIGhhdD8KCmBgYHtyfQpncGFfZGF0YV9sb25nIDwtIGdwYV9kYXRhX2xvbmclPiUKICBncm91cF9ieShzdHVkZW50X2lkKSU+JQogIG11dGF0ZSh0aW1lID0gMTpuKCktMSkKcHJpbnQoZ3BhX2RhdGFfbG9uZywgbiA9IDE1KQpgYGAKCmcuIERhcyBPYmpla3QgYGdwYV9zdWJzYW1wbGVgIGVudGjDpGx0IGRpZSBNZXNzd2VydGUgdm9uIHZpZXIgUGVyc29uZW4gKElEcyAxNCwgMjEsIDQzLCA2OCkuIEltIEZvbGdlbmRlbiBzb2xsIGbDvHIgZGllc2UgUGVyc29uZW4gZGVyIFZlcmxhdWYgZGVyIEdQQS1XZXJ0ZSDDvGJlciBkaWUgWmVpdCBkYXJnZXN0ZWxsdCB3ZXJkZW4uIERhYmVpIHdlcmRlbiB2ZXJzY2hpZWRlbmUgRnVua3Rpb25lbiBkZXMgUGFrZXRzIGBnZ3Bsb3QyYCBiZW51dHp0LiBIaWVyenUgbcO8c3NlbiB6dW7DpGNoc3QgaW4gZGVyIEZ1bmt0aW9uIGBnZ3Bsb3QoKWAgZGllIFZhcmlhYmxlbiBgdGltZWAgdW5kIGBncGFgIGFscyB4LSBiencuIHktV2VydCBhbmdlZ2ViZW4gd2VyZGVuLiBEYW1pdCBkaWUgR1BBLVdlcnRlIGVpbmVyIFBlcnNvbiBlaW5kZXV0aWcgenVnZW9yZG5ldCB3ZXJkZW4ga8O2bm5lbiwgbXVzcyBmw7xyIGRhcyBBcmd1bWVudCBgZ3JvdXBgIHp1c8OkdHpsaWNoIGRpZSBWYXJpYWJsZSBgc3R1ZGVudF9pZGAgYW5nZWdlYmVuIHdlcmRlbi4gQmV0cmFjaHRlbiBTaWUgZGllIEVyZ2Vibmlzc2UgZGVyIGltIE9iamVrdCBgZ3JhcGhfY2FzZXNgIGFiZ2VzcGVpY2hlcnRlbiBHcmFwaGlrLgoKYGBge3J9CmdwYV9zdWJzYW1wbGUgPC0gZ3BhX2RhdGFfbG9uZyU+JQogIGZpbHRlcihzdHVkZW50X2lkICVpbiUgYygxNCwgMjEsIDQzLCA2OCkpCmdwYV9zdWJzYW1wbGUKCmdyYXBoX2Nhc2VzIDwtIGdncGxvdChncGFfc3Vic2FtcGxlLCBhZXMoeCA9IHRpbWUsIHkgPSBncGEsIGdyb3VwID0gc3R1ZGVudF9pZCkpICsKICAgICAgICAgICAgICAgIyBBbmdhYmUsIGRhc3MgZGllIFdlcnRlIGFscyBMaW5pZW4gZGFyZ2VzdGVsbHQgd2VyZGVuIHNvbGxlbgogICAgICAgICAgICAgICBnZW9tX2xpbmUoYWVzKGNvbG9yID0gYXMuZmFjdG9yKHN0dWRlbnRfaWQpKSkgKwogICAgICAgICAgICAgICAjIERpZSBXZXJ0ZSBkZXIgUGVyc29uZW4gc29sbGVuIHp1c8OkdHpsaWNoIGFscyBQdW5rdGUgZGFyZ2VzdGVsbHQgd2VyZGVuCiAgICAgICAgICAgICAgIGdlb21fcG9pbnQoYWVzKGNvbG9yID0gYXMuZmFjdG9yKHN0dWRlbnRfaWQpKSkgKwogICAgICAgICAgICAgICAjIERpZSBHZXJhZGUgc29sbGVuIG1pdCBkZXIgSUQgYmVzY2hyaWZ0ZXQgd2VyZGVuCiAgICAgICAgICAgICAgIGdlb21fdGV4dChkYXRhID0gZmlsdGVyKGdwYV9zdWJzYW1wbGUsIHRpbWUgPT0gbGFzdCh0aW1lKSksCiAgICAgICAgICAgICAgICAgICAgICAgICBhZXMobGFiZWwgPSBhcy5mYWN0b3Ioc3R1ZGVudF9pZCkpLAogICAgICAgICAgICAgICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9udWRnZSh4ID0gMC4yKSwKICAgICAgICAgICAgICAgICAgICAgICAgIGNoZWNrX292ZXJsYXAgPSBUUlVFKSArCiAgICAgICAgICAgICAgIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbiA9ICJub25lIikKZ3JhcGhfY2FzZXMKYGBgCgoKIyMgTXVsdGlsZXZlbCBNb2RlbGluZwphLiBCZXJlY2huZW4gU2llIGRhcyBSYW5kb20tSW50ZXJjZXB0LCBSYW5kb20tU2xvcGUgTW9kZWxsIG1pdCBkZXIgRnVua3Rpb24gYGxtZSgpYCBhdXMgZGVtIFBha2V0IGBsbWVyYC4gRGllIEZ1bmt0aW9uIGJlbsO2dGlndCBkaWUgRGF0ZW4gZGFiZWkgaW0gTG9uZ2Zvcm1hdCwgZGllIGluIGRlbSBPYmpla3QgYGdwYV9kYXRhX2xvbmdgIGdlc3BlaWNoZXJ0IHNpbmQuIEFscyBWYXJpYWJsZW4gbcO8c3NlbiBkYWJlaSBkaWUgVmFyaWFibGUgYGdwYWAgYWxzIEVyZ2VibmlzdmFyaWFibGUgdW5kIGRpZSBWYXJpYWJsZSBgdGltZWAgYWxzIFByw6RkaWt0b3J2YXJpYWJsZSBhbmdlZ2ViZW4gd2VyZGVuLiBCZXRyYWNodGVuIFNpZSBkaWUgRXJnZWJuaXNzZSBhbnNjaGxpZcOfZW5kIG1pdCBkZXIgRnVua3Rpb24gYHN1bW1hcnkoKWAuIFdlbGNoZSBmZXN0ZW4gRWZmZWt0ZSBzaW5kIHNpZ25maWthbnQ/IEvDtm5uZW4gU2llIGJldXJ0ZWlsZW4sIG9iIGRpZSB6dWbDpGxsaWdlbiBFZmZla3RlIHNpZ25pZmlrYW50IHNpbmQ/CgpgYGB7cn0KbW9kMSA8LSBsbWUoZ3BhIH4gdGltZSwgcmFuZG9tID0gfiAxICsgdGltZSB8IHN0dWRlbnRfaWQsIGRhdGEgPSBncGFfZGF0YV9sb25nKQpzdW1tYXJ5KG1vZDEpCmBgYAoKYi4gRGFzIE9iamVrdCBgbW9kMWAgZW50aMOkbHQgZGllIEVyZ2Vibmlzc2UgZGVzIFJhbmRvbS1JbnRlcmNlcHQsIFJhbmRvbS1TbG9wZSBNb2RlbGxzLiBXZW5kZW4gU2llIGF1ZiBkYXMgT2JqZWt0IGBtb2QxYCBkaWUgRnVua3Rpb24gYHRpZHkoKWBhdXMgZGVtIFBha2V0IGBicm9vbS5taXhlZGAgYW4uIEluIGRlciBGdW5rdGlvbiBzZXR6ZW4gU2llIGRhYmVpIGRlbiBXZXJ0IGRlcyBBcmd1bWVudHMgYGNvbmYuaW50YCBhdWYgYFRSVUVgIHVuZCBnZWJlbiBmw7xyIGRhcyBBcmd1bWVudCBgY29uZi5sZXZlbGAgZGVuIFdlcnQgYDAuOTVgIGFuLiBEYWR1cmNoIHdlcmRlbiBkaWUgS29uZmlkZW56aW50ZXJ2YWxsZSBkZXIgUGFyYW1ldGVyIGdlc2Now6R0enQgdW5kIGRpZSBTaWduaWZpa2FueiBkZXIgenVmw6RsbGlnZW4gRWZmZWt0ZSBrYW5uIG51biB6dXPDpHR6bGljaCBiZXVydGVpbHQgd2VyZGVuLgoKYGBge3J9Cm1vZDFfY29lZiA8LSB0aWR5KG1vZDEsIGNvbmYuaW50ID0gVFJVRSwgY29uZi5sZXZlbCA9IDAuOTUpCmtibChtb2QxX2NvZWYsIGRpZ2l0cyA9IDIpICU+JQogIGthYmxlX3N0eWxpbmcoYm9vdHN0cmFwX29wdGlvbnMgPSAic3RyaXBlZCIpCmBgYAoKYy4gRGllIE9iamVrdGUgYGZpeF9pbnRlcmNlcHRgIHVuZCBgZml4X3Nsb3BlYCBlbnRoYWx0ZW4gZGllIGZlc3RlbiBFZmZla3RlIHZvbSBSYW5kb20tSW50ZXJjZXB0LCBSYW5kb20tU2xvcGUgTW9kZWxsIGF1cyBkZW0gT2JqZWt0IGBtb2QxYC4gRXJ3ZWl0ZXJuIFNpZSBkaWUgZXJzdGUgR3JhcGhpayBpbSBPYmpla3QgYGdyYXBoX2Nhc2VzYCB1bmQgc3RlbGxlbiBTaWUgenVzw6R0emxpY2ggZGllIEdlcmFkZSBkYXIsIGRpZSDDvGJlciBkaWUgZmVzdGVuIEVmZmVrdGUgZ2VzY2jDpHR6dCB3aXJkLiBGw7xyIGRpZSBFcndlaXRlcnVuZyBuZWhtZW4gU2llIGRpZSBGdW5rdGlvbiBgZ2VvbV9hYmxpbmUoKWAgYXVzIGRlbSBQYWtldCBgZ2dwbG90MmAuIEJldHJhY2h0ZW4gU2llIGltIEFuc2NobHVzcyBkaWUgRXJnZWJuaXNzZSBkZXIgbmV1ZW4gR3JhcGhpay4gRW50c3ByaWNodCBkaWUgR3JhcGhpayBJaHJlbiBFcndhcnR1bmdlbj8KCmBgYHtyfQpmaXhfaW50ZXJjZXB0IDwtIHN1bW1hcnkobW9kMSkkY29lZiRmaXhlZFtbMV1dCmZpeF9zbG9wZSA8LSBzdW1tYXJ5KG1vZDEpJGNvZWYkZml4ZWRbWzJdXQoKZ3JhcGhfZml4ZWQgPC0gZ3JhcGhfY2FzZXMgKwogICAgICAgICAgICAgICBnZW9tX2FibGluZShpbnRlcmNlcHQgPSBmaXhfaW50ZXJjZXB0LCBzbG9wZSA9IGZpeF9zbG9wZSkKZ3JhcGhfZml4ZWQKYGBgCgpkLiBJbiBkZW0gT2JqZWt0IGBtb2QxYCBzaW5kIGRpZSBFcmdlYm5pc3NlIGRlcyBSYW5kb20tSW50ZXJjZXB0LCBSYW5kb20tU2xvcGUgTW9kZWxsIGdlc3BlaWNoZXJ0LgpXZW5kZW4gU2llIGRpZSBGdW5rdGlvbiBgYXVnbWVudCgpYCBhdXMgZGVtIFBha2V0IGBicm9vbS5taXhlZGAgYXVmIGRhcyBPYmpla3QgYW4uIEJldHJhY2h0ZW4gU2llIGltIEFuc2NobHVzcyBkaWUgdm9uIGRlciBGdW5rdGlvbiBhdXNnZWdlYmVuZW4gV2VydGUgdW5kIHZlcnN1Y2hlbiBpaHJlIEJlZGV1dHVuZyB6dSBlcmZhc3Nlbi4gQmVpIGRlciBWYXJpYWJsZSBgLmZpdHRlZGAgaGFuZGVsdCBlcyBzaWNoIHVtIGluZGl2aWR1ZWxsIHZvcmhlcmdlc2FndGVuIFdlcnRlIGRlciBQZXJzb25lbi4gVW0gZGllIEJlZGV1dHVuZyBkaWVzZXIgV2VydGUgbm9jaCBiZXNzZXIgenUgdmVyc3RlaGVuLCBzb2xsZW4gc2llIGluIGRlciBuw6RjaHN0ZW4gw5xidW5nIGdyYXBoaXNjaCBkYXJnZXN0ZWxsdCB3ZXJkZW4uCgpgYGB7cn0KbW9kMV9kYXRhIDwtIGF1Z21lbnQobW9kMSkKbW9kMV9kYXRhCmBgYAoKZS4gRGFzIE9iamVrdCBgbW9kMV9zdWJzYW1wbGVgIGVudGjDpGx0IGRpZSBEYXRlbiBkZXIgU3Vic3RpY2hwcm9iZSwgZGllIMO8YmVyIGRpZSBgYXVnbWVudGAtRnVua3Rpb24gZ2V3b25uZW4gd3VyZGUuIEVyd2VpdGVybiBTaWUgZGllIHp3ZWl0ZSBHcmFwaGlrIGBncmFwaF9maXhlZGAsIHVtIGRpZSBpbmRpdmlkdWVsbCBnZXNjaMOkdHp0ZW4gR2VyYWRlbmdsZWljaHVuZ2VuLiBIaWVyenUgbcO8c3NlbiBpbiBkZXIgRnVua3Rpb24gYGdlb21fbGluZWAgYWxzIHgtIHVuZCBhbHMgeS1XZXJ0IGRpZSBWYXJpYWJsZW4gYHRpbWVgIHVuZCBgZml0dGVkYCBhbmdlZ2ViZW4gd2VyZGVuLgoKYGBge3J9Cm1vZDFfc3Vic2FtcGxlIDwtIGZpbHRlcihtb2QxX2RhdGEsIHN0dWRlbnRfaWQgJWluJSBjKDE0LCAyMSwgNDMsIDY4KSkKbW9kMV9zdWJzYW1wbGUKCmdyYXBoX2luZGkgPC0gZ3JhcGhfZml4ZWQgKwogICAgICAgICAgICAgIGdlb21fbGluZShkYXRhID0gbW9kMV9zdWJzYW1wbGUsCiAgICAgICAgICAgICAgICAgICAgICAgIGFlcyh4ID0gdGltZSwgeSA9IC5maXR0ZWQsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb2xvciA9IGFzLmZhY3RvcihzdHVkZW50X2lkKSksCiAgICAgICAgICAgICAgICAgICAgICAgIGxpbmV0eXBlID0gImRvdHRlZCIsCiAgICAgICAgICAgICAgICAgICAgICAgIHNpemUgPSAwLjcKICAgICAgICAgICAgICAgICAgICAgICAgKQoKZ3JhcGhfaW5kaQpgYGAK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTMO2c3VuZ2VuIMOcYnVuZ3NhdWZnYWJlbiIKb3V0cHV0OgogaHRtbF9kb2N1bWVudDoKICAgdG9jOiB0cnVlCiAgIHRvY19kZXB0aDogMgogICB0b2NfZmxvYXQ6IFRSVUUKICAgY29kZV9kb3dubG9hZDogdHJ1ZQogICBudW1iZXJfc2VjdGlvbnM6IHRydWUKIyAgY29kZV9mb2xkaW5nOiBoaWRlCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKa25pdHI6Om9wdHNfY2h1bmskc2V0KG1lc3NhZ2U9RkFMU0UpCm9wdGlvbnMoa25pdHIua2FibGUuTkEgPSAnJykKCmBgYAoKIyBQYWtldGUgbGFkZW4KTGFkZW4gc2llIGRpZSBQYWtldGUgYHRpZHl2ZXJzZWAsIGBubG1lYCwgYGtuaXRyYCB1bmQgYGJyb29tLm1peGVkYCBtaXQgZGVtIEJlZmVobCBgbGlicmFyeSgpYC4KCmBgYHtyfQojIFNhbW1sdW5nIHZvbiBQYWtldGVuLCB2aWVsIHp1IERhdGVubWFuaXB1bGF0aW9uCmxpYnJhcnkoInRpZHl2ZXJzZSIpCiMgRsO8ciBkaWUgQmVyZWNobnVuZyBkZXIgTXVsdGlsZXZlbCBNb2RlbGxlCmxpYnJhcnkoIm5sbWUiKQojIEbDvHIgZGllIFdlaXRlcnZlcmFyYmVpdHVuZyBkZXIgRXJnZWJuaXNzZSBkZXMgUGFrZXRzIG5sbWUKbGlicmFyeSgiYnJvb20ubWl4ZWQiKQojIFdpcmQgZWlubWFsIGbDvHIgZGllIERhcnN0ZWxsdW5nIGVpbmVyIFRhYmVsbGUgYmVuw7Z0aWd0CmxpYnJhcnkoImthYmxlRXh0cmEiKQpgYGAKCiMgRGF0ZW4gbGFkZW4KTGFkZW4gU2llIGRpZSBEYXRlbmRhdGVpIGBncGEyLmNzdmAgbWl0IGRlbSBCZWZlaGwgYHJlYWRfY3N2MigpYC4gU3BlaWNoZXJuIFNpZSBkaWUgRGF0ZW4gaW4gZWluZW0gbmV1ZW4gT2JqZWt0IHVudGVyIGRlbSBOYW1lbiBgZ3BhX2RhdGFgLiBCZXRyYWNodGVuIFNpZSBkaWUgRGF0ZW4gaW4gZGVtIE9iamVrdCBgZ3BhX2RhdGFgIG7DpGhlci4gQmVudXR6ZW4gU2llIGhpZXJ6dSBkaWUgQmVmZWhsZSBgaGVhZCgpYCB1bmQgYHN0cigpYC4KCmBgYHtyfQpncGFfZGF0YSA8LSByZWFkLmNzdjIoZmlsZSA9ICIuL2RhdGEvZ3BhMi5jc3YiKQpoZWFkKGdwYV9kYXRhKQpzdHIoZ3BhX2RhdGEpCmBgYAoKIyBBdXN3w6RobGVuIERhdGVuClfDpGhsZW4gU2llICBtaXQgZGVtIEJlZmVobCBgc2VsZWN0KClgIGRpZSBmw7xyIGRpZSBBbmFseXNlIHJlbGV2YW50ZW4gRGF0ZW4gYHN0dWRlbnRgLCBgc2V4YCB1bmQgYGdwYTFgIGJpcyBgZ3BhNmAgYXVzLiBJbSBBbnNjaGx1c3MgYmVuZW5uZW4gU2llIG1pdCBkZW0gQmVmZWhsIGByZW5hbWUoKWAgZGVuIFZhcmlhYmxlbm5hbWVuIGBzdHVkZW50YCBpbiBgc3R1ZGVudF9pZGAgdW0uIEJldHJhY2h0ZW4gU2llIGRpZSBFcmdlYm5pc3NlIGRlciBEYXRlbm1hbmlwdWxhdGlvbi4KCmBgYHtyfQpncGFfZGF0YSA8LSBzZWxlY3QoZ3BhX2RhdGEsIHN0dWRlbnQsIHNleCwgc3RhcnRzX3dpdGgoImdwYSIpKQpncGFfZGF0YSA8LSByZW5hbWUoZ3BhX2RhdGEsIHN0dWRlbnRfaWQgPSBzdHVkZW50KQpoZWFkKGdwYV9kYXRhKQpgYGAKCiMgVW1zdHJ1a3R1cmllcmVuIERhdGVuClN0cnVrdHVyaWVyZW4gU2llIGRpZSBEYXRlbiBtaXQgZGVtIEJlZmVobCBgcGl2b3RfbG9uZ2VyKClgIHVtLiDDnGJlcmbDvGhyZW4gU2llIGRhYmVpIGRpZSBWYXJpYWJsZW4gYGdwYTFgIGJpcyBgZ3BhNmAgdm9uIGRlbSBXaWRlLUZvcm1hdCBpbiBkYXMgTG9uZy1Gb3JtYXQuIERpZSBuZXUgZW50c3RlaGVuZGUgU3BhbHRlIG1pdCBkZW4gR1BBLVdlcnRlbiBmw7xyIGFsbGUgTWVzc3plaXRwdW5rdGUgc29sbCBkYWJlaSBkZW4gVmFyaWFibGVubmFtZW4gYGdwYWAgZXJoYWx0ZW4gdW5kIGRpZSBOYW1lbiBkZXIgVmFyaWFibGVuIGBncGExYCBiaXMgYGdwYTZgIHNvbGxlbiBpbiBlaW5lIFNwYWx0ZSBtaXQgZGVtIE5hbWVuIGB0aW1lYCDDvGJlcmbDvGhydCB3ZXJkZW4uIEJldHJhY2h0ZW4gU2llIGRpZSBFcmdlYm5pc3NlIGRlciBVbXN0cnVrdHVyaWVydW5nLgoKYGBge3J9CmdwYV9kYXRhX2xvbmcgPC0gcGl2b3RfbG9uZ2VyKGdwYV9kYXRhLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29scyA9IHN0YXJ0c193aXRoKCJncGEiKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbmFtZXNfdG8gPSAidGltZSIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZhbHVlc190byA9ICJncGEiKQpncGFfZGF0YV9sb25nCmBgYAoKIyBCaWxkdW5nIFplaXR2YXJpYWJsZQpJbSBGb2xnZW5kZW4gd2lyZCBkaWUgVmFyaWFibGUgYHRpbWVgIMO8YmVyc2NocmllYmVuIHVuZCBlaW5lIG5ldWUgWmVpdHZhcmlhYmxlIG1pdCBkZW4gV2VydGVuIDAgYmlzIDUgZ2ViaWxkZXQuIMOcYmVycHLDvGZlbiBTaWUgbWl0IGRlciBGdW5rdGlvbiBgcHJpbnQoKWAsIG9iIGRpZSBXZXJ0ZSBrb3JyZWt0IGVyc3RlbGx0IHd1cmRlbi4gV2llIGJldXJ0ZWlsZW4gU2llLCBkYXNzIGRlciBlcnN0ZSBNZXNzemVpdHB1bmt0IGRlbiBXZXJ0IDAgZXJoYWx0ZW4gaGF0PwoKYGBge3J9CmdwYV9kYXRhX2xvbmcgPC0gZ3BhX2RhdGFfbG9uZyU+JQogIGdyb3VwX2J5KHN0dWRlbnRfaWQpJT4lCiAgbXV0YXRlKHRpbWUgPSAxOm4oKS0xKQpwcmludChncGFfZGF0YV9sb25nLCBuID0gMTUpCmBgYAoKIyBHcmFwaGlrIEVpbnplbHZlcmzDpHVmZSBJCkRhcyBPYmpla3QgYGdwYV9zdWJzYW1wbGVgIGVudGjDpGx0IGRpZSBNZXNzd2VydGUgdm9uIHZpZXIgUGVyc29uZW4gKElEcyAxNCwgMjEsIDQzLCA2OCkuIEltIEZvbGdlbmRlbiBzb2xsIGbDvHIgZGllc2UgUGVyc29uZW4gZGVyIFZlcmxhdWYgZGVyIEdQQS1XZXJ0ZSDDvGJlciBkaWUgWmVpdCBkYXJnZXN0ZWxsdCB3ZXJkZW4uIERhYmVpIHdlcmRlbiB2ZXJzY2hpZWRlbmUgRnVua3Rpb25lbiBkZXMgUGFrZXRzIGBnZ3Bsb3QyYCBiZW51dHp0LiBIaWVyenUgbcO8c3NlbiB6dW7DpGNoc3QgaW4gZGVyIEZ1bmt0aW9uIGBnZ3Bsb3QoKWAgZGllIFZhcmlhYmxlbiBgdGltZWAgdW5kIGBncGFgIGFscyB4LSBiencuIHktV2VydCBhbmdlZ2ViZW4gd2VyZGVuLiBEYW1pdCBkaWUgR1BBLVdlcnRlIGVpbmVyIFBlcnNvbiBlaW5kZXV0aWcgenVnZW9yZG5ldCB3ZXJkZW4ga8O2bm5lbiwgbXVzcyBmw7xyIGRhcyBBcmd1bWVudCBgZ3JvdXBgIHp1c8OkdHpsaWNoIGRpZSBWYXJpYWJsZSBgc3R1ZGVudF9pZGAgYW5nZWdlYmVuIHdlcmRlbi4gQmV0cmFjaHRlbiBTaWUgZGllIEVyZ2Vibmlzc2UgZGVyIGltIE9iamVrdCBgZ3JhcGhfY2FzZXNgIGFiZ2VzcGVpY2hlcnRlbiBHcmFwaGlrLgoKYGBge3J9CmdwYV9zdWJzYW1wbGUgPC0gZ3BhX2RhdGFfbG9uZyU+JQogIGZpbHRlcihzdHVkZW50X2lkICVpbiUgYygxNCwgMjEsIDQzLCA2OCkpCmdwYV9zdWJzYW1wbGUKCmdyYXBoX2Nhc2VzIDwtIGdncGxvdChncGFfc3Vic2FtcGxlLCBhZXMoeCA9IHRpbWUsIHkgPSBncGEsIGdyb3VwID0gc3R1ZGVudF9pZCkpICsKICAgICAgICAgICAgICAgIyBBbmdhYmUsIGRhc3MgZGllIFdlcnRlIGFscyBMaW5pZW4gZGFyZ2VzdGVsbHQgd2VyZGVuIHNvbGxlbgogICAgICAgICAgICAgICBnZW9tX2xpbmUoYWVzKGNvbG9yID0gYXMuZmFjdG9yKHN0dWRlbnRfaWQpKSkgKwogICAgICAgICAgICAgICAjIERpZSBXZXJ0ZSBkZXIgUGVyc29uZW4gc29sbGVuIHp1c8OkdHpsaWNoIGFscyBQdW5rdGUgZGFyZ2VzdGVsbHQgd2VyZGVuCiAgICAgICAgICAgICAgIGdlb21fcG9pbnQoYWVzKGNvbG9yID0gYXMuZmFjdG9yKHN0dWRlbnRfaWQpKSkgKwogICAgICAgICAgICAgICAjIERpZSBHZXJhZGUgc29sbGVuIG1pdCBkZXIgSUQgYmVzY2hyaWZ0ZXQgd2VyZGVuCiAgICAgICAgICAgICAgIGdlb21fdGV4dChkYXRhID0gZmlsdGVyKGdwYV9zdWJzYW1wbGUsIHRpbWUgPT0gbGFzdCh0aW1lKSksCiAgICAgICAgICAgICAgICAgICAgICAgICBhZXMobGFiZWwgPSBhcy5mYWN0b3Ioc3R1ZGVudF9pZCkpLAogICAgICAgICAgICAgICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9udWRnZSh4ID0gMC4yKSwKICAgICAgICAgICAgICAgICAgICAgICAgIGNoZWNrX292ZXJsYXAgPSBUUlVFKSArCiAgICAgICAgICAgICAgIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbiA9ICJub25lIikKZ3JhcGhfY2FzZXMKYGBgCgojIE1laHJlYmVuZW5tb2RlbGwKQmVyZWNobmVuIFNpZSBkYXMgUmFuZG9tLUludGVyY2VwdCwgUmFuZG9tLVNsb3BlIE1vZGVsbCBtaXQgZGVyIEZ1bmt0aW9uIGBsbWUoKWAgYXVzIGRlbSBQYWtldCBgbG1lcmAuIERpZSBGdW5rdGlvbiBiZW7DtnRpZ3QgZGllIERhdGVuIGRhYmVpIGltIExvbmdmb3JtYXQsIGRpZSBpbiBkZW0gT2JqZWt0IGBncGFfZGF0YV9sb25nYCBnZXNwZWljaGVydCBzaW5kLiBBbHMgVmFyaWFibGVuIG3DvHNzZW4gYGdwYWAgYWxzIEVyZ2VibmlzdmFyaWFibGUgdW5kIGB0aW1lYCBhbHMgUHLDpGRpa3RvcnZhcmlhYmxlIGFuZ2VnZWJlbiB3ZXJkZW4uIEJldHJhY2h0ZW4gU2llIGRpZSBFcmdlYm5pc3NlIGFuc2NobGllw59lbmQgbWl0IGRlciBGdW5rdGlvbiBgc3VtbWFyeSgpYC4gV2VsY2hlIGZlc3RlbiBFZmZla3RlIHNpbmQgc2lnbmZpa2FudD8gS8O2bm5lbiBTaWUgYmV1cnRlaWxlbiwgb2IgZGllIHp1ZsOkbGxpZ2VuIEVmZmVrdGUgc2lnbmlmaWthbnQgc2luZD8KCmBgYHtyfQptb2QxIDwtIGxtZShncGEgfiB0aW1lLCByYW5kb20gPSB+IDEgKyB0aW1lIHwgc3R1ZGVudF9pZCwgZGF0YSA9IGdwYV9kYXRhX2xvbmcpCnN1bW1hcnkobW9kMSkKYGBgCgojIEtvbmZpZGVuemludGVydmFsbGUKRGFzIE9iamVrdCBgbW9kMWAgZW50aMOkbHQgZGllIEVyZ2Vibmlzc2UgZGVzIFJhbmRvbS1JbnRlcmNlcHQsIFJhbmRvbS1TbG9wZSBNb2RlbGxzLiBXZW5kZW4gU2llIGRpZSBGdW5rdGlvbiBgdGlkeSgpYGF1cyBkZW0gUGFrZXQgYGJyb29tLm1peGVkYCBhdWYgZGFzIE9iamVrdCBgbW9kMWAgYW4uIEluIGRlciBGdW5rdGlvbiBzZXR6ZW4gU2llIGRhYmVpIGRlbiBXZXJ0IGRlcyBBcmd1bWVudHMgYGNvbmYuaW50YCBhdWYgYFRSVUVgIHVuZCBnZWJlbiBmw7xyIGRhcyBBcmd1bWVudCBgY29uZi5sZXZlbGAgZGVuIFdlcnQgYDAuOTVgIGFuLiBEYWR1cmNoIHdlcmRlbiBkaWUgS29uZmlkZW56aW50ZXJ2YWxsZSBkZXIgUGFyYW1ldGVyIGdlc2Now6R0enQgdW5kIGRpZSBTaWduaWZpa2FueiBkZXIgenVmw6RsbGlnZW4gRWZmZWt0ZSBrYW5uIG51biB6dXPDpHR6bGljaCBiZXVydGVpbHQgd2VyZGVuLiBXZWxjaGUgZGVyIHp1ZsOkbGxpZ2VuIEVmZmVrdGUgd2VyZGVuIHNpZ25pa2FudD8KCmBgYHtyfQptb2QxX2NvZWYgPC0gdGlkeShtb2QxLCBjb25mLmludCA9IFRSVUUsIGNvbmYubGV2ZWwgPSAwLjk1KQprYmwobW9kMV9jb2VmLCBkaWdpdHMgPSAyKSAlPiUKICBrYWJsZV9zdHlsaW5nKGJvb3RzdHJhcF9vcHRpb25zID0gInN0cmlwZWQiKQpgYGAKCiMgR3JhcGhpayBmZXN0ZSBFZmZla3RlCkRpZSBPYmpla3RlIGBmaXhfaW50ZXJjZXB0YCB1bmQgYGZpeF9zbG9wZWAgZW50aGFsdGVuIGRpZSBmZXN0ZW4gRWZmZWt0ZSB2b20gUmFuZG9tLUludGVyY2VwdCwgUmFuZG9tLVNsb3BlIE1vZGVsbC4gRXJ3ZWl0ZXJuIFNpZSBkaWUgZXJzdGUgR3JhcGhpayBpbSBPYmpla3QgYGdyYXBoX2Nhc2VzYCB1bmQgc3RlbGxlbiBTaWUgenVzw6R0emxpY2ggZGllIEdlcmFkZSBkYXIsIGRpZSDDvGJlciBkaWUgZmVzdGVuIEVmZmVrdGUgZ2VzY2jDpHR6dCB3aXJkLiBGw7xyIGRpZSBFcndlaXRlcnVuZyBuZWhtZW4gU2llIGRpZSBGdW5rdGlvbiBgZ2VvbV9hYmxpbmUoKWAgYXVzIGRlbSBQYWtldCBgZ2dwbG90MmAuIEJldHJhY2h0ZW4gU2llIGltIEFuc2NobHVzcyBkaWUgRXJnZWJuaXNzZSBkZXIgbmV1ZW4gR3JhcGhpay4gRW50c3ByaWNodCBkaWUgR3JhcGhpayBJaHJlbiBFcndhcnR1bmdlbj8KCmBgYHtyfQpmaXhfaW50ZXJjZXB0IDwtIHN1bW1hcnkobW9kMSkkY29lZiRmaXhlZFtbMV1dCmZpeF9zbG9wZSA8LSBzdW1tYXJ5KG1vZDEpJGNvZWYkZml4ZWRbWzJdXQoKZ3JhcGhfZml4ZWQgPC0gZ3JhcGhfY2FzZXMgKwogICAgICAgICAgICAgICBnZW9tX2FibGluZShpbnRlcmNlcHQgPSBmaXhfaW50ZXJjZXB0LCBzbG9wZSA9IGZpeF9zbG9wZSkKZ3JhcGhfZml4ZWQKYGBgCgojIERhdGVuIE1vZGVsbHNjaMOkdHp1bmcKSW4gZGVtIE9iamVrdCBgbW9kMWAgc2luZCBkaWUgRXJnZWJuaXNzZSBkZXMgUmFuZG9tLUludGVyY2VwdCwgUmFuZG9tLVNsb3BlIE1vZGVsbCBnZXNwZWljaGVydC4gV2VuZGVuIFNpZSBkaWUgRnVua3Rpb24gYGF1Z21lbnQoKWAgYXVzIGRlbSBQYWtldCBgYnJvb20ubWl4ZWRgIGF1ZiBkYXMgT2JqZWt0IGFuLiBCZXRyYWNodGVuIFNpZSBpbSBBbnNjaGx1c3MgZGllIHZvbiBkZXIgRnVua3Rpb24gYXVzZ2VnZWJlbmVuIFdlcnRlIHVuZCB2ZXJzdWNoZW4gaWhyZSBCZWRldXR1bmcgenUgZXJmYXNzZW4uIEJlaSBkZXIgVmFyaWFibGUgYC5maXR0ZWRgIGhhbmRlbHQgZXMgc2ljaCB1bSBkaWUgaW5kaXZpZHVlbGwgdm9yaGVyZ2VzYWd0ZW4gV2VydGUgZGVyIFBlcnNvbmVuLiBVbSBkaWUgV2VydGUgbm9jaCBiZXNzZXIgenUgdmVyc3RlaGVuLCBzb2xsZW4gc2llIGluIGRlciBuw6RjaHN0ZW4gw5xidW5nIGdyYXBoaXNjaCBkYXJnZXN0ZWxsdCB3ZXJkZW4uCgpgYGB7cn0KbW9kMV9kYXRhIDwtIGF1Z21lbnQobW9kMSkKbW9kMV9kYXRhCmBgYAoKIyBHcmFwaGlrIEVpbnplbHZlcmzDpHVmZSBJSQpFcndlaXRlcm4gU2llIGRpZSB6d2VpdGUgR3JhcGhpayBgZ3JhcGhfZml4ZWRgLCB1bSBkaWUgaW5kaXZpZHVlbGwgZ2VzY2jDpHR6dGVuIEdlcmFkZW5nbGVpY2h1bmdlbi4gQmVudXR6ZW4gU2llIGhpZXJ6dSBkaWUgaW0gT2JqZWt0IGBtb2QxX3N1YnNhbXBsZWAgZ2VzcGVpY2hlcnRlbiBEYXRlbi4gRGFiZWkgbcO8c3NlbiBpbiBkZXIgRnVua3Rpb24gYGdlb21fbGluZWAgYWxzIHgtIHVuZCBhbHMgeS1XZXJ0IGRpZSBWYXJpYWJsZW4gYHRpbWVgIHVuZCBgLmZpdHRlZGAgYW5nZWdlYmVuIHdlcmRlbi4KCmBgYHtyfQptb2QxX3N1YnNhbXBsZSA8LSBmaWx0ZXIobW9kMV9kYXRhLCBzdHVkZW50X2lkICVpbiUgYygxNCwgMjEsIDQzLCA2OCkpCm1vZDFfc3Vic2FtcGxlCgpncmFwaF9pbmRpIDwtIGdyYXBoX2ZpeGVkICsKICAgICAgICAgICAgICBnZW9tX2xpbmUoZGF0YSA9IG1vZDFfc3Vic2FtcGxlLAogICAgICAgICAgICAgICAgICAgICAgICBhZXMoeCA9IHRpbWUsIHkgPSAuZml0dGVkLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgY29sb3IgPSBhcy5mYWN0b3Ioc3R1ZGVudF9pZCkpLAogICAgICAgICAgICAgICAgICAgICAgICBsaW5ldHlwZSA9ICJkb3R0ZWQiLAogICAgICAgICAgICAgICAgICAgICAgICBzaXplID0gMC43KQpncmFwaF9pbmRpCmBgYAo=</div>
 
 
 </div>

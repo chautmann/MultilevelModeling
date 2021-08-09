@@ -7,24 +7,32 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Bei dem Kurzworkshop wird die Mehrebenenanalyse als Verfahren für die Auswertung von Längsschnittdaten vorgestellt. Die Mehrebenenanalyse hat in den letzten zwei Jahrenzehnten in der klinischen Psychologie und bei der Auswertung von randomisiert kontrollierten Studien zunehmend an Beachtung gefunden. In der englischsprachigen Literatur werden für das Verfahren unterschiedliche Begriffe verwendet wie Hierarchical Linear Models, Linear Mixed-Effect Model, Mixed Models und Random-Effects Models. Bei dem Kurzworkshop handelt es sich um eine praktische Einführung, bei denen das Verfahren anhand von Übungen erprobt werden soll.
+Bei dem Kurzworkshop wird die Mehrebenenanalyse als Verfahren für die Auswertung von Längsschnittdaten vorgestellt. Es handelt sich um eine praktische Einführung, bei denen der Ansatz anhand von Übungen erprobt werden soll.
 
-## Software und Pakete
-Für die Übungen wird die Statistiksoftware R genutzt. Um die Benutzung von R zu erleichtern, wird als graphische Benutzeroberfläche zusätzlich das Programm RStudio verwendet. Die Software kann unter den folgenden Downloadlinks abgerufen werden und ist kostenfrei:
+### Software und Pakete
+Für die Übungen wird die Statistiksoftware R genutzt. Um die Benutzung von R zu erleichtern, wird als graphische Benutzeroberfläche zusätzlich das Programm RStudio verwendet. Die Software kann kostenfrei unter den folgenden Downloadlinks abgerufen werden:
 
-- Download R: [https://www.r-project.org/](https://ftp.fau.de/cran/)
-- Download RStudio: [https://www.rstudio.com/](https://www.rstudio.com/products/rstudio/download/#download)
+- R: [https://www.r-project.org/](https://ftp.fau.de/cran/)
+- RStudio: [https://www.rstudio.com/](https://www.rstudio.com/products/rstudio/download/#download)
 
-Im Rahmen der Übungen werden verschiedene Pakete benötigt, mit den die Funktionalität von R sehr stark erweitert werden kann. Die Pakete können bereits im Vorfeld mit folgendem Befehl installiert werden:
+Im Rahmen der Übungen werden verschiedene Pakete benötigt, die die Funktionalität von R erweitern. Diese können mit folgendem Befehl installiert werden:
 
 ```{r, eval=FALSE}
 install.packages("tidyverse", "nlme", "broom.mixed", "kableExtra")
 ```
 
-## Materialien
+### Materialien
 Im Rahmen des Kurses werden verschiedene Materialien benötigt, die als Download zur Verfügung stehen:
 
-`r xfun::embed_file("./data/gpa2.csv")`
+- Handout:
+- Beispieldaten: `r xfun::embed_file("./data/gpa2.csv", text = "gpa2.csv")`
+- Übungen: 
+- Lösungen: 
 
+### Literaturempfehlungen
+**R allgemein**\
+Wickham, H., & Grolemund, G. (2017). *R for data science*. O'Reilly. [Link](https://r4ds.had.co.nz/)
 
-## Literatur
+**Mehrebenenanalyse** \
+Finch, W. H., Bolin, J. E., & Kelley, K. (2019). *Multilevel Modeling Using R* (2nd ed.). Chapman and Hall/CRC. [Link](https://doi.org/10.1201/9781351062268)\
+Hox, J. J., Moerbeek, M., & van de Schoot, R. (2017). *Multilevel analysis: Techniques and applications* (3rd ed.). Routledge. [Link](https://multilevel-analysis.sites.uu.nl/)
