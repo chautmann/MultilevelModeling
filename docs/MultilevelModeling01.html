@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lösungen</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Multilevel Modeling</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="MultilevelModeling01.html">Home</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lösungen</h1>
+
+</div>
+
+
+<div id="datenaufbereitung" class="section level2">
+<h2>Datenaufbereitung</h2>
+<ol style="list-style-type: lower-alpha">
+<li>Laden sie die Pakete <code>tidyverse</code>, <code>nlme</code>, <code>knitr</code> und <code>broom.mixed</code> mit dem Befehl <code>library()</code>.</li>
+</ol>
+<pre class="r"><code># Sammlung von Paketen, viel zu Datenmanipulation
+library(&quot;tidyverse&quot;)
+# Für die Berechnung der Multilevel Modelle
+library(&quot;nlme&quot;)
+# Für die Weiterverarbeitung der Ergebnisse des Pakets nlme
+library(&quot;broom.mixed&quot;)
+# Wird einmal für die Darstellung einer Tabelle benötigt
+library(&quot;kableExtra&quot;)</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Laden Sie die Datendatei <code>gpa2.csv</code> mit dem Befehl <code>read_csv2()</code>. Speichern Sie die Daten in einem neuen Objekt unter dem Namen <code>gpa_data</code>. Betrachten Sie die Daten in dem Objekt <code>gpa_data</code> näher. Benutzen Sie hierzu die Befehle <code>head()</code> und <code>str()</code>.</li>
+</ol>
+<pre class="r"><code>gpa_data &lt;- read.csv2(file = &quot;./data/gpa2.csv&quot;)
+head(gpa_data)</code></pre>
+<pre><code>##   student sex highgpa gpa1 gpa2 gpa3 gpa4 gpa5 gpa6
+## 1       1   1     2.8  2.3  2.1  3.0  3.0  3.0  3.3
+## 2       2   0     2.5  2.2  2.5  2.6  2.6  3.0  2.8
+## 3       3   1     2.5  2.4  2.9  3.0  2.8  3.3  3.4
+## 4       4   0     3.8  2.5  2.7  2.4  2.7  2.9  2.7
+## 5       5   0     3.1  2.8  2.8  2.8  3.0  2.9  3.1
+## 6       6   1     2.9  2.5  2.4  2.4  2.3  2.7  2.8
+##   job1 job2 job3 job4 job5 job6 admitted
+## 1    2    2    2    2    2    2        1
+## 2    2    3    2    2    2    2        0
+## 3    2    2    2    3    2    2        1
+## 4    3    2    2    2    2    2        0
+## 5    2    2    2    2    2    2        1
+## 6    2    3    3    2    3    3        0</code></pre>
+<pre class="r"><code>str(gpa_data)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    200 obs. of  16 variables:
+##  $ student : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ sex     : int  1 0 1 0 0 1 0 1 0 0 ...
+##  $ highgpa : num  2.8 2.5 2.5 3.8 3.1 2.9 2.3 3.9 2 2.8 ...
+##  $ gpa1    : num  2.3 2.2 2.4 2.5 2.8 2.5 2.4 2.8 2.8 2.8 ...
+##  $ gpa2    : num  2.1 2.5 2.9 2.7 2.8 2.4 2.4 2.8 2.7 2.8 ...
+##  $ gpa3    : num  3 2.6 3 2.4 2.8 2.4 2.8 3.1 2.7 3 ...
+##  $ gpa4    : num  3 2.6 2.8 2.7 3 2.3 2.6 3.3 3.1 2.7 ...
+##  $ gpa5    : num  3 3 3.3 2.9 2.9 2.7 3 3.3 3.1 3 ...
+##  $ gpa6    : num  3.3 2.8 3.4 2.7 3.1 2.8 3 3.4 3.5 3 ...
+##  $ job1    : int  2 2 2 3 2 2 3 2 2 2 ...
+##  $ job2    : int  2 3 2 2 2 3 2 2 2 2 ...
+##  $ job3    : int  2 2 2 2 2 3 3 2 3 2 ...
+##  $ job4    : int  2 2 3 2 2 2 2 2 2 3 ...
+##  $ job5    : int  2 2 2 2 2 3 2 2 2 2 ...
+##  $ job6    : int  2 2 2 2 2 3 2 2 2 2 ...
+##  $ admitted: int  1 0 1 0 1 0 1 1 9 1 ...</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Wählen Sie mit dem Befehl <code>select()</code> die für die Analyse relevanten Daten <code>student</code>, <code>sex</code> und <code>gpa1</code> bis <code>gpa6</code> aus. Im Anschluss benennen Sie mit dem Befehl <code>rename()</code> den Variablennamen <code>student</code> in <code>student_id</code> um. Betrachten Sie die Ergebnisse der Datenmanipulation.</li>
+</ol>
+<pre class="r"><code>gpa_data &lt;- select(gpa_data, student, sex, starts_with(&quot;gpa&quot;))
+gpa_data &lt;- rename(gpa_data, student_id = student)
+head(gpa_data)</code></pre>
+<pre><code>##   student_id sex gpa1 gpa2 gpa3 gpa4 gpa5 gpa6
+## 1          1   1  2.3  2.1  3.0  3.0  3.0  3.3
+## 2          2   0  2.2  2.5  2.6  2.6  3.0  2.8
+## 3          3   1  2.4  2.9  3.0  2.8  3.3  3.4
+## 4          4   0  2.5  2.7  2.4  2.7  2.9  2.7
+## 5          5   0  2.8  2.8  2.8  3.0  2.9  3.1
+## 6          6   1  2.5  2.4  2.4  2.3  2.7  2.8</code></pre>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Strukturieren Sie die Daten mit dem Befehl <code>pivot_longer()</code> um. Überführen Sie dabei die Variablen <code>gpa1</code> bis <code>gpa6</code> von dem Wide-Format in das Long-Format. Die neu entstehende Spalte mit den GPA-Werten für alle Messzeitpunkte soll dabei den Variablennamen <code>gpa</code> erhalten und die Namen der Variablen <code>gpa1</code> bis <code>gpa6</code> sollen in eine Spalte mit dem Namen <code>time</code> überführt werden. Betrachten Sie die Ergebnisse der Umstrukturierung.</li>
+</ol>
+<pre class="r"><code>gpa_data_long &lt;- pivot_longer(gpa_data, 
+                    cols = c(&quot;gpa1&quot;, &quot;gpa2&quot;, &quot;gpa3&quot;, &quot;gpa4&quot;, &quot;gpa5&quot;, &quot;gpa6&quot;),
+                    names_to = &quot;time&quot;,
+                    values_to = &quot;gpa&quot;)
+gpa_data_long</code></pre>
+<pre><code>## # A tibble: 1,200 × 4
+##    student_id   sex time    gpa
+##         &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1          1     1 gpa1    2.3
+##  2          1     1 gpa2    2.1
+##  3          1     1 gpa3    3  
+##  4          1     1 gpa4    3  
+##  5          1     1 gpa5    3  
+##  6          1     1 gpa6    3.3
+##  7          2     0 gpa1    2.2
+##  8          2     0 gpa2    2.5
+##  9          2     0 gpa3    2.6
+## 10          2     0 gpa4    2.6
+## # … with 1,190 more rows</code></pre>
+<ol start="6" style="list-style-type: lower-alpha">
+<li>Im Folgenden wird die Variable <code>time</code> überschrieben und eine neue Zeitvariable mit den Werten 0 bis 5 gebildet. Überprüfen Sie mit der Funktion <code>print()</code>, ob die Werte korrekt erstellt wurden. Wie beurteilen Sie, dass der erste Messzeitpunkt den Wert 0 erhalten hat?</li>
+</ol>
+<pre class="r"><code>gpa_data_long &lt;- gpa_data_long%&gt;%
+  group_by(student_id)%&gt;%
+  mutate(time = 1:n()-1)
+print(gpa_data_long, n = 15)</code></pre>
+<pre><code>## # A tibble: 1,200 × 4
+## # Groups:   student_id [200]
+##    student_id   sex  time   gpa
+##         &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1          1     1     0   2.3
+##  2          1     1     1   2.1
+##  3          1     1     2   3  
+##  4          1     1     3   3  
+##  5          1     1     4   3  
+##  6          1     1     5   3.3
+##  7          2     0     0   2.2
+##  8          2     0     1   2.5
+##  9          2     0     2   2.6
+## 10          2     0     3   2.6
+## 11          2     0     4   3  
+## 12          2     0     5   2.8
+## 13          3     1     0   2.4
+## 14          3     1     1   2.9
+## 15          3     1     2   3  
+## # … with 1,185 more rows</code></pre>
+<ol start="7" style="list-style-type: lower-alpha">
+<li>Das Objekt <code>gpa_subsample</code> enthält die Messwerte von vier Personen (IDs 14, 21, 43, 68). Im Folgenden soll für diese Personen der Verlauf der GPA-Werte über die Zeit dargestellt werden. Dabei werden verschiedene Funktionen des Pakets <code>ggplot2</code> benutzt. Hierzu müssen zunächst in der Funktion <code>ggplot()</code> die Variablen <code>time</code> und <code>gpa</code> als x- bzw. y-Wert angegeben werden. Damit die GPA-Werte einer Person eindeutig zugeordnet werden können, muss für das Argument <code>group</code> zusätzlich die Variable <code>student_id</code> angegeben werden. Betrachten Sie die Ergebnisse der im Objekt <code>graph_cases</code> abgespeicherten Graphik.</li>
+</ol>
+<pre class="r"><code>gpa_subsample &lt;- gpa_data_long%&gt;%
+  filter(student_id %in% c(14, 21, 43, 68))
+gpa_subsample</code></pre>
+<pre><code>## # A tibble: 24 × 4
+## # Groups:   student_id [4]
+##    student_id   sex  time   gpa
+##         &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1         14     1     0   2.4
+##  2         14     1     1   3  
+##  3         14     1     2   2.9
+##  4         14     1     3   3  
+##  5         14     1     4   3.3
+##  6         14     1     5   3.4
+##  7         21     1     0   2.6
+##  8         21     1     1   2.4
+##  9         21     1     2   2.5
+## 10         21     1     3   2.5
+## # … with 14 more rows</code></pre>
+<pre class="r"><code>graph_cases &lt;- ggplot(gpa_subsample, aes(x = time, y = gpa, group = student_id)) +
+               # Angabe, dass die Werte als Linien dargestellt werden sollen
+               geom_line(aes(color = as.factor(student_id))) +
+               # Die Werte der Personen sollen zusätzlich als Punkte dargestellt werden
+               geom_point(aes(color = as.factor(student_id))) +
+               # Die Gerade sollen mit der ID beschriftet werden
+               geom_text(data = filter(gpa_subsample, time == last(time)),
+                         aes(label = as.factor(student_id)),
+                         position = position_nudge(x = 0.2),
+                         check_overlap = TRUE) +
+               theme(legend.position = &quot;none&quot;)
+graph_cases</code></pre>
+<p><img src="MultilevelModeling01_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="multilevel-modeling" class="section level2">
+<h2>Multilevel Modeling</h2>
+<ol style="list-style-type: lower-alpha">
+<li>Berechnen Sie das Random-Intercept, Random-Slope Modell mit der Funktion <code>lme()</code> aus dem Paket <code>lmer</code>. Die Funktion benötigt die Daten dabei im Longformat, die in dem Objekt <code>gpa_data_long</code> gespeichert sind. Als Variablen müssen dabei die Variable <code>gpa</code> als Ergebnisvariable und die Variable <code>time</code> als Prädiktorvariable angegeben werden. Betrachten Sie die Ergebnisse anschließend mit der Funktion <code>summary()</code>. Welche festen Effekte sind signfikant? Können Sie beurteilen, ob die zufälligen Effekte signifikant sind?</li>
+</ol>
+<pre class="r"><code>mod1 &lt;- lme(gpa ~ time, random = ~ 1 + time | student_id, data = gpa_data_long)
+summary(mod1)</code></pre>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: gpa_data_long 
+##        AIC     BIC    logLik
+##   272.9566 303.487 -130.4783
+## 
+## Random effects:
+##  Formula: ~1 + time | student_id
+##  Structure: General positive-definite, Log-Cholesky parametrization
+##             StdDev     Corr  
+## (Intercept) 0.21259026 (Intr)
+## time        0.06711178 -0.098
+## Residual    0.20588283       
+## 
+## Fixed effects:  gpa ~ time 
+##                 Value   Std.Error  DF   t-value
+## (Intercept) 2.5992143 0.018357249 999 141.59062
+## time        0.1063143 0.005884789 999  18.06595
+##             p-value
+## (Intercept)       0
+## time              0
+##  Correlation: 
+##      (Intr)
+## time -0.345
+## 
+## Standardized Within-Group Residuals:
+##         Min          Q1         Med          Q3 
+## -3.26951121 -0.53771385 -0.01277499  0.53258654 
+##         Max 
+##  3.19388035 
+## 
+## Number of Observations: 1200
+## Number of Groups: 200</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Das Objekt <code>mod1</code> enthält die Ergebnisse des Random-Intercept, Random-Slope Modells. Wenden Sie auf das Objekt <code>mod1</code> die Funktion <code>tidy()</code>aus dem Paket <code>broom.mixed</code> an. In der Funktion setzen Sie dabei den Wert des Arguments <code>conf.int</code> auf <code>TRUE</code> und geben für das Argument <code>conf.level</code> den Wert <code>0.95</code> an. Dadurch werden die Konfidenzintervalle der Parameter geschätzt und die Signifikanz der zufälligen Effekte kann nun zusätzlich beurteilt werden.</li>
+</ol>
+<pre class="r"><code>mod1_coef &lt;- tidy(mod1, conf.int = TRUE, conf.level = 0.95)
+kbl(mod1_coef, digits = 2) %&gt;%
+  kable_styling(bootstrap_options = &quot;striped&quot;)</code></pre>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+effect
+</th>
+<th style="text-align:left;">
+group
+</th>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+<th style="text-align:right;">
+conf.low
+</th>
+<th style="text-align:right;">
+conf.high
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+2.60
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+999
+</td>
+<td style="text-align:right;">
+141.59
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2.56
+</td>
+<td style="text-align:right;">
+2.64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+999
+</td>
+<td style="text-align:right;">
+18.07
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ran_pars
+</td>
+<td style="text-align:left;">
+student_id
+</td>
+<td style="text-align:left;">
+sd_(Intercept)
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ran_pars
+</td>
+<td style="text-align:left;">
+student_id
+</td>
+<td style="text-align:left;">
+cor_time.(Intercept)
+</td>
+<td style="text-align:right;">
+-0.10
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+-0.29
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ran_pars
+</td>
+<td style="text-align:left;">
+student_id
+</td>
+<td style="text-align:left;">
+sd_time
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ran_pars
+</td>
+<td style="text-align:left;">
+Residual
+</td>
+<td style="text-align:left;">
+sd_Observation
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Die Objekte <code>fix_intercept</code> und <code>fix_slope</code> enthalten die festen Effekte vom Random-Intercept, Random-Slope Modell aus dem Objekt <code>mod1</code>. Erweitern Sie die erste Graphik im Objekt <code>graph_cases</code> und stellen Sie zusätzlich die Gerade dar, die über die festen Effekte geschätzt wird. Für die Erweiterung nehmen Sie die Funktion <code>geom_abline()</code> aus dem Paket <code>ggplot2</code>. Betrachten Sie im Anschluss die Ergebnisse der neuen Graphik. Entspricht die Graphik Ihren Erwartungen?</li>
+</ol>
+<pre class="r"><code>fix_intercept &lt;- summary(mod1)$coef$fixed[[1]]
+fix_slope &lt;- summary(mod1)$coef$fixed[[2]]
+
+graph_fixed &lt;- graph_cases +
+               geom_abline(intercept = fix_intercept, slope = fix_slope)
+graph_fixed</code></pre>
+<p><img src="MultilevelModeling01_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>In dem Objekt <code>mod1</code> sind die Ergebnisse des Random-Intercept, Random-Slope Modell gespeichert. Wenden Sie die Funktion <code>augment()</code> aus dem Paket <code>broom.mixed</code> auf das Objekt an. Betrachten Sie im Anschluss die von der Funktion ausgegebenen Werte und versuchen ihre Bedeutung zu erfassen. Bei der Variable <code>.fitted</code> handelt es sich um individuell vorhergesagten Werte der Personen. Um die Bedeutung dieser Werte noch besser zu verstehen, sollen sie in der nächsten Übung graphisch dargestellt werden.</li>
+</ol>
+<pre class="r"><code>mod1_data &lt;- augment(mod1)
+mod1_data</code></pre>
+<pre><code>## # A tibble: 1,200 × 7
+##    student_id   sex  time   gpa .fitted   .resid
+##         &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+##  1          1     1     0   2.3    2.40 -0.0970 
+##  2          1     1     1   2.1    2.56 -0.463  
+##  3          1     1     2   3      2.73  0.271  
+##  4          1     1     3   3      2.90  0.105  
+##  5          1     1     4   3      3.06 -0.0615 
+##  6          1     1     5   3.3    3.23  0.0724 
+##  7          2     0     0   2.2    2.39 -0.189  
+##  8          2     0     1   2.5    2.49  0.00680
+##  9          2     0     2   2.6    2.60  0.00228
+## 10          2     0     3   2.6    2.70 -0.102  
+## # … with 1,190 more rows, and 1 more variable:
+## #   .fixed &lt;dbl&gt;</code></pre>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Das Objekt <code>mod1_subsample</code> enthält die Daten der Substichprobe, die über die <code>augment</code>-Funktion gewonnen wurde. Erweitern Sie die zweite Graphik <code>graph_fixed</code>, um die individuell geschätzten Geradengleichungen. Hierzu müssen in der Funktion <code>geom_line</code> als x- und als y-Wert die Variablen <code>time</code> und <code>fitted</code> angegeben werden.</li>
+</ol>
+<pre class="r"><code>mod1_subsample &lt;- filter(mod1_data, student_id %in% c(14, 21, 43, 68))
+mod1_subsample</code></pre>
+<pre><code>## # A tibble: 24 × 7
+##    student_id   sex  time   gpa .fitted  .resid
+##         &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1         14     1     0   2.4    2.62 -0.217 
+##  2         14     1     1   3      2.77  0.232 
+##  3         14     1     2   2.9    2.92 -0.0194
+##  4         14     1     3   3      3.07 -0.0705
+##  5         14     1     4   3.3    3.22  0.0784
+##  6         14     1     5   3.4    3.37  0.0272
+##  7         21     1     0   2.6    2.47  0.135 
+##  8         21     1     1   2.4    2.50 -0.0957
+##  9         21     1     2   2.5    2.53 -0.0263
+## 10         21     1     3   2.5    2.56 -0.0569
+## # … with 14 more rows, and 1 more variable:
+## #   .fixed &lt;dbl&gt;</code></pre>
+<pre class="r"><code>graph_indi &lt;- graph_fixed +
+              geom_line(data = mod1_subsample,
+                        aes(x = time, y = .fitted,
+                            color = as.factor(student_id)),
+                        linetype = &quot;dotted&quot;,
+                        size = 0.7
+                        )
+
+graph_indi</code></pre>
+<p><img src="MultilevelModeling01_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

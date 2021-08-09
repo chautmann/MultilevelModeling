@@ -1,15 +1,10 @@
 ---
 title: "Lösungen"
-knit: (function(input_file, encoding) {
-  out_dir <- 'docs';
-  rmarkdown::render(input_file,
- encoding=encoding,
- output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
-output:
-  html_document:
-    toc: true
-    toc_depth: 2
-    toc_float: true
+# output:
+#   html_document:
+#     toc: true
+#     toc_depth: 2
+#     toc_float: true
 #    code_folding: hide
 ---
 
@@ -50,7 +45,7 @@ gpa_data <- rename(gpa_data, student_id = student)
 head(gpa_data)
 ```
 
-e. Strukturieren Sie die Daten mit dem Befehl `pivot_longer()` um. Überführen Sie dabei die Variablen `gpa1` bis `gpa6` von dem Wide-Format in das Long-Format. Die neu entstehende Spalte mit den GPA-Werten für alle Messzeitpunkte soll dabei den Variablennamen `gpa` erhalten und die Namen der Variablen `gpa1` bis `gpa6` sollen in eine Spalte mit dem Namen `time` überführt werden. Betrachten Sie die Ergebnisse der Umstrukturierung. dfsdf
+e. Strukturieren Sie die Daten mit dem Befehl `pivot_longer()` um. Überführen Sie dabei die Variablen `gpa1` bis `gpa6` von dem Wide-Format in das Long-Format. Die neu entstehende Spalte mit den GPA-Werten für alle Messzeitpunkte soll dabei den Variablennamen `gpa` erhalten und die Namen der Variablen `gpa1` bis `gpa6` sollen in eine Spalte mit dem Namen `time` überführt werden. Betrachten Sie die Ergebnisse der Umstrukturierung.
 
 ```{r}
 gpa_data_long <- pivot_longer(gpa_data, 

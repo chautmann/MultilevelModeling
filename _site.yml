@@ -1,0 +1,12 @@
+name: "MultilevelModeling"
+output_dir: "docs"
+navbar:
+  title: "Multilevel Modeling"
+  left:
+   - text: "Home"
+     href: MultilevelModeling01.html
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
