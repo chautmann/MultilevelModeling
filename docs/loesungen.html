@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Test</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="loesungen.html">Lösungen</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Test</h1>
+
+</div>
+
+
+<div id="datenaufbereitung" class="section level2">
+<h2>Datenaufbereitung</h2>
+<ol style="list-style-type: lower-alpha">
+<li>Laden sie die Pakete <code>tidyverse</code>, <code>nlme</code>, <code>knitr</code> und <code>broom.mixed</code> mit dem Befehl <code>library()</code>.</li>
+</ol>
+<pre class="r"><code># Sammlung von Paketen, viel zu Datenmanipulation
+library(&quot;tidyverse&quot;)
+# Für die Berechnung der Multilevel Modelle
+library(&quot;nlme&quot;)
+# Für die Weiterverarbeitung der Ergebnisse des Pakets nlme
+library(&quot;broom.mixed&quot;)
+# Wird einmal für die Darstellung einer Tabelle benötigt
+library(&quot;kableExtra&quot;)</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Laden Sie die Datendatei <code>gpa2.csv</code> mit dem Befehl <code>read_csv2()</code>. Speichern Sie die Daten in einem neuen Objekt unter dem Namen <code>gpa_data</code>. Betrachten Sie die Daten in dem Objekt <code>gpa_data</code> näher. Benutzen Sie hierzu die Befehle <code>head()</code> und <code>str()</code>.</li>
+</ol>
+<pre class="r"><code>gpa_data &lt;- read.csv2(file = &quot;./data/gpa2.csv&quot;)
+head(gpa_data)</code></pre>
+<pre><code>##   student sex highgpa gpa1 gpa2 gpa3 gpa4 gpa5 gpa6 job1 job2 job3 job4 job5 job6 admitted
+## 1       1   1     2.8  2.3  2.1  3.0  3.0  3.0  3.3    2    2    2    2    2    2        1
+## 2       2   0     2.5  2.2  2.5  2.6  2.6  3.0  2.8    2    3    2    2    2    2        0
+## 3       3   1     2.5  2.4  2.9  3.0  2.8  3.3  3.4    2    2    2    3    2    2        1
+## 4       4   0     3.8  2.5  2.7  2.4  2.7  2.9  2.7    3    2    2    2    2    2        0
+## 5       5   0     3.1  2.8  2.8  2.8  3.0  2.9  3.1    2    2    2    2    2    2        1
+## 6       6   1     2.9  2.5  2.4  2.4  2.3  2.7  2.8    2    3    3    2    3    3        0</code></pre>
+<pre class="r"><code>str(gpa_data)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    200 obs. of  16 variables:
+##  $ student : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ sex     : int  1 0 1 0 0 1 0 1 0 0 ...
+##  $ highgpa : num  2.8 2.5 2.5 3.8 3.1 2.9 2.3 3.9 2 2.8 ...
+##  $ gpa1    : num  2.3 2.2 2.4 2.5 2.8 2.5 2.4 2.8 2.8 2.8 ...
+##  $ gpa2    : num  2.1 2.5 2.9 2.7 2.8 2.4 2.4 2.8 2.7 2.8 ...
+##  $ gpa3    : num  3 2.6 3 2.4 2.8 2.4 2.8 3.1 2.7 3 ...
+##  $ gpa4    : num  3 2.6 2.8 2.7 3 2.3 2.6 3.3 3.1 2.7 ...
+##  $ gpa5    : num  3 3 3.3 2.9 2.9 2.7 3 3.3 3.1 3 ...
+##  $ gpa6    : num  3.3 2.8 3.4 2.7 3.1 2.8 3 3.4 3.5 3 ...
+##  $ job1    : int  2 2 2 3 2 2 3 2 2 2 ...
+##  $ job2    : int  2 3 2 2 2 3 2 2 2 2 ...
+##  $ job3    : int  2 2 2 2 2 3 3 2 3 2 ...
+##  $ job4    : int  2 2 3 2 2 2 2 2 2 3 ...
+##  $ job5    : int  2 2 2 2 2 3 2 2 2 2 ...
+##  $ job6    : int  2 2 2 2 2 3 2 2 2 2 ...
+##  $ admitted: int  1 0 1 0 1 0 1 1 9 1 ...</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Wählen Sie mit dem Befehl <code>select()</code> die für die Analyse relevanten Daten <code>student</code>, <code>sex</code> und <code>gpa1</code> bis <code>gpa6</code> aus. Im Anschluss benennen Sie mit dem Befehl <code>rename()</code> den Variablennamen <code>student</code> in <code>student_id</code> um. Betrachten Sie die Ergebnisse der Datenmanipulation.</li>
+</ol>
+<pre class="r"><code>gpa_data &lt;- select(gpa_data, student, sex, starts_with(&quot;gpa&quot;))
+gpa_data &lt;- rename(gpa_data, student_id = student)
+head(gpa_data)</code></pre>
+<pre><code>##   student_id sex gpa1 gpa2 gpa3 gpa4 gpa5 gpa6
+## 1          1   1  2.3  2.1  3.0  3.0  3.0  3.3
+## 2          2   0  2.2  2.5  2.6  2.6  3.0  2.8
+## 3          3   1  2.4  2.9  3.0  2.8  3.3  3.4
+## 4          4   0  2.5  2.7  2.4  2.7  2.9  2.7
+## 5          5   0  2.8  2.8  2.8  3.0  2.9  3.1
+## 6          6   1  2.5  2.4  2.4  2.3  2.7  2.8</code></pre>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Strukturieren Sie die Daten mit dem Befehl <code>pivot_longer()</code> um. Überführen Sie dabei die Variablen <code>gpa1</code> bis <code>gpa6</code> von dem Wide-Format in das Long-Format. Die neu entstehende Spalte mit den GPA-Werten für alle Messzeitpunkte soll dabei den Variablennamen <code>gpa</code> erhalten und die Namen der Variablen <code>gpa1</code> bis <code>gpa6</code> sollen in eine Spalte mit dem Namen <code>time</code> überführt werden. Betrachten Sie die Ergebnisse der Umstrukturierung.</li>
+</ol>
+<pre class="r"><code>gpa_data_long &lt;- pivot_longer(gpa_data, 
+                    cols = c(&quot;gpa1&quot;, &quot;gpa2&quot;, &quot;gpa3&quot;, &quot;gpa4&quot;, &quot;gpa5&quot;, &quot;gpa6&quot;),
+                    names_to = &quot;time&quot;,
+                    values_to = &quot;gpa&quot;)
+gpa_data_long</code></pre>
+<pre><code>## # A tibble: 1,200 × 4
+##    student_id   sex time    gpa
+##         &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1          1     1 gpa1    2.3
+##  2          1     1 gpa2    2.1
+##  3          1     1 gpa3    3  
+##  4          1     1 gpa4    3  
+##  5          1     1 gpa5    3  
+##  6          1     1 gpa6    3.3
+##  7          2     0 gpa1    2.2
+##  8          2     0 gpa2    2.5
+##  9          2     0 gpa3    2.6
+## 10          2     0 gpa4    2.6
+## # … with 1,190 more rows</code></pre>
+<ol start="6" style="list-style-type: lower-alpha">
+<li>Im Folgenden wird die Variable <code>time</code> überschrieben und eine neue Zeitvariable mit den Werten 0 bis 5 gebildet. Überprüfen Sie mit der Funktion <code>print()</code>, ob die Werte korrekt erstellt wurden. Wie beurteilen Sie, dass der erste Messzeitpunkt den Wert 0 erhalten hat?</li>
+</ol>
+<pre class="r"><code>gpa_data_long &lt;- gpa_data_long%&gt;%
+  group_by(student_id)%&gt;%
+  mutate(time = 1:n()-1)
+print(gpa_data_long, n = 15)</code></pre>
+<pre><code>## # A tibble: 1,200 × 4
+## # Groups:   student_id [200]
+##    student_id   sex  time   gpa
+##         &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1          1     1     0   2.3
+##  2          1     1     1   2.1
+##  3          1     1     2   3  
+##  4          1     1     3   3  
+##  5          1     1     4   3  
+##  6          1     1     5   3.3
+##  7          2     0     0   2.2
+##  8          2     0     1   2.5
+##  9          2     0     2   2.6
+## 10          2     0     3   2.6
+## 11          2     0     4   3  
+## 12          2     0     5   2.8
+## 13          3     1     0   2.4
+## 14          3     1     1   2.9
+## 15          3     1     2   3  
+## # … with 1,185 more rows</code></pre>
+<ol start="7" style="list-style-type: lower-alpha">
+<li>Das Objekt <code>gpa_subsample</code> enthält die Messwerte von vier Personen (IDs 14, 21, 43, 68). Im Folgenden soll für diese Personen der Verlauf der GPA-Werte über die Zeit dargestellt werden. Dabei werden verschiedene Funktionen des Pakets <code>ggplot2</code> benutzt. Hierzu müssen zunächst in der Funktion <code>ggplot()</code> die Variablen <code>time</code> und <code>gpa</code> als x- bzw. y-Wert angegeben werden. Damit die GPA-Werte einer Person eindeutig zugeordnet werden können, muss für das Argument <code>group</code> zusätzlich die Variable <code>student_id</code> angegeben werden. Betrachten Sie die Ergebnisse der im Objekt <code>graph_cases</code> abgespeicherten Graphik.</li>
+</ol>
+<pre class="r"><code>gpa_subsample &lt;- gpa_data_long%&gt;%
+  filter(student_id %in% c(14, 21, 43, 68))
+gpa_subsample</code></pre>
+<pre><code>## # A tibble: 24 × 4
+## # Groups:   student_id [4]
+##    student_id   sex  time   gpa
+##         &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1         14     1     0   2.4
+##  2         14     1     1   3  
+##  3         14     1     2   2.9
+##  4         14     1     3   3  
+##  5         14     1     4   3.3
+##  6         14     1     5   3.4
+##  7         21     1     0   2.6
+##  8         21     1     1   2.4
+##  9         21     1     2   2.5
+## 10         21     1     3   2.5
+## # … with 14 more rows</code></pre>
+<pre class="r"><code>graph_cases &lt;- ggplot(gpa_subsample, aes(x = time, y = gpa, group = student_id)) +
+               # Angabe, dass die Werte als Linien dargestellt werden sollen
+               geom_line(aes(color = as.factor(student_id))) +
+               # Die Werte der Personen sollen zusätzlich als Punkte dargestellt werden
+               geom_point(aes(color = as.factor(student_id))) +
+               # Die Gerade sollen mit der ID beschriftet werden
+               geom_text(data = filter(gpa_subsample, time == last(time)),
+                         aes(label = as.factor(student_id)),
+                         position = position_nudge(x = 0.2),
+                         check_overlap = TRUE) +
+               theme(legend.position = &quot;none&quot;)
+graph_cases</code></pre>
+<p><img src="loesungen_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="multilevel-modeling" class="section level2">
+<h2>Multilevel Modeling</h2>
+<ol style="list-style-type: lower-alpha">
+<li>Berechnen Sie das Random-Intercept, Random-Slope Modell mit der Funktion <code>lme()</code> aus dem Paket <code>lmer</code>. Die Funktion benötigt die Daten dabei im Longformat, die in dem Objekt <code>gpa_data_long</code> gespeichert sind. Als Variablen müssen dabei die Variable <code>gpa</code> als Ergebnisvariable und die Variable <code>time</code> als Prädiktorvariable angegeben werden. Betrachten Sie die Ergebnisse anschließend mit der Funktion <code>summary()</code>. Welche festen Effekte sind signfikant? Können Sie beurteilen, ob die zufälligen Effekte signifikant sind?</li>
+</ol>
+<pre class="r"><code>mod1 &lt;- lme(gpa ~ time, random = ~ 1 + time | student_id, data = gpa_data_long)
+summary(mod1)</code></pre>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: gpa_data_long 
+##        AIC     BIC    logLik
+##   272.9566 303.487 -130.4783
+## 
+## Random effects:
+##  Formula: ~1 + time | student_id
+##  Structure: General positive-definite, Log-Cholesky parametrization
+##             StdDev     Corr  
+## (Intercept) 0.21259026 (Intr)
+## time        0.06711178 -0.098
+## Residual    0.20588283       
+## 
+## Fixed effects:  gpa ~ time 
+##                 Value   Std.Error  DF   t-value p-value
+## (Intercept) 2.5992143 0.018357249 999 141.59062       0
+## time        0.1063143 0.005884789 999  18.06595       0
+##  Correlation: 
+##      (Intr)
+## time -0.345
+## 
+## Standardized Within-Group Residuals:
+##         Min          Q1         Med          Q3         Max 
+## -3.26951121 -0.53771385 -0.01277499  0.53258654  3.19388035 
+## 
+## Number of Observations: 1200
+## Number of Groups: 200</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Das Objekt <code>mod1</code> enthält die Ergebnisse des Random-Intercept, Random-Slope Modells. Wenden Sie auf das Objekt <code>mod1</code> die Funktion <code>tidy()</code>aus dem Paket <code>broom.mixed</code> an. In der Funktion setzen Sie dabei den Wert des Arguments <code>conf.int</code> auf <code>TRUE</code> und geben für das Argument <code>conf.level</code> den Wert <code>0.95</code> an. Dadurch werden die Konfidenzintervalle der Parameter geschätzt und die Signifikanz der zufälligen Effekte kann nun zusätzlich beurteilt werden.</li>
+</ol>
+<pre class="r"><code>mod1_coef &lt;- tidy(mod1, conf.int = TRUE, conf.level = 0.95)
+kbl(mod1_coef, digits = 2) %&gt;%
+  kable_styling(bootstrap_options = &quot;striped&quot;)</code></pre>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+effect
+</th>
+<th style="text-align:left;">
+group
+</th>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+<th style="text-align:right;">
+conf.low
+</th>
+<th style="text-align:right;">
+conf.high
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+2.60
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+999
+</td>
+<td style="text-align:right;">
+141.59
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2.56
+</td>
+<td style="text-align:right;">
+2.64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+999
+</td>
+<td style="text-align:right;">
+18.07
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ran_pars
+</td>
+<td style="text-align:left;">
+student_id
+</td>
+<td style="text-align:left;">
+sd_(Intercept)
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ran_pars
+</td>
+<td style="text-align:left;">
+student_id
+</td>
+<td style="text-align:left;">
+cor_time.(Intercept)
+</td>
+<td style="text-align:right;">
+-0.10
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+-0.29
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ran_pars
+</td>
+<td style="text-align:left;">
+student_id
+</td>
+<td style="text-align:left;">
+sd_time
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ran_pars
+</td>
+<td style="text-align:left;">
+Residual
+</td>
+<td style="text-align:left;">
+sd_Observation
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Die Objekte <code>fix_intercept</code> und <code>fix_slope</code> enthalten die festen Effekte vom Random-Intercept, Random-Slope Modell aus dem Objekt <code>mod1</code>. Erweitern Sie die erste Graphik im Objekt <code>graph_cases</code> und stellen Sie zusätzlich die Gerade dar, die über die festen Effekte geschätzt wird. Für die Erweiterung nehmen Sie die Funktion <code>geom_abline()</code> aus dem Paket <code>ggplot2</code>. Betrachten Sie im Anschluss die Ergebnisse der neuen Graphik. Entspricht die Graphik Ihren Erwartungen?</li>
+</ol>
+<pre class="r"><code>fix_intercept &lt;- summary(mod1)$coef$fixed[[1]]
+fix_slope &lt;- summary(mod1)$coef$fixed[[2]]
+
+graph_fixed &lt;- graph_cases +
+               geom_abline(intercept = fix_intercept, slope = fix_slope)
+graph_fixed</code></pre>
+<p><img src="loesungen_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>In dem Objekt <code>mod1</code> sind die Ergebnisse des Random-Intercept, Random-Slope Modell gespeichert. Wenden Sie die Funktion <code>augment()</code> aus dem Paket <code>broom.mixed</code> auf das Objekt an. Betrachten Sie im Anschluss die von der Funktion ausgegebenen Werte und versuchen ihre Bedeutung zu erfassen. Bei der Variable <code>.fitted</code> handelt es sich um individuell vorhergesagten Werte der Personen. Um die Bedeutung dieser Werte noch besser zu verstehen, sollen sie in der nächsten Übung graphisch dargestellt werden.</li>
+</ol>
+<pre class="r"><code>mod1_data &lt;- augment(mod1)
+mod1_data</code></pre>
+<pre><code>## # A tibble: 1,200 × 7
+##    student_id   sex  time   gpa .fitted   .resid .fixed
+##         &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+##  1          1     1     0   2.3    2.40 -0.0970    2.60
+##  2          1     1     1   2.1    2.56 -0.463     2.71
+##  3          1     1     2   3      2.73  0.271     2.81
+##  4          1     1     3   3      2.90  0.105     2.92
+##  5          1     1     4   3      3.06 -0.0615    3.02
+##  6          1     1     5   3.3    3.23  0.0724    3.13
+##  7          2     0     0   2.2    2.39 -0.189     2.60
+##  8          2     0     1   2.5    2.49  0.00680   2.71
+##  9          2     0     2   2.6    2.60  0.00228   2.81
+## 10          2     0     3   2.6    2.70 -0.102     2.92
+## # … with 1,190 more rows</code></pre>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Das Objekt <code>mod1_subsample</code> enthält die Daten der Substichprobe, die über die <code>augment</code>-Funktion gewonnen wurde. Erweitern Sie die zweite Graphik <code>graph_fixed</code>, um die individuell geschätzten Geradengleichungen. Hierzu müssen in der Funktion <code>geom_line</code> als x- und als y-Wert die Variablen <code>time</code> und <code>fitted</code> angegeben werden.</li>
+</ol>
+<pre class="r"><code>mod1_subsample &lt;- filter(mod1_data, student_id %in% c(14, 21, 43, 68))
+mod1_subsample</code></pre>
+<pre><code>## # A tibble: 24 × 7
+##    student_id   sex  time   gpa .fitted  .resid .fixed
+##         &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1         14     1     0   2.4    2.62 -0.217    2.60
+##  2         14     1     1   3      2.77  0.232    2.71
+##  3         14     1     2   2.9    2.92 -0.0194   2.81
+##  4         14     1     3   3      3.07 -0.0705   2.92
+##  5         14     1     4   3.3    3.22  0.0784   3.02
+##  6         14     1     5   3.4    3.37  0.0272   3.13
+##  7         21     1     0   2.6    2.47  0.135    2.60
+##  8         21     1     1   2.4    2.50 -0.0957   2.71
+##  9         21     1     2   2.5    2.53 -0.0263   2.81
+## 10         21     1     3   2.5    2.56 -0.0569   2.92
+## # … with 14 more rows</code></pre>
+<pre class="r"><code>graph_indi &lt;- graph_fixed +
+              geom_line(data = mod1_subsample,
+                        aes(x = time, y = .fitted,
+                            color = as.factor(student_id)),
+                        linetype = &quot;dotted&quot;,
+                        size = 0.7
+                        )
+
+graph_indi</code></pre>
+<p><img src="loesungen_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGVzdCIKb3V0cHV0OgogaHRtbF9kb2N1bWVudDoKICAgdG9jOiB0cnVlCiAgIHRvY19kZXB0aDogMgogICB0b2NfZmxvYXQ6IHRydWUKICAgY29kZV9kb3dubG9hZDogdHJ1ZQojICBjb2RlX2ZvbGRpbmc6IGhpZGUKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQprbml0cjo6b3B0c19jaHVuayRzZXQobWVzc2FnZT1GQUxTRSkKb3B0aW9ucyhrbml0ci5rYWJsZS5OQSA9ICcnKQoKYGBgCgojIyBEYXRlbmF1ZmJlcmVpdHVuZwphLiBMYWRlbiBzaWUgZGllIFBha2V0ZSBgdGlkeXZlcnNlYCwgYG5sbWVgLCBga25pdHJgIHVuZCBgYnJvb20ubWl4ZWRgIG1pdCBkZW0gQmVmZWhsIGBsaWJyYXJ5KClgLgoKYGBge3J9CiMgU2FtbWx1bmcgdm9uIFBha2V0ZW4sIHZpZWwgenUgRGF0ZW5tYW5pcHVsYXRpb24KbGlicmFyeSgidGlkeXZlcnNlIikKIyBGw7xyIGRpZSBCZXJlY2hudW5nIGRlciBNdWx0aWxldmVsIE1vZGVsbGUKbGlicmFyeSgibmxtZSIpCiMgRsO8ciBkaWUgV2VpdGVydmVyYXJiZWl0dW5nIGRlciBFcmdlYm5pc3NlIGRlcyBQYWtldHMgbmxtZQpsaWJyYXJ5KCJicm9vbS5taXhlZCIpCiMgV2lyZCBlaW5tYWwgZsO8ciBkaWUgRGFyc3RlbGx1bmcgZWluZXIgVGFiZWxsZSBiZW7DtnRpZ3QKbGlicmFyeSgia2FibGVFeHRyYSIpCmBgYAoKYi4gTGFkZW4gU2llIGRpZSBEYXRlbmRhdGVpIGBncGEyLmNzdmAgbWl0IGRlbSBCZWZlaGwgYHJlYWRfY3N2MigpYC4gU3BlaWNoZXJuIFNpZSBkaWUgRGF0ZW4gaW4gZWluZW0gbmV1ZW4gT2JqZWt0IHVudGVyIGRlbSBOYW1lbiBgZ3BhX2RhdGFgLiBCZXRyYWNodGVuIFNpZSBkaWUgRGF0ZW4gaW4gZGVtIE9iamVrdCBgZ3BhX2RhdGFgIG7DpGhlci4gQmVudXR6ZW4gU2llIGhpZXJ6dSBkaWUgQmVmZWhsZSBgaGVhZCgpYCB1bmQgYHN0cigpYC4KCmBgYHtyfQpncGFfZGF0YSA8LSByZWFkLmNzdjIoZmlsZSA9ICIuL2RhdGEvZ3BhMi5jc3YiKQpoZWFkKGdwYV9kYXRhKQpzdHIoZ3BhX2RhdGEpCmBgYAoKZC4gV8OkaGxlbiBTaWUgIG1pdCBkZW0gQmVmZWhsIGBzZWxlY3QoKWAgZGllIGbDvHIgZGllIEFuYWx5c2UgcmVsZXZhbnRlbiBEYXRlbiBgc3R1ZGVudGAsIGBzZXhgIHVuZCBgZ3BhMWAgYmlzIGBncGE2YCBhdXMuIEltIEFuc2NobHVzcyBiZW5lbm5lbiBTaWUgbWl0IGRlbSBCZWZlaGwgYHJlbmFtZSgpYCBkZW4gVmFyaWFibGVubmFtZW4gYHN0dWRlbnRgIGluIGBzdHVkZW50X2lkYCB1bS4gQmV0cmFjaHRlbiBTaWUgZGllIEVyZ2Vibmlzc2UgZGVyIERhdGVubWFuaXB1bGF0aW9uLgoKYGBge3J9CmdwYV9kYXRhIDwtIHNlbGVjdChncGFfZGF0YSwgc3R1ZGVudCwgc2V4LCBzdGFydHNfd2l0aCgiZ3BhIikpCmdwYV9kYXRhIDwtIHJlbmFtZShncGFfZGF0YSwgc3R1ZGVudF9pZCA9IHN0dWRlbnQpCmhlYWQoZ3BhX2RhdGEpCmBgYAoKZS4gU3RydWt0dXJpZXJlbiBTaWUgZGllIERhdGVuIG1pdCBkZW0gQmVmZWhsIGBwaXZvdF9sb25nZXIoKWAgdW0uIMOcYmVyZsO8aHJlbiBTaWUgZGFiZWkgZGllIFZhcmlhYmxlbiBgZ3BhMWAgYmlzIGBncGE2YCB2b24gZGVtIFdpZGUtRm9ybWF0IGluIGRhcyBMb25nLUZvcm1hdC4gRGllIG5ldSBlbnRzdGVoZW5kZSBTcGFsdGUgbWl0IGRlbiBHUEEtV2VydGVuIGbDvHIgYWxsZSBNZXNzemVpdHB1bmt0ZSBzb2xsIGRhYmVpIGRlbiBWYXJpYWJsZW5uYW1lbiBgZ3BhYCBlcmhhbHRlbiB1bmQgZGllIE5hbWVuIGRlciBWYXJpYWJsZW4gYGdwYTFgIGJpcyBgZ3BhNmAgc29sbGVuIGluIGVpbmUgU3BhbHRlIG1pdCBkZW0gTmFtZW4gYHRpbWVgIMO8YmVyZsO8aHJ0IHdlcmRlbi4gQmV0cmFjaHRlbiBTaWUgZGllIEVyZ2Vibmlzc2UgZGVyIFVtc3RydWt0dXJpZXJ1bmcuCgpgYGB7cn0KZ3BhX2RhdGFfbG9uZyA8LSBwaXZvdF9sb25nZXIoZ3BhX2RhdGEsIAogICAgICAgICAgICAgICAgICAgIGNvbHMgPSBjKCJncGExIiwgImdwYTIiLCAiZ3BhMyIsICJncGE0IiwgImdwYTUiLCAiZ3BhNiIpLAogICAgICAgICAgICAgICAgICAgIG5hbWVzX3RvID0gInRpbWUiLAogICAgICAgICAgICAgICAgICAgIHZhbHVlc190byA9ICJncGEiKQpncGFfZGF0YV9sb25nCmBgYAoKZi4gSW0gRm9sZ2VuZGVuIHdpcmQgZGllIFZhcmlhYmxlIGB0aW1lYCDDvGJlcnNjaHJpZWJlbiB1bmQgZWluZSBuZXVlIFplaXR2YXJpYWJsZSBtaXQgZGVuIFdlcnRlbiAwIGJpcyA1IGdlYmlsZGV0LiDDnGJlcnByw7xmZW4gU2llIG1pdCBkZXIgRnVua3Rpb24gYHByaW50KClgLCBvYiBkaWUgV2VydGUga29ycmVrdCBlcnN0ZWxsdCB3dXJkZW4uIFdpZSBiZXVydGVpbGVuIFNpZSwgZGFzcyBkZXIgZXJzdGUgTWVzc3plaXRwdW5rdCBkZW4gV2VydCAwIGVyaGFsdGVuIGhhdD8KCmBgYHtyfQpncGFfZGF0YV9sb25nIDwtIGdwYV9kYXRhX2xvbmclPiUKICBncm91cF9ieShzdHVkZW50X2lkKSU+JQogIG11dGF0ZSh0aW1lID0gMTpuKCktMSkKcHJpbnQoZ3BhX2RhdGFfbG9uZywgbiA9IDE1KQpgYGAKCmcuIERhcyBPYmpla3QgYGdwYV9zdWJzYW1wbGVgIGVudGjDpGx0IGRpZSBNZXNzd2VydGUgdm9uIHZpZXIgUGVyc29uZW4gKElEcyAxNCwgMjEsIDQzLCA2OCkuIEltIEZvbGdlbmRlbiBzb2xsIGbDvHIgZGllc2UgUGVyc29uZW4gZGVyIFZlcmxhdWYgZGVyIEdQQS1XZXJ0ZSDDvGJlciBkaWUgWmVpdCBkYXJnZXN0ZWxsdCB3ZXJkZW4uIERhYmVpIHdlcmRlbiB2ZXJzY2hpZWRlbmUgRnVua3Rpb25lbiBkZXMgUGFrZXRzIGBnZ3Bsb3QyYCBiZW51dHp0LiBIaWVyenUgbcO8c3NlbiB6dW7DpGNoc3QgaW4gZGVyIEZ1bmt0aW9uIGBnZ3Bsb3QoKWAgZGllIFZhcmlhYmxlbiBgdGltZWAgdW5kIGBncGFgIGFscyB4LSBiencuIHktV2VydCBhbmdlZ2ViZW4gd2VyZGVuLiBEYW1pdCBkaWUgR1BBLVdlcnRlIGVpbmVyIFBlcnNvbiBlaW5kZXV0aWcgenVnZW9yZG5ldCB3ZXJkZW4ga8O2bm5lbiwgbXVzcyBmw7xyIGRhcyBBcmd1bWVudCBgZ3JvdXBgIHp1c8OkdHpsaWNoIGRpZSBWYXJpYWJsZSBgc3R1ZGVudF9pZGAgYW5nZWdlYmVuIHdlcmRlbi4gQmV0cmFjaHRlbiBTaWUgZGllIEVyZ2Vibmlzc2UgZGVyIGltIE9iamVrdCBgZ3JhcGhfY2FzZXNgIGFiZ2VzcGVpY2hlcnRlbiBHcmFwaGlrLgoKYGBge3J9CmdwYV9zdWJzYW1wbGUgPC0gZ3BhX2RhdGFfbG9uZyU+JQogIGZpbHRlcihzdHVkZW50X2lkICVpbiUgYygxNCwgMjEsIDQzLCA2OCkpCmdwYV9zdWJzYW1wbGUKCmdyYXBoX2Nhc2VzIDwtIGdncGxvdChncGFfc3Vic2FtcGxlLCBhZXMoeCA9IHRpbWUsIHkgPSBncGEsIGdyb3VwID0gc3R1ZGVudF9pZCkpICsKICAgICAgICAgICAgICAgIyBBbmdhYmUsIGRhc3MgZGllIFdlcnRlIGFscyBMaW5pZW4gZGFyZ2VzdGVsbHQgd2VyZGVuIHNvbGxlbgogICAgICAgICAgICAgICBnZW9tX2xpbmUoYWVzKGNvbG9yID0gYXMuZmFjdG9yKHN0dWRlbnRfaWQpKSkgKwogICAgICAgICAgICAgICAjIERpZSBXZXJ0ZSBkZXIgUGVyc29uZW4gc29sbGVuIHp1c8OkdHpsaWNoIGFscyBQdW5rdGUgZGFyZ2VzdGVsbHQgd2VyZGVuCiAgICAgICAgICAgICAgIGdlb21fcG9pbnQoYWVzKGNvbG9yID0gYXMuZmFjdG9yKHN0dWRlbnRfaWQpKSkgKwogICAgICAgICAgICAgICAjIERpZSBHZXJhZGUgc29sbGVuIG1pdCBkZXIgSUQgYmVzY2hyaWZ0ZXQgd2VyZGVuCiAgICAgICAgICAgICAgIGdlb21fdGV4dChkYXRhID0gZmlsdGVyKGdwYV9zdWJzYW1wbGUsIHRpbWUgPT0gbGFzdCh0aW1lKSksCiAgICAgICAgICAgICAgICAgICAgICAgICBhZXMobGFiZWwgPSBhcy5mYWN0b3Ioc3R1ZGVudF9pZCkpLAogICAgICAgICAgICAgICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9udWRnZSh4ID0gMC4yKSwKICAgICAgICAgICAgICAgICAgICAgICAgIGNoZWNrX292ZXJsYXAgPSBUUlVFKSArCiAgICAgICAgICAgICAgIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbiA9ICJub25lIikKZ3JhcGhfY2FzZXMKYGBgCgoKIyMgTXVsdGlsZXZlbCBNb2RlbGluZwphLiBCZXJlY2huZW4gU2llIGRhcyBSYW5kb20tSW50ZXJjZXB0LCBSYW5kb20tU2xvcGUgTW9kZWxsIG1pdCBkZXIgRnVua3Rpb24gYGxtZSgpYCBhdXMgZGVtIFBha2V0IGBsbWVyYC4gRGllIEZ1bmt0aW9uIGJlbsO2dGlndCBkaWUgRGF0ZW4gZGFiZWkgaW0gTG9uZ2Zvcm1hdCwgZGllIGluIGRlbSBPYmpla3QgYGdwYV9kYXRhX2xvbmdgIGdlc3BlaWNoZXJ0IHNpbmQuIEFscyBWYXJpYWJsZW4gbcO8c3NlbiBkYWJlaSBkaWUgVmFyaWFibGUgYGdwYWAgYWxzIEVyZ2VibmlzdmFyaWFibGUgdW5kIGRpZSBWYXJpYWJsZSBgdGltZWAgYWxzIFByw6RkaWt0b3J2YXJpYWJsZSBhbmdlZ2ViZW4gd2VyZGVuLiBCZXRyYWNodGVuIFNpZSBkaWUgRXJnZWJuaXNzZSBhbnNjaGxpZcOfZW5kIG1pdCBkZXIgRnVua3Rpb24gYHN1bW1hcnkoKWAuIFdlbGNoZSBmZXN0ZW4gRWZmZWt0ZSBzaW5kIHNpZ25maWthbnQ/IEvDtm5uZW4gU2llIGJldXJ0ZWlsZW4sIG9iIGRpZSB6dWbDpGxsaWdlbiBFZmZla3RlIHNpZ25pZmlrYW50IHNpbmQ/CgpgYGB7cn0KbW9kMSA8LSBsbWUoZ3BhIH4gdGltZSwgcmFuZG9tID0gfiAxICsgdGltZSB8IHN0dWRlbnRfaWQsIGRhdGEgPSBncGFfZGF0YV9sb25nKQpzdW1tYXJ5KG1vZDEpCmBgYAoKYi4gRGFzIE9iamVrdCBgbW9kMWAgZW50aMOkbHQgZGllIEVyZ2Vibmlzc2UgZGVzIFJhbmRvbS1JbnRlcmNlcHQsIFJhbmRvbS1TbG9wZSBNb2RlbGxzLiBXZW5kZW4gU2llIGF1ZiBkYXMgT2JqZWt0IGBtb2QxYCBkaWUgRnVua3Rpb24gYHRpZHkoKWBhdXMgZGVtIFBha2V0IGBicm9vbS5taXhlZGAgYW4uIEluIGRlciBGdW5rdGlvbiBzZXR6ZW4gU2llIGRhYmVpIGRlbiBXZXJ0IGRlcyBBcmd1bWVudHMgYGNvbmYuaW50YCBhdWYgYFRSVUVgIHVuZCBnZWJlbiBmw7xyIGRhcyBBcmd1bWVudCBgY29uZi5sZXZlbGAgZGVuIFdlcnQgYDAuOTVgIGFuLiBEYWR1cmNoIHdlcmRlbiBkaWUgS29uZmlkZW56aW50ZXJ2YWxsZSBkZXIgUGFyYW1ldGVyIGdlc2Now6R0enQgdW5kIGRpZSBTaWduaWZpa2FueiBkZXIgenVmw6RsbGlnZW4gRWZmZWt0ZSBrYW5uIG51biB6dXPDpHR6bGljaCBiZXVydGVpbHQgd2VyZGVuLgoKYGBge3J9Cm1vZDFfY29lZiA8LSB0aWR5KG1vZDEsIGNvbmYuaW50ID0gVFJVRSwgY29uZi5sZXZlbCA9IDAuOTUpCmtibChtb2QxX2NvZWYsIGRpZ2l0cyA9IDIpICU+JQogIGthYmxlX3N0eWxpbmcoYm9vdHN0cmFwX29wdGlvbnMgPSAic3RyaXBlZCIpCmBgYAoKYy4gRGllIE9iamVrdGUgYGZpeF9pbnRlcmNlcHRgIHVuZCBgZml4X3Nsb3BlYCBlbnRoYWx0ZW4gZGllIGZlc3RlbiBFZmZla3RlIHZvbSBSYW5kb20tSW50ZXJjZXB0LCBSYW5kb20tU2xvcGUgTW9kZWxsIGF1cyBkZW0gT2JqZWt0IGBtb2QxYC4gRXJ3ZWl0ZXJuIFNpZSBkaWUgZXJzdGUgR3JhcGhpayBpbSBPYmpla3QgYGdyYXBoX2Nhc2VzYCB1bmQgc3RlbGxlbiBTaWUgenVzw6R0emxpY2ggZGllIEdlcmFkZSBkYXIsIGRpZSDDvGJlciBkaWUgZmVzdGVuIEVmZmVrdGUgZ2VzY2jDpHR6dCB3aXJkLiBGw7xyIGRpZSBFcndlaXRlcnVuZyBuZWhtZW4gU2llIGRpZSBGdW5rdGlvbiBgZ2VvbV9hYmxpbmUoKWAgYXVzIGRlbSBQYWtldCBgZ2dwbG90MmAuIEJldHJhY2h0ZW4gU2llIGltIEFuc2NobHVzcyBkaWUgRXJnZWJuaXNzZSBkZXIgbmV1ZW4gR3JhcGhpay4gRW50c3ByaWNodCBkaWUgR3JhcGhpayBJaHJlbiBFcndhcnR1bmdlbj8KCmBgYHtyfQpmaXhfaW50ZXJjZXB0IDwtIHN1bW1hcnkobW9kMSkkY29lZiRmaXhlZFtbMV1dCmZpeF9zbG9wZSA8LSBzdW1tYXJ5KG1vZDEpJGNvZWYkZml4ZWRbWzJdXQoKZ3JhcGhfZml4ZWQgPC0gZ3JhcGhfY2FzZXMgKwogICAgICAgICAgICAgICBnZW9tX2FibGluZShpbnRlcmNlcHQgPSBmaXhfaW50ZXJjZXB0LCBzbG9wZSA9IGZpeF9zbG9wZSkKZ3JhcGhfZml4ZWQKYGBgCgpkLiBJbiBkZW0gT2JqZWt0IGBtb2QxYCBzaW5kIGRpZSBFcmdlYm5pc3NlIGRlcyBSYW5kb20tSW50ZXJjZXB0LCBSYW5kb20tU2xvcGUgTW9kZWxsIGdlc3BlaWNoZXJ0LgpXZW5kZW4gU2llIGRpZSBGdW5rdGlvbiBgYXVnbWVudCgpYCBhdXMgZGVtIFBha2V0IGBicm9vbS5taXhlZGAgYXVmIGRhcyBPYmpla3QgYW4uIEJldHJhY2h0ZW4gU2llIGltIEFuc2NobHVzcyBkaWUgdm9uIGRlciBGdW5rdGlvbiBhdXNnZWdlYmVuZW4gV2VydGUgdW5kIHZlcnN1Y2hlbiBpaHJlIEJlZGV1dHVuZyB6dSBlcmZhc3Nlbi4gQmVpIGRlciBWYXJpYWJsZSBgLmZpdHRlZGAgaGFuZGVsdCBlcyBzaWNoIHVtIGluZGl2aWR1ZWxsIHZvcmhlcmdlc2FndGVuIFdlcnRlIGRlciBQZXJzb25lbi4gVW0gZGllIEJlZGV1dHVuZyBkaWVzZXIgV2VydGUgbm9jaCBiZXNzZXIgenUgdmVyc3RlaGVuLCBzb2xsZW4gc2llIGluIGRlciBuw6RjaHN0ZW4gw5xidW5nIGdyYXBoaXNjaCBkYXJnZXN0ZWxsdCB3ZXJkZW4uCgpgYGB7cn0KbW9kMV9kYXRhIDwtIGF1Z21lbnQobW9kMSkKbW9kMV9kYXRhCmBgYAoKZS4gRGFzIE9iamVrdCBgbW9kMV9zdWJzYW1wbGVgIGVudGjDpGx0IGRpZSBEYXRlbiBkZXIgU3Vic3RpY2hwcm9iZSwgZGllIMO8YmVyIGRpZSBgYXVnbWVudGAtRnVua3Rpb24gZ2V3b25uZW4gd3VyZGUuIEVyd2VpdGVybiBTaWUgZGllIHp3ZWl0ZSBHcmFwaGlrIGBncmFwaF9maXhlZGAsIHVtIGRpZSBpbmRpdmlkdWVsbCBnZXNjaMOkdHp0ZW4gR2VyYWRlbmdsZWljaHVuZ2VuLiBIaWVyenUgbcO8c3NlbiBpbiBkZXIgRnVua3Rpb24gYGdlb21fbGluZWAgYWxzIHgtIHVuZCBhbHMgeS1XZXJ0IGRpZSBWYXJpYWJsZW4gYHRpbWVgIHVuZCBgZml0dGVkYCBhbmdlZ2ViZW4gd2VyZGVuLgoKYGBge3J9Cm1vZDFfc3Vic2FtcGxlIDwtIGZpbHRlcihtb2QxX2RhdGEsIHN0dWRlbnRfaWQgJWluJSBjKDE0LCAyMSwgNDMsIDY4KSkKbW9kMV9zdWJzYW1wbGUKCmdyYXBoX2luZGkgPC0gZ3JhcGhfZml4ZWQgKwogICAgICAgICAgICAgIGdlb21fbGluZShkYXRhID0gbW9kMV9zdWJzYW1wbGUsCiAgICAgICAgICAgICAgICAgICAgICAgIGFlcyh4ID0gdGltZSwgeSA9IC5maXR0ZWQsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb2xvciA9IGFzLmZhY3RvcihzdHVkZW50X2lkKSksCiAgICAgICAgICAgICAgICAgICAgICAgIGxpbmV0eXBlID0gImRvdHRlZCIsCiAgICAgICAgICAgICAgICAgICAgICAgIHNpemUgPSAwLjcKICAgICAgICAgICAgICAgICAgICAgICAgKQoKZ3JhcGhfaW5kaQpgYGAK</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("loesungen.Rmd");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -11,7 +11,7 @@
 
 
 
-<title>Lösungen</title>
+<title>AKiP Forschungscamp, 14.-15.09   Kurzworkshop Mehrebenenanalyse</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -29,14 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -223,69 +218,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -293,16 +225,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -315,12 +237,15 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Multilevel Modeling</a>
+      <a class="navbar-brand" href="index.html"></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="loesungen.html">Lösungen</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -334,467 +259,33 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lösungen</h1>
+<h1 class="title toc-ignore">AKiP Forschungscamp, 14.-15.09 <br /> Kurzworkshop Mehrebenenanalyse</h1>
 
 </div>
 
 
-<div id="datenaufbereitung" class="section level2">
-<h2>Datenaufbereitung</h2>
-<ol style="list-style-type: lower-alpha">
-<li>Laden sie die Pakete <code>tidyverse</code>, <code>nlme</code>, <code>knitr</code> und <code>broom.mixed</code> mit dem Befehl <code>library()</code>.</li>
-</ol>
-<pre class="r"><code># Sammlung von Paketen, viel zu Datenmanipulation
-library(&quot;tidyverse&quot;)
-# Für die Berechnung der Multilevel Modelle
-library(&quot;nlme&quot;)
-# Für die Weiterverarbeitung der Ergebnisse des Pakets nlme
-library(&quot;broom.mixed&quot;)
-# Wird einmal für die Darstellung einer Tabelle benötigt
-library(&quot;kableExtra&quot;)</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Laden Sie die Datendatei <code>gpa2.csv</code> mit dem Befehl <code>read_csv2()</code>. Speichern Sie die Daten in einem neuen Objekt unter dem Namen <code>gpa_data</code>. Betrachten Sie die Daten in dem Objekt <code>gpa_data</code> näher. Benutzen Sie hierzu die Befehle <code>head()</code> und <code>str()</code>.</li>
-</ol>
-<pre class="r"><code>gpa_data &lt;- read.csv2(file = &quot;./data/gpa2.csv&quot;)
-head(gpa_data)</code></pre>
-<pre><code>##   student sex highgpa gpa1 gpa2 gpa3 gpa4 gpa5 gpa6 job1 job2 job3 job4 job5 job6 admitted
-## 1       1   1     2.8  2.3  2.1  3.0  3.0  3.0  3.3    2    2    2    2    2    2        1
-## 2       2   0     2.5  2.2  2.5  2.6  2.6  3.0  2.8    2    3    2    2    2    2        0
-## 3       3   1     2.5  2.4  2.9  3.0  2.8  3.3  3.4    2    2    2    3    2    2        1
-## 4       4   0     3.8  2.5  2.7  2.4  2.7  2.9  2.7    3    2    2    2    2    2        0
-## 5       5   0     3.1  2.8  2.8  2.8  3.0  2.9  3.1    2    2    2    2    2    2        1
-## 6       6   1     2.9  2.5  2.4  2.4  2.3  2.7  2.8    2    3    3    2    3    3        0</code></pre>
-<pre class="r"><code>str(gpa_data)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    200 obs. of  16 variables:
-##  $ student : int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ sex     : int  1 0 1 0 0 1 0 1 0 0 ...
-##  $ highgpa : num  2.8 2.5 2.5 3.8 3.1 2.9 2.3 3.9 2 2.8 ...
-##  $ gpa1    : num  2.3 2.2 2.4 2.5 2.8 2.5 2.4 2.8 2.8 2.8 ...
-##  $ gpa2    : num  2.1 2.5 2.9 2.7 2.8 2.4 2.4 2.8 2.7 2.8 ...
-##  $ gpa3    : num  3 2.6 3 2.4 2.8 2.4 2.8 3.1 2.7 3 ...
-##  $ gpa4    : num  3 2.6 2.8 2.7 3 2.3 2.6 3.3 3.1 2.7 ...
-##  $ gpa5    : num  3 3 3.3 2.9 2.9 2.7 3 3.3 3.1 3 ...
-##  $ gpa6    : num  3.3 2.8 3.4 2.7 3.1 2.8 3 3.4 3.5 3 ...
-##  $ job1    : int  2 2 2 3 2 2 3 2 2 2 ...
-##  $ job2    : int  2 3 2 2 2 3 2 2 2 2 ...
-##  $ job3    : int  2 2 2 2 2 3 3 2 3 2 ...
-##  $ job4    : int  2 2 3 2 2 2 2 2 2 3 ...
-##  $ job5    : int  2 2 2 2 2 3 2 2 2 2 ...
-##  $ job6    : int  2 2 2 2 2 3 2 2 2 2 ...
-##  $ admitted: int  1 0 1 0 1 0 1 1 9 1 ...</code></pre>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>Wählen Sie mit dem Befehl <code>select()</code> die für die Analyse relevanten Daten <code>student</code>, <code>sex</code> und <code>gpa1</code> bis <code>gpa6</code> aus. Im Anschluss benennen Sie mit dem Befehl <code>rename()</code> den Variablennamen <code>student</code> in <code>student_id</code> um. Betrachten Sie die Ergebnisse der Datenmanipulation.</li>
-</ol>
-<pre class="r"><code>gpa_data &lt;- select(gpa_data, student, sex, starts_with(&quot;gpa&quot;))
-gpa_data &lt;- rename(gpa_data, student_id = student)
-head(gpa_data)</code></pre>
-<pre><code>##   student_id sex gpa1 gpa2 gpa3 gpa4 gpa5 gpa6
-## 1          1   1  2.3  2.1  3.0  3.0  3.0  3.3
-## 2          2   0  2.2  2.5  2.6  2.6  3.0  2.8
-## 3          3   1  2.4  2.9  3.0  2.8  3.3  3.4
-## 4          4   0  2.5  2.7  2.4  2.7  2.9  2.7
-## 5          5   0  2.8  2.8  2.8  3.0  2.9  3.1
-## 6          6   1  2.5  2.4  2.4  2.3  2.7  2.8</code></pre>
-<ol start="5" style="list-style-type: lower-alpha">
-<li>Strukturieren Sie die Daten mit dem Befehl <code>pivot_longer()</code> um. Überführen Sie dabei die Variablen <code>gpa1</code> bis <code>gpa6</code> von dem Wide-Format in das Long-Format. Die neu entstehende Spalte mit den GPA-Werten für alle Messzeitpunkte soll dabei den Variablennamen <code>gpa</code> erhalten und die Namen der Variablen <code>gpa1</code> bis <code>gpa6</code> sollen in eine Spalte mit dem Namen <code>time</code> überführt werden. Betrachten Sie die Ergebnisse der Umstrukturierung.</li>
-</ol>
-<pre class="r"><code>gpa_data_long &lt;- pivot_longer(gpa_data, 
-                    cols = c(&quot;gpa1&quot;, &quot;gpa2&quot;, &quot;gpa3&quot;, &quot;gpa4&quot;, &quot;gpa5&quot;, &quot;gpa6&quot;),
-                    names_to = &quot;time&quot;,
-                    values_to = &quot;gpa&quot;)
-gpa_data_long</code></pre>
-<pre><code>## # A tibble: 1,200 × 4
-##    student_id   sex time    gpa
-##         &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
-##  1          1     1 gpa1    2.3
-##  2          1     1 gpa2    2.1
-##  3          1     1 gpa3    3  
-##  4          1     1 gpa4    3  
-##  5          1     1 gpa5    3  
-##  6          1     1 gpa6    3.3
-##  7          2     0 gpa1    2.2
-##  8          2     0 gpa2    2.5
-##  9          2     0 gpa3    2.6
-## 10          2     0 gpa4    2.6
-## # … with 1,190 more rows</code></pre>
-<ol start="6" style="list-style-type: lower-alpha">
-<li>Im Folgenden wird die Variable <code>time</code> überschrieben und eine neue Zeitvariable mit den Werten 0 bis 5 gebildet. Überprüfen Sie mit der Funktion <code>print()</code>, ob die Werte korrekt erstellt wurden. Wie beurteilen Sie, dass der erste Messzeitpunkt den Wert 0 erhalten hat?</li>
-</ol>
-<pre class="r"><code>gpa_data_long &lt;- gpa_data_long%&gt;%
-  group_by(student_id)%&gt;%
-  mutate(time = 1:n()-1)
-print(gpa_data_long, n = 15)</code></pre>
-<pre><code>## # A tibble: 1,200 × 4
-## # Groups:   student_id [200]
-##    student_id   sex  time   gpa
-##         &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1          1     1     0   2.3
-##  2          1     1     1   2.1
-##  3          1     1     2   3  
-##  4          1     1     3   3  
-##  5          1     1     4   3  
-##  6          1     1     5   3.3
-##  7          2     0     0   2.2
-##  8          2     0     1   2.5
-##  9          2     0     2   2.6
-## 10          2     0     3   2.6
-## 11          2     0     4   3  
-## 12          2     0     5   2.8
-## 13          3     1     0   2.4
-## 14          3     1     1   2.9
-## 15          3     1     2   3  
-## # … with 1,185 more rows</code></pre>
-<ol start="7" style="list-style-type: lower-alpha">
-<li>Das Objekt <code>gpa_subsample</code> enthält die Messwerte von vier Personen (IDs 14, 21, 43, 68). Im Folgenden soll für diese Personen der Verlauf der GPA-Werte über die Zeit dargestellt werden. Dabei werden verschiedene Funktionen des Pakets <code>ggplot2</code> benutzt. Hierzu müssen zunächst in der Funktion <code>ggplot()</code> die Variablen <code>time</code> und <code>gpa</code> als x- bzw. y-Wert angegeben werden. Damit die GPA-Werte einer Person eindeutig zugeordnet werden können, muss für das Argument <code>group</code> zusätzlich die Variable <code>student_id</code> angegeben werden. Betrachten Sie die Ergebnisse der im Objekt <code>graph_cases</code> abgespeicherten Graphik.</li>
-</ol>
-<pre class="r"><code>gpa_subsample &lt;- gpa_data_long%&gt;%
-  filter(student_id %in% c(14, 21, 43, 68))
-gpa_subsample</code></pre>
-<pre><code>## # A tibble: 24 × 4
-## # Groups:   student_id [4]
-##    student_id   sex  time   gpa
-##         &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1         14     1     0   2.4
-##  2         14     1     1   3  
-##  3         14     1     2   2.9
-##  4         14     1     3   3  
-##  5         14     1     4   3.3
-##  6         14     1     5   3.4
-##  7         21     1     0   2.6
-##  8         21     1     1   2.4
-##  9         21     1     2   2.5
-## 10         21     1     3   2.5
-## # … with 14 more rows</code></pre>
-<pre class="r"><code>graph_cases &lt;- ggplot(gpa_subsample, aes(x = time, y = gpa, group = student_id)) +
-               # Angabe, dass die Werte als Linien dargestellt werden sollen
-               geom_line(aes(color = as.factor(student_id))) +
-               # Die Werte der Personen sollen zusätzlich als Punkte dargestellt werden
-               geom_point(aes(color = as.factor(student_id))) +
-               # Die Gerade sollen mit der ID beschriftet werden
-               geom_text(data = filter(gpa_subsample, time == last(time)),
-                         aes(label = as.factor(student_id)),
-                         position = position_nudge(x = 0.2),
-                         check_overlap = TRUE) +
-               theme(legend.position = &quot;none&quot;)
-graph_cases</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Bei dem Kurzworkshop wird die Mehrebenenanalyse als Verfahren für die Auswertung von Längsschnittdaten vorgestellt. Die Mehrebenenanalyse hat in den letzten zwei Jahrenzehnten in der klinischen Psychologie und bei der Auswertung von randomisiert kontrollierten Studien zunehmend an Beachtung gefunden. In der englischsprachigen Literatur werden für das Verfahren unterschiedliche Begriffe verwendet wie Hierarchical Linear Models, Linear Mixed-Effect Model, Mixed Models und Random-Effects Models. Bei dem Kurzworkshop handelt es sich um eine praktische Einführung, bei denen das Verfahren anhand von Übungen erprobt werden soll.</p>
+<div id="software-und-pakete" class="section level2">
+<h2>Software und Pakete</h2>
+<p>Für die Übungen wird die Statistiksoftware R genutzt. Um die Benutzung von R zu erleichtern, wird als graphische Benutzeroberfläche zusätzlich das Programm RStudio verwendet. Die Software kann unter den folgenden Downloadlinks abgerufen werden und ist kostenfrei:</p>
+<ul>
+<li>Download R: <a href="https://ftp.fau.de/cran/">https://www.r-project.org/</a></li>
+<li>Download RStudio: <a href="https://www.rstudio.com/products/rstudio/download/#download">https://www.rstudio.com/</a></li>
+</ul>
+<p>Im Rahmen der Übungen werden verschiedene Pakete benötigt, mit den die Funktionalität von R sehr stark erweitert werden kann. Die Pakete können bereits im Vorfeld mit folgendem Befehl installiert werden:</p>
+<pre class="r"><code>install.packages(&quot;tidyverse&quot;, &quot;nlme&quot;, &quot;broom.mixed&quot;, &quot;kableExtra&quot;)</code></pre>
 </div>
-<div id="multilevel-modeling" class="section level2">
-<h2>Multilevel Modeling</h2>
-<ol style="list-style-type: lower-alpha">
-<li>Berechnen Sie das Random-Intercept, Random-Slope Modell mit der Funktion <code>lme()</code> aus dem Paket <code>lmer</code>. Die Funktion benötigt die Daten dabei im Longformat, die in dem Objekt <code>gpa_data_long</code> gespeichert sind. Als Variablen müssen dabei die Variable <code>gpa</code> als Ergebnisvariable und die Variable <code>time</code> als Prädiktorvariable angegeben werden. Betrachten Sie die Ergebnisse anschließend mit der Funktion <code>summary()</code>. Welche festen Effekte sind signfikant? Können Sie beurteilen, ob die zufälligen Effekte signifikant sind?</li>
-</ol>
-<pre class="r"><code>mod1 &lt;- lme(gpa ~ time, random = ~ 1 + time | student_id, data = gpa_data_long)
-summary(mod1)</code></pre>
-<pre><code>## Linear mixed-effects model fit by REML
-##   Data: gpa_data_long 
-##        AIC     BIC    logLik
-##   272.9566 303.487 -130.4783
-## 
-## Random effects:
-##  Formula: ~1 + time | student_id
-##  Structure: General positive-definite, Log-Cholesky parametrization
-##             StdDev     Corr  
-## (Intercept) 0.21259026 (Intr)
-## time        0.06711178 -0.098
-## Residual    0.20588283       
-## 
-## Fixed effects:  gpa ~ time 
-##                 Value   Std.Error  DF   t-value p-value
-## (Intercept) 2.5992143 0.018357249 999 141.59062       0
-## time        0.1063143 0.005884789 999  18.06595       0
-##  Correlation: 
-##      (Intr)
-## time -0.345
-## 
-## Standardized Within-Group Residuals:
-##         Min          Q1         Med          Q3         Max 
-## -3.26951121 -0.53771385 -0.01277499  0.53258654  3.19388035 
-## 
-## Number of Observations: 1200
-## Number of Groups: 200</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Das Objekt <code>mod1</code> enthält die Ergebnisse des Random-Intercept, Random-Slope Modells. Wenden Sie auf das Objekt <code>mod1</code> die Funktion <code>tidy()</code>aus dem Paket <code>broom.mixed</code> an. In der Funktion setzen Sie dabei den Wert des Arguments <code>conf.int</code> auf <code>TRUE</code> und geben für das Argument <code>conf.level</code> den Wert <code>0.95</code> an. Dadurch werden die Konfidenzintervalle der Parameter geschätzt und die Signifikanz der zufälligen Effekte kann nun zusätzlich beurteilt werden.</li>
-</ol>
-<pre class="r"><code>mod1_coef &lt;- tidy(mod1, conf.int = TRUE, conf.level = 0.95)
-kbl(mod1_coef, digits = 2) %&gt;%
-  kable_styling(bootstrap_options = &quot;striped&quot;)</code></pre>
-<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-effect
-</th>
-<th style="text-align:left;">
-group
-</th>
-<th style="text-align:left;">
-term
-</th>
-<th style="text-align:right;">
-estimate
-</th>
-<th style="text-align:right;">
-std.error
-</th>
-<th style="text-align:right;">
-df
-</th>
-<th style="text-align:right;">
-statistic
-</th>
-<th style="text-align:right;">
-p.value
-</th>
-<th style="text-align:right;">
-conf.low
-</th>
-<th style="text-align:right;">
-conf.high
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-fixed
-</td>
-<td style="text-align:left;">
-fixed
-</td>
-<td style="text-align:left;">
-(Intercept)
-</td>
-<td style="text-align:right;">
-2.60
-</td>
-<td style="text-align:right;">
-0.02
-</td>
-<td style="text-align:right;">
-999
-</td>
-<td style="text-align:right;">
-141.59
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-2.56
-</td>
-<td style="text-align:right;">
-2.64
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-fixed
-</td>
-<td style="text-align:left;">
-fixed
-</td>
-<td style="text-align:left;">
-time
-</td>
-<td style="text-align:right;">
-0.11
-</td>
-<td style="text-align:right;">
-0.01
-</td>
-<td style="text-align:right;">
-999
-</td>
-<td style="text-align:right;">
-18.07
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0.09
-</td>
-<td style="text-align:right;">
-0.12
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ran_pars
-</td>
-<td style="text-align:left;">
-student_id
-</td>
-<td style="text-align:left;">
-sd_(Intercept)
-</td>
-<td style="text-align:right;">
-0.21
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-0.18
-</td>
-<td style="text-align:right;">
-0.25
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ran_pars
-</td>
-<td style="text-align:left;">
-student_id
-</td>
-<td style="text-align:left;">
-cor_time.(Intercept)
-</td>
-<td style="text-align:right;">
--0.10
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
--0.29
-</td>
-<td style="text-align:right;">
-0.10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ran_pars
-</td>
-<td style="text-align:left;">
-student_id
-</td>
-<td style="text-align:left;">
-sd_time
-</td>
-<td style="text-align:right;">
-0.07
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-0.06
-</td>
-<td style="text-align:right;">
-0.08
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ran_pars
-</td>
-<td style="text-align:left;">
-Residual
-</td>
-<td style="text-align:left;">
-sd_Observation
-</td>
-<td style="text-align:right;">
-0.21
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-</tbody>
-</table>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>Die Objekte <code>fix_intercept</code> und <code>fix_slope</code> enthalten die festen Effekte vom Random-Intercept, Random-Slope Modell aus dem Objekt <code>mod1</code>. Erweitern Sie die erste Graphik im Objekt <code>graph_cases</code> und stellen Sie zusätzlich die Gerade dar, die über die festen Effekte geschätzt wird. Für die Erweiterung nehmen Sie die Funktion <code>geom_abline()</code> aus dem Paket <code>ggplot2</code>. Betrachten Sie im Anschluss die Ergebnisse der neuen Graphik. Entspricht die Graphik Ihren Erwartungen?</li>
-</ol>
-<pre class="r"><code>fix_intercept &lt;- summary(mod1)$coef$fixed[[1]]
-fix_slope &lt;- summary(mod1)$coef$fixed[[2]]
-
-graph_fixed &lt;- graph_cases +
-               geom_abline(intercept = fix_intercept, slope = fix_slope)
-graph_fixed</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>In dem Objekt <code>mod1</code> sind die Ergebnisse des Random-Intercept, Random-Slope Modell gespeichert. Wenden Sie die Funktion <code>augment()</code> aus dem Paket <code>broom.mixed</code> auf das Objekt an. Betrachten Sie im Anschluss die von der Funktion ausgegebenen Werte und versuchen ihre Bedeutung zu erfassen. Bei der Variable <code>.fitted</code> handelt es sich um individuell vorhergesagten Werte der Personen. Um die Bedeutung dieser Werte noch besser zu verstehen, sollen sie in der nächsten Übung graphisch dargestellt werden.</li>
-</ol>
-<pre class="r"><code>mod1_data &lt;- augment(mod1)
-mod1_data</code></pre>
-<pre><code>## # A tibble: 1,200 × 7
-##    student_id   sex  time   gpa .fitted   .resid .fixed
-##         &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-##  1          1     1     0   2.3    2.40 -0.0970    2.60
-##  2          1     1     1   2.1    2.56 -0.463     2.71
-##  3          1     1     2   3      2.73  0.271     2.81
-##  4          1     1     3   3      2.90  0.105     2.92
-##  5          1     1     4   3      3.06 -0.0615    3.02
-##  6          1     1     5   3.3    3.23  0.0724    3.13
-##  7          2     0     0   2.2    2.39 -0.189     2.60
-##  8          2     0     1   2.5    2.49  0.00680   2.71
-##  9          2     0     2   2.6    2.60  0.00228   2.81
-## 10          2     0     3   2.6    2.70 -0.102     2.92
-## # … with 1,190 more rows</code></pre>
-<ol start="5" style="list-style-type: lower-alpha">
-<li>Das Objekt <code>mod1_subsample</code> enthält die Daten der Substichprobe, die über die <code>augment</code>-Funktion gewonnen wurde. Erweitern Sie die zweite Graphik <code>graph_fixed</code>, um die individuell geschätzten Geradengleichungen. Hierzu müssen in der Funktion <code>geom_line</code> als x- und als y-Wert die Variablen <code>time</code> und <code>fitted</code> angegeben werden.</li>
-</ol>
-<pre class="r"><code>mod1_subsample &lt;- filter(mod1_data, student_id %in% c(14, 21, 43, 68))
-mod1_subsample</code></pre>
-<pre><code>## # A tibble: 24 × 7
-##    student_id   sex  time   gpa .fitted  .resid .fixed
-##         &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-##  1         14     1     0   2.4    2.62 -0.217    2.60
-##  2         14     1     1   3      2.77  0.232    2.71
-##  3         14     1     2   2.9    2.92 -0.0194   2.81
-##  4         14     1     3   3      3.07 -0.0705   2.92
-##  5         14     1     4   3.3    3.22  0.0784   3.02
-##  6         14     1     5   3.4    3.37  0.0272   3.13
-##  7         21     1     0   2.6    2.47  0.135    2.60
-##  8         21     1     1   2.4    2.50 -0.0957   2.71
-##  9         21     1     2   2.5    2.53 -0.0263   2.81
-## 10         21     1     3   2.5    2.56 -0.0569   2.92
-## # … with 14 more rows</code></pre>
-<pre class="r"><code>graph_indi &lt;- graph_fixed +
-              geom_line(data = mod1_subsample,
-                        aes(x = time, y = .fitted,
-                            color = as.factor(student_id)),
-                        linetype = &quot;dotted&quot;,
-                        size = 0.7
-                        )
-
-graph_indi</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div id="materialien" class="section level2">
+<h2>Materialien</h2>
+<p>Im Rahmen des Kurses werden verschiedene Materialien benötigt, die als Download zur Verfügung stehen:</p>
+<p><a href="data:text/csv;base64,77u/c3R1ZGVudDtzZXg7aGlnaGdwYTtncGExO2dwYTI7Z3BhMztncGE0O2dwYTU7Z3BhNjtqb2IxO2pvYjI7am9iMztqb2I0O2pvYjU7am9iNjthZG1pdHRlZAoxOzE7Miw4OzIsMzsyLDE7MzszOzM7MywzOzI7MjsyOzI7MjsyOzEKMjswOzIsNTsyLDI7Miw1OzIsNjsyLDY7MzsyLDg7MjszOzI7MjsyOzI7MAozOzE7Miw1OzIsNDsyLDk7MzsyLDg7MywzOzMsNDsyOzI7MjszOzI7MjsxCjQ7MDszLDg7Miw1OzIsNzsyLDQ7Miw3OzIsOTsyLDc7MzsyOzI7MjsyOzI7MAo1OzA7MywxOzIsODsyLDg7Miw4OzM7Miw5OzMsMTsyOzI7MjsyOzI7MjsxCjY7MTsyLDk7Miw1OzIsNDsyLDQ7MiwzOzIsNzsyLDg7MjszOzM7MjszOzM7MAo3OzA7MiwzOzIsNDsyLDQ7Miw4OzIsNjszOzM7MzsyOzM7MjsyOzI7MQo4OzE7Myw5OzIsODsyLDg7MywxOzMsMzszLDM7Myw0OzI7MjsyOzI7MjsyOzEKOTswOzI7Miw4OzIsNzsyLDc7MywxOzMsMTszLDU7MjsyOzM7MjsyOzI7OQoxMDswOzIsODsyLDg7Miw4OzM7Miw3OzM7MzsyOzI7MjszOzI7MjsxCjExOzE7Myw5OzIsNjsyLDk7MywyOzMsNjszLDY7Myw4OzI7MzsyOzI7MjsyOzkKMTI7MTsyLDk7Miw2OzM7MiwzOzIsOTszLDE7MywzOzM7MjsyOzI7MjsyOzEKMTM7MDszLDc7Miw4OzMsMTszLDU7Myw2OzMsOTszLDk7MjsyOzI7MjsyOzI7OQoxNDsxOzMsNTsyLDQ7MzsyLDk7MzszLDM7Myw0OzI7MjsyOzI7MjsyOzEKMTU7MDszLDY7MiwyOzIsNzsyLDY7Miw2OzIsODsyLDg7MjsyOzM7MzszOzI7MAoxNjsxOzIsOTsyLDU7Miw3OzIsODsyLDc7Miw4OzIsODsyOzI7MjsyOzI7MjswCjE3OzA7Miw0OzIsNjsyLDI7Miw2OzIsNTsyLDY7Miw4OzI7MjsyOzM7MzsyOzEKMTg7MDsyLDU7Miw0OzIsOTsyOzIsNjsyLDU7Miw3OzM7MjsyOzI7MjszOzAKMTk7MTsyLDM7Miw1OzIsMzszOzIsOTsyLDk7Miw5OzI7MjsyOzM7MjszOzAKMjA7MDszLDQ7Miw4OzIsOTszLDI7MywyOzMsNDszLDM7MjsyOzI7MjsyOzI7OQoyMTsxOzIsODsyLDY7Miw0OzIsNTsyLDU7Miw1OzIsNjsyOzI7MjsyOzI7MjswCjIyOzA7Myw2OzIsODsyLDc7MywxOzMsMTszOzMsMzsyOzI7MjsyOzI7MTs5CjIzOzA7Miw0OzIsODszLDI7Miw4OzM7Miw5OzM7MjsyOzI7MjszOzI7MQoyNDsxOzMsOTsyLDc7Miw5OzM7Miw3OzIsOTszOzI7MzsyOzI7MzsyOzAKMjU7MTszLDc7Myw1OzMsMTszOzMsMzszLDQ7Myw2OzI7MjsyOzI7MjsyOzkKMjY7MDszOzIsMzsyLDg7MiwxOzIsODsyLDg7Miw1OzI7MjsyOzI7MzsyOzAKMjc7MDszLDM7MiwyOzIsNDsyLDU7MiwyOzIsODsyLDU7MjsyOzI7MzszOzM7MAoyODsxOzMsNTsyLDY7MywxOzIsOTszLDE7MywxOzMsMjsyOzI7MjsyOzE7MjsxCjI5OzE7MywzOzIsOTsyLDc7Miw5OzIsOTszLDM7MywyOzI7MjsyOzM7MjsyOzkKMzA7MTsyLDQ7Miw5OzM7MywyOzMsMTszLDI7MywzOzI7MjsxOzI7MTsyOzEKMzE7MTsyOzIsNjsyLDI7MiwxOzIsNDsyLDY7Miw4OzI7MjszOzM7MzsyOzAKMzI7MTszLDU7Miw4OzIsOTszOzMsMzszLDQ7Myw2OzI7MjsyOzI7MjsyOzkKMzM7MTszLDI7MiwzOzM7Miw0OzIsODsyLDg7MzsyOzI7MjsyOzM7MjswCjM0OzA7Myw5OzIsNDsyLDg7Miw2OzIsNzsyLDY7Miw2OzI7MjsyOzI7MjsyOzAKMzU7MDszLDU7Miw1OzIsNTsyLDY7MywyOzMsNDszLDY7MjsyOzI7MjsyOzI7OQozNjswOzIsOTsyLDU7Miw5OzM7MywyOzM7Myw1OzI7MjsyOzI7MjsxOzkKMzc7MDszOzIsMjsyLDU7MywzOzMsMTszLDM7Myw0OzM7MjsyOzI7MjsyOzkKMzg7MTsyLDk7Miw5OzMsMjszLDI7Myw0OzMsNjszLDg7MjsyOzI7MjsyOzI7OQozOTswOzMsNTsyLDQ7MiwzOzM7MywxOzMsMTsyLDk7MjsyOzI7MjsyOzM7MAo0MDsxOzMsMTsyLDU7Miw5OzMsMjszLDY7MywzOzMsNjsyOzI7MjsyOzI7Mjs5CjQxOzE7MywzOzIsOTszLDU7MywyOzMsNTszLDg7Myw5OzI7MjsxOzI7MTsxOzkKNDI7MDszLDk7Miw1OzIsNTszLDQ7Miw2OzIsODszOzI7MjsxOzI7MjsyOzAKNDM7MTsyLDM7MjsyLDU7MywxOzMsMzszLDI7Myw2OzI7MjsyOzI7MjsyOzEKNDQ7MTszLDU7MywxOzM7MywxOzIsOTszLDE7MywyOzI7MjsyOzI7MjsyOzkKNDU7MTsyLDQ7Miw3OzMsMTszOzMsMzszLDE7MywyOzI7MjsyOzI7MjsyOzAKNDY7MDsyLDE7Miw5OzIsMjsyLDc7Miw0OzIsNjsyLDQ7MjsyOzI7MzsyOzI7MAo0NzsxOzIsODsyLDY7Miw1OzIsODsyLDI7Miw4OzIsNzsyOzI7MjsyOzM7MzsxCjQ4OzE7Miw2OzIsOTsyLDU7Miw3OzIsOTszOzMsMjsyOzI7MzsyOzI7MjswCjQ5OzA7Miw4OzMsMTsyLDc7MzsyLDc7MzszLDQ7MjszOzI7MjsyOzI7MQo1MDswOzMsODsyLDQ7Miw3OzIsNDszLDI7MzszOzI7MjsyOzI7MjsyOzEKNTE7MDsyLDE7MSw3OzIsNTszLDM7MywyOzM7MywzOzM7MjsyOzI7MjsxOzAKNTI7MTszLDU7Miw1OzIsOTszOzMsMzszLDM7MywzOzI7MjsyOzI7MjsyOzkKNTM7MDsyLDM7Miw4OzMsNDsyLDc7MzsyLDg7MzsyOzI7MjsxOzI7MTsxCjU0OzE7MiwyOzIsODsyLDU7MywzOzMsMzszLDI7Myw0OzI7MjsyOzI7MjsyOzkKNTU7MDszLDM7Miw0OzIsODszLDI7MywyOzMsMTszLDU7MjsyOzI7MjsyOzI7MQo1NjswOzIsMTsyLDI7MjsyLDY7Miw2OzIsOTszLDE7MjsyOzI7MzsyOzI7MQo1NzswOzMsNTsyLDU7Miw5OzIsODsyLDg7Myw0OzMsMzsyOzI7MzsyOzI7MjsxCjU4OzE7Miw1OzIsNTsyLDI7Miw0OzIsODsyLDk7MywxOzI7MjszOzM7MjsyOzAKNTk7MDsyLDU7Miw4OzIsODsyLDY7MywxOzM7MywzOzI7MjszOzI7MjsxOzEKNjA7MDsyLDM7MjsyLDc7Miw2OzIsODszLDE7Miw5OzI7MzsyOzI7MjsyOzAKNjE7MDsyLDU7Miw0OzMsMTszLDI7MywzOzMsNTszLDU7MzsyOzI7MTsxOzE7OQo2MjswOzM7Miw0OzIsMjsyLDU7MzsyLDk7Myw0OzI7MjsyOzI7MjsxOzkKNjM7MTszLDg7Miw2OzMsMTszLDE7Myw1OzMsNDszLDQ7MjsyOzI7MjsyOzE7OQo2NDsxOzIsMjsyLDQ7Miw5OzIsNzszLDM7MywyOzMsNDsyOzI7MjsyOzI7MjsxCjY1OzA7Myw2OzEsOTsyLDk7Miw0OzIsODsyLDg7Miw3OzM7MjsyOzI7MjsyOzAKNjY7MTszLDg7MiwzOzIsNzszLDI7MywzOzMsNDszLDc7MzsyOzI7MjsyOzI7OQo2NzsxOzMsMzsyLDY7MzsyLDU7Miw0OzIsNjsyLDY7MjsyOzI7MjsyOzI7MAo2ODswOzIsOTsyLDM7MiwxOzIsMzsyLDg7Miw3OzMsMTszOzI7MzsyOzM7MjsxCjY5OzA7Miw1OzIsMzsyLDM7Miw1OzIsNzsyLDc7Miw4OzI7MjszOzI7MzsyOzAKNzA7MDszLDc7Miw3OzIsNDszOzMsMjsyLDk7MywxOzI7MzsyOzI7MjsxOzEKNzE7MTszLDQ7Miw5OzIsODszOzIsODsyLDk7Miw4OzI7MjsyOzI7MjsyOzEKNzI7MTsyLDk7MzszLDE7Myw1OzMsMjszLDc7Myw3OzI7MjsyOzI7MjsyOzEKNzM7MDs0OzIsNjsyLDU7Miw2OzIsODsyLDY7Miw2OzI7MjsyOzI7MjsyOzAKNzQ7MDszLDQ7Myw1OzIsOTsyLDg7MywxOzMsMTszLDM7MjszOzM7MjsyOzI7OQo3NTsxOzI7Miw1OzIsNTszLDI7MzszLDI7MzsyOzI7MjsyOzI7MjswCjc2OzA7Miw5OzIsNDsyLDk7Miw4OzMsNDszLDM7Myw1OzI7MjsyOzE7MTsxOzkKNzc7MTsyLDg7Miw0OzMsMTszLDI7Myw4OzQ7NDsyOzI7MjsyOzE7MTs5Cjc4OzA7Miw5OzIsNDsyLDU7MiwxOzIsNTsyLDM7Miw4OzM7MjsyOzI7MjsyOzAKNzk7MTsyLDY7MiwzOzEsODsyLDI7MiwzOzIsNTsyLDg7MjszOzM7MzsyOzI7MAo4MDsxOzMsNzszLDE7Miw4OzM7MywxOzMsNDszLDI7MjszOzI7MjsyOzI7OQo4MTsxOzIsMjsyLDM7Miw0OzIsODszLDE7MywzOzMsNjsyOzM7MjsyOzI7Mjs5CjgyOzE7Myw2OzMsMzszLDI7Miw3OzMsMjszLDM7Myw2OzI7MjsyOzI7MjsyOzkKODM7MTsyLDM7Miw1OzMsMTszLDI7MywzOzMsNDszLDQ7MjsyOzE7MjsyOzE7OQo4NDswOzMsNzsyLDM7MiwxOzIsNDsyLDE7MiwyOzIsNDsyOzM7MzsyOzM7MzswCjg1OzE7Miw4OzIsNDsyLDg7MywxOzMsMzszLDE7MywzOzM7MjsyOzI7MjsyOzAKODY7MDsyLDU7Miw3OzIsNTszOzIsNTsyLDY7Miw2OzI7MjsyOzI7MjsyOzEKODc7MTsyLDE7MiwzOzIsNzsyLDc7MywyOzMsMTszLDI7MjsyOzI7MjsyOzI7MQo4ODswOzIsMjsyLDc7Miw4OzIsNTsyLDc7MywxOzM7MjsyOzM7MjsyOzI7MQo4OTswOzMsNzsyLDY7Miw4OzMsMjszOzMsMTszLDU7MjsyOzI7MjsyOzI7OQo5MDsxOzIsNjsyLDQ7Miw1OzIsNzszOzM7MywyOzI7MjsyOzI7MjsyOzAKOTE7MDszLDY7MjsyLDU7MiwzOzIsNTsyLDg7Miw5OzI7MjsyOzI7MjszOzAKOTI7MTsyLDc7Miw3OzMsMjszLDg7NDs0OzQ7MjsyOzI7MTsxOzE7OQo5MzswOzMsNTsyLDk7Myw1OzMsMjszLDM7Myw0OzMsNDsyOzI7MjsyOzI7Mjs5Cjk0OzE7Myw3OzIsNzsyLDk7MzsyLDc7Miw3OzIsODsyOzM7MjszOzI7MjsxCjk1OzE7Myw0OzIsNTsyLDU7Miw5OzIsODsyLDc7Miw5OzI7MjsyOzI7MjsyOzAKOTY7MTsyLDM7Miw0OzIsNTsyLDg7MywzOzMsNDszLDg7MjsyOzM7MjsyOzI7OQo5NzswOzIsNjsyLDM7Miw1OzM7MywyOzIsOTsyLDk7MzszOzI7MjsyOzI7MAo5ODsxOzMsNDszLDM7Miw0OzMsMjszLDI7MywxOzMsMzsyOzI7MjsyOzI7Mjs5Cjk5OzE7Miw5OzIsMjsyLDc7Miw3OzIsODsyLDg7Miw4OzI7MjszOzM7MzsyOzEKMTAwOzA7Miw4OzIsNzsyOzI7MiwzOzIsNDsyLDc7MzsyOzM7MzszOzM7MAoxMDE7MTszLDQ7Miw4OzIsNzszLDE7Myw2OzMsNjszLDc7MjsyOzI7MjsyOzE7OQoxMDI7MDszLDU7MywxOzIsOTsyLDc7Miw2OzIsOTsyLDc7MjsyOzI7MzsyOzI7MQoxMDM7MTsyLDM7MiwyOzIsNDsyLDg7Miw4OzMsMTsyLDk7MjsyOzM7MjsyOzM7MQoxMDQ7MTszLDU7MiwzOzIsODsyLDk7MzszLDQ7Myw0OzI7MjsyOzI7MjsyOzEKMTA1OzE7Myw2OzMsNDszLDk7Myw5OzMsNTszLDk7Myw5OzI7MjsyOzI7MjsyOzkKMTA2OzA7Miw2OzEsODsyLDg7Miw2OzIsMzsyLDU7Miw3OzM7MjsyOzI7MjsyOzAKMTA3OzA7MywyOzIsNDsyLDU7MiwzOzIsMzsyLDY7Miw3OzI7MjsyOzI7MjsyOzAKMTA4OzA7MiwzOzIsNzsyOzI7Miw2OzIsNTsyLDc7MjsyOzM7MjsyOzI7MAoxMDk7MDszLDI7Miw3OzIsNzsyLDc7MywxOzIsODsyLDc7MjsyOzI7MjsyOzI7MQoxMTA7MDsyLDQ7Miw1OzIsMzsyLDI7MiwyOzIsMjsyLDM7MjsyOzI7MzsyOzI7MAoxMTE7MTsyLDI7Miw0OzIsNTsyLDI7Miw0OzIsMjsyLDU7MjsyOzI7MjszOzI7MAoxMTI7MTsyLDU7MzszLDU7MywyOzIsOTszOzMsMTsyOzI7MjsyOzI7Mjs5CjExMzswOzMsNzsyLDc7Miw0OzM7Miw1OzIsNjsyLDg7MjsyOzI7MzszOzM7MQoxMTQ7MTs0OzIsODsyLDM7Miw4OzIsOTszOzMsMTsyOzI7MjsyOzI7MjsxCjExNTsxOzMsNjsyLDI7MiwxOzMsMTszOzM7MywyOzI7MzsyOzI7MjsyOzEKMTE2OzE7MiwyOzIsNTsyLDM7Miw4OzIsNzsyLDk7MywxOzI7MjsyOzM7MzsyOzAKMTE3OzE7MiwzOzIsODsyLDE7MzszLDE7MzszLDE7MjsyOzI7MjsyOzI7MAoxMTg7MTsyLDI7Miw1OzIsNDszOzMsMzszLDM7Myw2OzI7MjsyOzI7MTsyOzkKMTE5OzA7Miw0OzIsNDsyLDU7Miw2OzIsNTsyLDg7Miw5OzM7MjsyOzI7MzszOzAKMTIwOzA7Myw5OzIsNTszLDI7MywyOzIsODszOzMsMzsyOzI7MjsyOzI7MjsxCjEyMTswOzMsNzsyLDk7Miw3OzIsNjszOzMsMzszLDM7MjsyOzI7MjsyOzI7MQoxMjI7MTsyLDU7MzszLDM7Miw5OzM7MywxOzMsNjsyOzI7MzsyOzI7Mjs5CjEyMzswOzIsODsyLDk7MiwzOzIsMzsyLDQ7MiwyOzIsNTsyOzI7MzsyOzI7MjsxCjEyNDsxOzMsNjsyLDU7MywxOzIsNTszLDM7MzszLDQ7MjsyOzI7MjsyOzI7MQoxMjU7MDszLDg7Miw4OzIsMzsyLDc7Miw0OzIsNjszOzI7MzszOzI7MzsyOzAKMTI2OzE7MywxOzIsNTsyLDc7MiwxOzMsMTszOzM7MjsyOzI7MjsyOzI7MQoxMjc7MDsyLDU7Miw3OzIsMzsyLDQ7Miw2OzIsMzsyLDU7MzszOzI7MjszOzM7MAoxMjg7MTszLDg7MzsyLDc7MiwzOzIsNzsyLDk7MywxOzI7MzsyOzM7MjsyOzEKMTI5OzE7Myw0OzIsNzsyLDg7Miw3OzIsNzsyLDk7Miw5OzI7MzsyOzI7MjszOzEKMTMwOzA7Miw5OzIsNDsyLDk7Myw2OzMsMTszOzMsMTsyOzI7MjsyOzE7Mjs5CjEzMTsxOzIsMjsyLDg7MywxOzMsMjszLDE7Myw0OzMsNzsyOzI7MjsyOzI7Mjs5CjEzMjswOzIsNzsyLDI7Miw3OzMsNDszOzMsMzszLDc7MzsyOzI7MjsyOzI7MAoxMzM7MDsyOzIsNTsyLDg7MiwzOzIsMTsyLDM7Miw1OzI7MjsyOzI7MjsyOzAKMTM0OzE7Miw4OzIsNTszLDE7Miw4OzIsODsyLDk7MywyOzI7MjsyOzI7MzsyOzEKMTM1OzE7MiwzOzM7Miw3OzM7MywxOzM7MzsyOzM7MjsyOzI7Mjs5CjEzNjsxOzI7Miw4OzIsNTsyLDg7Miw0OzIsODsyLDc7MjsyOzM7MjsyOzM7MQoxMzc7MDsyOzIsODsyLDE7Miw3OzIsODszLDE7MzsyOzI7MjsyOzI7MjsxCjEzODsxOzMsMzsyLDU7Miw4OzIsNzsyLDc7Miw5OzMsMTsyOzI7MjsyOzI7MjsxCjEzOTsxOzMsOTsyLDU7MywxOzM7MywzOzMsMzszLDQ7MjsyOzI7MjsxOzI7OQoxNDA7MDsyLDg7Miw1OzIsOTsyLDY7Miw2OzIsOTsyLDg7MjsyOzI7MjsyOzM7MAoxNDE7MTsyLDE7Miw3OzMsMTszLDE7MywxOzMsNDszLDE7MjsyOzI7MjsyOzI7OQoxNDI7MTsyLDk7Miw4OzIsOTszLDE7MzszLDE7Miw5OzI7MzsyOzI7MjszOzEKMTQzOzE7MywxOzIsOTsyLDc7Miw0OzIsOTszOzM7MzszOzI7MjsyOzE7OQoxNDQ7MTszLDY7Miw1OzM7Miw5OzM7MzszLDQ7MjsyOzI7MjsyOzI7MQoxNDU7MTsyLDg7Miw0OzIsNTsyLDg7Miw5OzIsOTszLDI7MjsyOzI7MzszOzI7MAoxNDY7MTszLDQ7Miw2OzIsNDsyLDM7Miw1OzIsNTsyLDk7MzsyOzI7MjsyOzM7MAoxNDc7MDszLDQ7Miw2OzIsOTszLDQ7Myw1OzMsNjszLDk7MjsyOzI7MjsyOzE7OQoxNDg7MDszLDE7Miw1OzM7Miw1OzIsNjsyLDg7Miw4OzI7MjsyOzI7MzszOzAKMTQ5OzE7Miw0OzIsNzsyLDc7Miw0OzIsOTszOzMsMTszOzI7MjsyOzE7MjswCjE1MDswOzIsNzsyLDc7Miw4OzIsNDsyLDQ7Miw2OzIsNzsyOzM7MjsyOzM7MzswCjE1MTsxOzIsMjsyLDQ7Miw1OzIsNTsyLDk7Miw3OzIsOTsyOzI7MjsyOzI7MjswCjE1MjswOzMsODsyLDQ7Miw5OzIsNzsyLDc7Miw4OzIsOTsyOzI7MzszOzI7MjsxCjE1MzsxOzIsNTsyLDU7MzsyLDc7Miw4OzM7MzsyOzI7MjsyOzI7MjswCjE1NDswOzIsOTsyLDY7Miw3OzMsMjszLDM7Myw0OzMsNTsyOzI7MjsyOzI7MTs5CjE1NTswOzIsOTsyLDc7MywxOzIsNTsyLDc7Miw3OzIsOTsyOzI7MjsyOzM7MzswCjE1NjswOzMsOTsyLDY7Miw3OzIsNzszOzIsODsyLDg7MjsyOzI7MjsyOzM7MAoxNTc7MTsyLDE7MywzOzM7MywxOzMsMzszLDQ7Myw0OzI7MjsyOzI7MjsyOzkKMTU4OzE7Miw2OzM7Miw4OzIsOTsyLDc7Miw4OzIsODsyOzI7MjsyOzI7MzswCjE1OTsxOzMsMTszOzM7MywxOzMsNDszLDg7NDsyOzI7MjsyOzI7MTs5CjE2MDsxOzMsNDsyLDk7Miw3OzMsMjszLDQ7Myw3OzMsODsyOzI7MjsyOzI7Mjs5CjE2MTswOzMsMTsyLDY7Miw1OzIsNzsyLDg7Miw4OzMsMTsyOzI7MzsyOzM7MjsxCjE2MjsxOzIsNzsxLDc7Miw1OzIsMjsyLDc7Miw2OzIsNTszOzI7MjsyOzM7MjswCjE2MzsxOzM7MiwyOzIsNTsyLDk7Miw5OzMsMjszLDI7MzszOzI7MjsxOzI7OQoxNjQ7MDsyLDU7Miw1OzIsNDsyLDY7Miw4OzIsODszLDM7MzszOzI7MjsyOzI7OQoxNjU7MTszLDg7Miw4OzIsNzsyLDk7Miw5OzIsOTsyLDk7MjsyOzM7MjsyOzI7MAoxNjY7MTsyLDU7MzsyLDU7MywyOzMsMjszLDI7Myw0OzI7MjsyOzI7MjsyOzkKMTY3OzA7Miw4OzIsNzsyLDk7MywxOzIsODszLDY7Myw1OzI7MzsxOzM7MTsyOzEKMTY4OzA7MywyOzIsOTsyLDk7MzszLDM7Myw0OzMsNTsyOzI7MjsyOzI7Mjs5CjE2OTswOzMsOTsyLDk7Miw3OzM7MywyOzMsNjszLDY7MjsyOzI7MjsyOzI7OQoxNzA7MDsyOzIsNDszLDE7MywyOzMsNzszLDY7Myw5OzI7MjsxOzI7MjsyOzEKMTcxOzA7Miw3OzIsMzsyLDQ7Miw3OzIsNzsyLDU7Miw2OzI7MjsyOzM7MjszOzAKMTcyOzE7Myw0OzIsNzsyLDg7MzsyLDQ7Miw4OzMsMjsyOzM7MjsyOzI7MjsxCjE3MzsxOzMsNzsyLDI7MywxOzM7Myw0OzMsNzszLDY7MjsyOzI7MjsyOzI7MQoxNzQ7MTszLDI7Miw4OzIsNzsyLDk7MywyOzM7Myw0OzI7MjszOzI7MTsyOzkKMTc1OzA7Myw3OzIsMzsyLDk7MywxOzIsODszLDQ7MywzOzI7MjsyOzI7MTsxOzkKMTc2OzA7Myw3OzIsOTsyLDc7Miw4OzIsNzsyLDY7Miw5OzI7MjsyOzI7MjszOzAKMTc3OzA7Myw5OzIsOTszOzMsMTsyLDg7MywzOzMsNDsyOzI7MTsyOzI7MTs5CjE3ODswOzMsNTsyLDg7Miw5OzIsODszOzIsOTsyLDk7MjsyOzI7MjsyOzI7MQoxNzk7MTsyLDg7Miw3OzMsNDsyLDU7Miw4OzIsOTszLDI7MzsyOzI7MjszOzI7MQoxODA7MDsyLDM7Miw5OzIsNTsyLDU7Miw1OzIsNjsyLDY7MjsyOzM7MjszOzI7MAoxODE7MDszLDI7MiwzOzIsNDsyLDI7Miw2OzIsNjsyLDc7MjsyOzI7MzszOzI7MQoxODI7MTszLDc7Miw3OzMsMjszLDE7MywxOzMsMzszLDM7MjsyOzI7MTsyOzI7MQoxODM7MDszOzIsNzsyLDU7Miw3OzIsMzsyLDY7Miw2OzI7MzsyOzI7MjsyOzAKMTg0OzE7NDsyLDM7Miw4OzIsODszOzMsMTszLDM7MzsyOzI7MjsxOzI7OQoxODU7MTszLDc7Miw2OzMsMTszOzM7MywyOzIsOTszOzI7MjsyOzI7MzsxCjE4NjsxOzMsNDsyLDI7Miw0OzM7Miw5OzMsMjszLDE7MjszOzI7MjsyOzI7MQoxODc7MTsyLDI7Miw0OzIsMjsyLDE7Miw0OzIsODsyLDg7MjsyOzI7MjszOzM7MQoxODg7MTsyLDE7MiwzOzIsNzszLDM7MywyOzMsMTszLDY7MjsyOzI7MjsyOzI7MQoxODk7MDsyLDY7MywzOzMsMzsyLDg7MzszLDE7MywxOzI7MjszOzI7MjsyOzkKMTkwOzA7Myw5OzEsNzsyLDM7Miw3OzIsNTsyLDY7Miw4OzM7MjsyOzI7MjszOzAKMTkxOzE7MjsyLDQ7Miw4OzIsODszOzMsMTsyLDk7MjsyOzI7MjsyOzM7MQoxOTI7MTsyLDk7Miw5OzM7Miw0OzIsOTsyLDg7Miw5OzI7MjsyOzI7MjsyOzEKMTkzOzA7MzszLDE7Miw4OzIsNzsyLDc7Miw5OzMsMzsyOzM7MjszOzI7Mjs5CjE5NDswOzIsMjsyLDQ7Miw0OzIsNjszLDE7Myw0OzMsMzsyOzM7MzsyOzI7MjswCjE5NTswOzIsNTsyLDQ7Miw3OzIsMjsyLDI7Miw0OzIsNTsyOzI7MzsyOzI7MjswCjE5NjsxOzMsNTsyLDI7Miw1OzIsNzszLDE7MywzOzMsMjsyOzI7MjsyOzI7Mjs5CjE5NzsxOzIsMTsyLDk7Miw1OzIsODszLDI7MywzOzMsODsyOzI7MzsyOzI7Mjs5CjE5ODswOzQ7Miw1OzIsOTszOzMsMjszLDM7Myw0OzI7MjsyOzI7MTsyOzkKMTk5OzE7MiwzOzIsNjsyLDM7Miw3OzIsNzsyLDg7Miw4OzI7MjszOzI7MjszOzEKMjAwOzA7Myw0OzIsODszLDI7Myw0OzMsNTszLDM7Myw0OzI7MjsyOzI7MTsxOzkK" download="gpa2.csv">Download gpa2.csv</a></p>
+</div>
+<div id="literatur" class="section level2">
+<h2>Literatur</h2>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -827,35 +318,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
