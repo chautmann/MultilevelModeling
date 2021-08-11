@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Bei dem Kurzworkshop wird die Mehrebenenanalyse als Verfahren für die Auswertung von Längsschnittdaten vorgestellt. Es handelt sich um eine praktische Einführung, bei denen der Ansatz anhand von Übungen erprobt werden soll.
+Bei dem Kurzworkshop wird die Mehrebenenanalyse als Verfahren für die Auswertung von Längsschnittdaten vorgestellt. Es handelt sich um eine praktische Einführung, bei der der Ansatz anhand von Übungen erprobt werden soll.
 
 ### Software und Pakete
 Für die Übungen wird die Statistiksoftware R genutzt. Um die Benutzung von R zu erleichtern, wird als graphische Benutzeroberfläche zusätzlich das Programm RStudio verwendet. Die Software kann kostenfrei unter den folgenden Downloadlinks abgerufen werden:
