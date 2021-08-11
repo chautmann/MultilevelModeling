@@ -6,3 +6,6 @@ navbar:
      href: index.html
    - text: "Lösungen"
      href: loesungen.html
+output:
+  html_document:
+    theme: paper

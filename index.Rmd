@@ -1,5 +1,5 @@
 ---
-title: "AKiP Forschungscamp, 14.-15.09 <br /> Kurzworkshop Mehrebenenanalyse"
+title: "AKiP Forschungscamp, 14.-15.09. <br /> Kurzworkshop Mehrebenenanalyse"
 output: html_document
 ---
 
@@ -24,15 +24,15 @@ install.packages("tidyverse", "nlme", "broom.mixed", "kableExtra")
 ### Materialien
 Im Rahmen des Kurses werden verschiedene Materialien benötigt, die als Download zur Verfügung stehen:
 
-- Handout:
+- Handout: `r xfun::embed_file("./data/MultilevelModeling.pdf", text = "MultilevelModeling.pdf")`
 - Beispieldaten: `r xfun::embed_file("./data/gpa2.csv", text = "gpa2.csv")`
 - Übungen: 
-- Lösungen: 
+- Lösungen: `r xfun::embed_file("loesungen.Rmd", text = "Lösungen.Rmd")`
 
 ### Literaturempfehlungen
-**R allgemein**\
-Wickham, H., & Grolemund, G. (2017). *R for data science*. O'Reilly. [Link](https://r4ds.had.co.nz/)
+**R**\
+Wickham, H.,  & Grolemund, G. (2017). *R for data science*. O'Reilly. [Link](https://r4ds.had.co.nz/)
 
 **Mehrebenenanalyse** \
-Finch, W. H., Bolin, J. E., & Kelley, K. (2019). *Multilevel Modeling Using R* (2nd ed.). Chapman and Hall/CRC. [Link](https://doi.org/10.1201/9781351062268)\
+Finch, W. H., Bolin, J. E., & Kelley, K. (2019). *Multilevel modeling using R* (2nd ed.). Chapman and Hall/CRC. [Link](https://doi.org/10.1201/9781351062268)\
 Hox, J. J., Moerbeek, M., & van de Schoot, R. (2017). *Multilevel analysis: Techniques and applications* (3rd ed.). Routledge. [Link](https://multilevel-analysis.sites.uu.nl/)
