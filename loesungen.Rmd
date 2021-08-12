@@ -7,7 +7,7 @@ output:
    toc_float: TRUE
    code_download: true
    number_sections: true
-#  code_folding: hide
+   code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
