@@ -1,0 +1,170 @@
+---
+title: "Lösungen Übungsaufgaben"
+output:
+ html_document:
+   toc: true
+   toc_depth: 2
+   toc_float: TRUE
+   code_download: true
+   number_sections: true
+#  code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message=FALSE)
+options(knitr.kable.NA = '')
+
+```
+
+# Pakete laden
+Laden sie die Pakete `tidyverse`, `nlme`, `broom.mixed` und `kableExtra` mit dem Befehl `library()`.
+
+```{r}
+# Sammlung von Paketen, viel zu Datenmanipulation
+library("tidyverse")
+# Für die Berechnung der Multilevel Modelle
+library("nlme")
+# Für die Weiterverarbeitung der Ergebnisse des Pakets nlme
+library(_____)
+# Wird einmal für die Darstellung einer Tabelle benötigt
+library("kableExtra")
+```
+
+# Daten laden
+Laden Sie die Datendatei `gpa2.csv` mit dem Befehl `read_csv2()`. Speichern Sie die Daten in einem neuen Objekt unter dem Namen `gpa_data`. Betrachten Sie die Daten in dem Objekt `gpa_data` näher. Benutzen Sie hierzu die Befehle `head()` und `str()`.
+
+```{r}
+gpa_data <- read.csv2(file = "./data/gpa2.csv")
+head(_____)
+str(gpa_data)
+```
+
+# Daten auswählen
+Wählen Sie aus dem Objekt `gpa_data` mit dem Befehl `select()` die für die Analyse relevanten Variablen `student`, `sex` und `gpa1` bis `gpa6` aus. Im Anschluss benennen Sie mit dem Befehl `rename()` den Variablennamen `student` in `student_id` um. Betrachten Sie die Ergebnisse der Datenmanipulation.
+
+```{r}
+gpa_data <- select(gpa_data, student, _____, starts_with("gpa"))
+gpa_data <- rename(gpa_data, _____ = student)
+head(gpa_data)
+```
+
+# Daten umstrukturieren
+Strukturieren Sie die Daten mit dem Befehl `pivot_longer()` um. Überführen Sie dabei die Variablen `gpa1` bis `gpa6` von dem Wide-Format in das Long-Format. Die neu entstehende Spalte mit den GPA-Werten für alle Messzeitpunkte soll dabei den Variablennamen `gpa` erhalten und die Namen der Variablen `gpa1` bis `gpa6` sollen in eine Spalte mit dem Namen `time` überführt werden. Betrachten Sie die Ergebnisse der Umstrukturierung mit dem Befehl `print()`.
+
+```{r}
+gpa_data_long <- pivot_longer(gpa_data, 
+                              cols = starts_with("gpa"),
+                              names_to = _____,
+                              values_to = "gpa")
+print(_____)
+```
+
+# Bildung Zeitvariable
+Im Folgenden wird die Variable `time` überschrieben und eine neue Zeitvariable mit den Werten 0 bis 5 gebildet. Überprüfen Sie mit der Funktion `print()`, ob die Werte korrekt erstellt wurden. Wie beurteilen Sie, dass der erste Messzeitpunkt den Wert 0 erhalten hat?
+
+```{r}
+gpa_data_long <- gpa_data_long%>%
+  group_by(student_id)%>%
+  mutate(time = 1:n()-1)
+print(_____, n = 15)
+```
+
+# Graphik Einzelverläufe I
+Das Objekt `gpa_subsample` enthält die Messwerte von vier Personen (IDs 14, 21, 43, 68). Im Folgenden soll für diese Personen der Verlauf der GPA-Werte über die Zeit dargestellt werden. Dabei werden verschiedene Funktionen des Pakets `ggplot2` benutzt. In der Funktion `ggplot()` müssen hierzu zunächst die Variablen `time` und `gpa` als x- bzw. y-Wert angegeben werden. Damit die GPA-Werte einer Person eindeutig zugeordnet werden können, muss für das Argument `group` zusätzlich die Variable `student_id` angegeben werden. Betrachten Sie die Ergebnisse der im Objekt `graph_cases` abgespeicherten Graphik.
+
+```{r, results=FALSE}
+gpa_subsample <- gpa_data_long%>%
+  filter(student_id %in% c(14, 21, 43, 68))
+gpa_subsample
+```
+
+```{r}
+graph_cases <- ggplot(gpa_subsample, aes(x = _____, y = _____, group = _____)) +
+               # Angabe, dass die Werte als Linien dargestellt werden sollen
+               geom_line(aes(color = as.factor(student_id))) +
+               # Die Werte der Personen sollen zusätzlich als Punkte dargestellt werden
+               geom_point(aes(color = as.factor(student_id))) +
+               # Beschriftung der Geraden mit der ID
+               geom_text(data = filter(gpa_subsample, time == last(time)),
+                         aes(label = as.factor(student_id)),
+                         position = position_nudge(x = 0.2),
+                         check_overlap = TRUE) +
+               theme(legend.position = "none")
+graph_cases
+```
+
+# Mehrebenenmodell I
+Berechnen Sie das Random-Intercept, Random-Slope Modell mit der Funktion `lme()` aus dem Paket `lmer`. Die Funktion benötigt die Daten dabei im Longformat, die in dem Objekt `gpa_data_long` gespeichert sind. Als Variablen müssen `gpa` als Ergebnisvariable und `time` als Prädiktorvariable angegeben werden. Betrachten Sie die Ergebnisse anschließend mit der Funktion `summary()`. Welche festen Effekte sind signfikant? Können Sie beurteilen, ob die zufälligen Effekte signifikant sind?
+
+```{r}
+_____ <- lme(gpa ~ time, random = ~ 1 + time | student_id, data = gpa_data_long)
+summary(mod1)
+```
+
+# Konfidenzintervalle
+Das Objekt `mod1` enthält die Ergebnisse des Random-Intercept, Random-Slope Modells. Wenden Sie die Funktion `tidy()`aus dem Paket `broom.mixed` auf das Objekt `mod1` an. In der Funktion setzen Sie dabei den Wert des Arguments `conf.int` auf `TRUE` und geben für das Argument `conf.level` den Wert `0.95` an. Dadurch werden die Konfidenzintervalle der Parameter geschätzt und die Signifikanz der zufälligen Effekte kann nun zusätzlich beurteilt werden. Welche der zufälligen Effekte werden signikant?
+
+```{r}
+mod1_coef <- tidy(mod1, _____, conf.level = 0.95)
+kbl(mod1_coef, digits = 2) %>%
+  kable_styling(bootstrap_options = "striped")
+```
+
+# Graphik feste Effekte
+Die Objekte `fix_intercept` und `fix_slope` enthalten die festen Effekte des Random-Intercept, Random-Slope Modells. Erweitern Sie die erste Graphik im Objekt `graph_cases` und stellen Sie zusätzlich die Gerade dar, die über die festen Effekte geschätzt wird. Für die Erweiterung nehmen Sie die Funktion `geom_abline()` aus dem Paket `ggplot2`. Betrachten Sie im Anschluss die Ergebnisse der erweiterten Graphik.
+
+```{r}
+fix_intercept <- summary(mod1)$coef$fixed[[1]]
+fix_slope <- summary(mod1)$coef$fixed[[2]]
+```
+
+```{r}
+graph_fixed <- graph_cases +
+               geom_abline(intercept = _____, slope = _____)
+graph_fixed
+```
+
+# Mehrebenenmodell II
+Berechnen Sie das Random-Intercept, Fixed-Slope Modell. Berücksichtigen Sie dabei die Variablen `gpa` und `time` und geben in der Funktion `lme()` die festen und die zufälligen Effekte an. Betrachten Sie anschließend die Ergebnisse mit der Funktion `summary()`.
+
+```{r}
+mod2 <- lme(_____, random = ~ 1 | student_id, data = gpa_data_long)
+summary(mod2)
+```
+
+# Daten Modellschätzung
+In dem Objekt `mod2` sind die Ergebnisse des Random-Intercept, Fixed-Slope Modells gespeichert. Wenden Sie die Funktion `augment()` aus dem Paket `broom.mixed` auf das Objekt an. Betrachten Sie im Anschluss die von der Funktion ausgegebenen Werte und versuchen ihre Bedeutung zu erfassen. Bei der Variable `.fitted` handelt es sich um die individuell vorhergesagten Werte der Personen. Um die Werte noch besser zu verstehen, sollen diese in der nächsten Übung graphisch dargestellt werden.
+
+```{r}
+mod2_data <- augment(_____)
+_____
+```
+
+# Graphik Einzelverläufe II
+Erweitern Sie die zweite Graphik `graph_fixed`, um die individuell geschätzten Geradengleichungen. Benutzen Sie hierzu die im Objekt `mod2_subsample` gespeicherten Daten. Dabei müssen in der Funktion `geom_line` die Variablen `time` und `.fitted` als x- bzw. als y-Wert angegeben werden.
+
+```{r, results='hide'}
+mod2_subsample <- filter(mod2_data, student_id %in% c(14, 21, 43, 68))
+mod2_subsample
+```
+
+```{r}
+graph_indi <- graph_fixed +
+              geom_line(data = mod2_subsample,
+                        aes(x = _____, y = _____,
+                            color = as.factor(student_id)),
+                        linetype = "dotted",
+                        size = 0.7)
+graph_indi
+```
+
+# Mehrebenenmodell III
+Berechnen Sie das Intercepts- and Slopes-as-Outcomes Modell. Berücksichtigen Sie hierzu die Variablen `gpa`, `sex` und `time` und geben in der Funktion `lme()` die festen und die zufälligen Effekte an. Betrachten Sie die Ergebnisse der Koeffizienten und hier insbesondere die festen Effekte. Versuchen Sie die Bedeutung die Prädiktoren `sex` und `time:sex` dem Gleichungssystem aus der Präsentation zuzuordnen.
+
+```{r}
+mod3 <- lme(_____, random = ~ time | _____, data = gpa_data_long)
+mod3_coef <- tidy(mod3, conf.int = TRUE)
+kbl(mod3_coef, digits = 2) %>%
+  kable_styling(bootstrap_options = "striped")
+```

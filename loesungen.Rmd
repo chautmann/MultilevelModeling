@@ -18,7 +18,7 @@ options(knitr.kable.NA = '')
 ```
 
 # Pakete laden
-Laden sie die Pakete `tidyverse`, `nlme`, `knitr` und `broom.mixed` mit dem Befehl `library()`.
+Laden sie die Pakete `tidyverse`, `nlme`, `broom.mixed` und `kableExtra` mit dem Befehl `library()`.
 
 ```{r}
 # Sammlung von Paketen, viel zu Datenmanipulation
@@ -41,7 +41,7 @@ str(gpa_data)
 ```
 
 # Daten auswählen
-Wählen Sie  mit dem Befehl `select()` die für die Analyse relevanten Variablen `student`, `sex` und `gpa1` bis `gpa6` aus. Im Anschluss benennen Sie mit dem Befehl `rename()` den Variablennamen `student` in `student_id` um. Betrachten Sie die Ergebnisse der Datenmanipulation.
+Wählen Sie aus dem Objekt `gpa_data` mit dem Befehl `select()` die für die Analyse relevanten Variablen `student`, `sex` und `gpa1` bis `gpa6` aus. Im Anschluss benennen Sie mit dem Befehl `rename()` den Variablennamen `student` in `student_id` um. Betrachten Sie die Ergebnisse der Datenmanipulation.
 
 ```{r}
 gpa_data <- select(gpa_data, student, sex, starts_with("gpa"))
@@ -50,14 +50,14 @@ head(gpa_data)
 ```
 
 # Daten umstrukturieren
-Strukturieren Sie die Daten mit dem Befehl `pivot_longer()` um. Überführen Sie dabei die Variablen `gpa1` bis `gpa6` von dem Wide-Format in das Long-Format. Die neu entstehende Spalte mit den GPA-Werten für alle Messzeitpunkte soll dabei den Variablennamen `gpa` erhalten und die Namen der Variablen `gpa1` bis `gpa6` sollen in eine Spalte mit dem Namen `time` überführt werden. Betrachten Sie die Ergebnisse der Umstrukturierung.
+Strukturieren Sie die Daten mit dem Befehl `pivot_longer()` um. Überführen Sie dabei die Variablen `gpa1` bis `gpa6` von dem Wide-Format in das Long-Format. Die neu entstehende Spalte mit den GPA-Werten für alle Messzeitpunkte soll dabei den Variablennamen `gpa` erhalten und die Namen der Variablen `gpa1` bis `gpa6` sollen in eine Spalte mit dem Namen `time` überführt werden. Betrachten Sie die Ergebnisse der Umstrukturierung mit dem Befehl `print()`.
 
 ```{r}
 gpa_data_long <- pivot_longer(gpa_data, 
                               cols = starts_with("gpa"),
                               names_to = "time",
                               values_to = "gpa")
-gpa_data_long
+print(gpa_data_long)
 ```
 
 # Bildung Zeitvariable
@@ -95,7 +95,7 @@ graph_cases
 ```
 
 # Mehrebenenmodell I
-Berechnen Sie das Random-Intercept, Random-Slope Modell mit der Funktion `lme()` aus dem Paket `lmer`. Die Funktion benötigt die Daten dabei im Longformat. Diese sind in dem Objekt `gpa_data_long` gespeichert. Als Variablen müssen `gpa` als Ergebnisvariable und `time` als Prädiktorvariable angegeben werden. Betrachten Sie die Ergebnisse anschließend mit der Funktion `summary()`. Welche festen Effekte sind signfikant? Können Sie beurteilen, ob die zufälligen Effekte signifikant sind?
+Berechnen Sie das Random-Intercept, Random-Slope Modell mit der Funktion `lme()` aus dem Paket `lmer`. Die Funktion benötigt die Daten dabei im Longformat, die in dem Objekt `gpa_data_long` gespeichert sind. Als Variablen müssen `gpa` als Ergebnisvariable und `time` als Prädiktorvariable angegeben werden. Betrachten Sie die Ergebnisse anschließend mit der Funktion `summary()`. Welche festen Effekte sind signfikant? Können Sie beurteilen, ob die zufälligen Effekte signifikant sind?
 
 ```{r}
 mod1 <- lme(gpa ~ time, random = ~ 1 + time | student_id, data = gpa_data_long)
@@ -160,7 +160,7 @@ graph_indi
 ```
 
 # Mehrebenenmodell III
-Berechnen Sie das Intercepts- and Slopes-as-Outcomes Modell, indem Sie die Variablen `gpa`, `sex` und `time` berücksichtigen. Betrachten Sie die Ergebnisse der Koeffizienten und hier insbesondere die festen Effekte. Versuchen Sie die Bedeutung die Prädiktoren `sex` und `time:sex` dem Gleichungssystem aus der Präsentation zuzuordnen.
+Berechnen Sie das Intercepts- and Slopes-as-Outcomes Modell. Berücksichtigen Sie hierzu die Variablen `gpa`, `sex` und `time` und geben in der Funktion `lme()` die festen und die zufälligen Effekte an. Betrachten Sie die Ergebnisse der Koeffizienten und hier insbesondere die festen Effekte. Versuchen Sie die Bedeutung die Prädiktoren `sex` und `time:sex` dem Gleichungssystem aus der Präsentation zuzuordnen.
 
 ```{r}
 mod3 <- lme(gpa ~ time*sex, random = ~ time | student_id, data = gpa_data_long)

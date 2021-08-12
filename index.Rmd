@@ -26,7 +26,7 @@ Im Rahmen des Kurses werden verschiedene Materialien benötigt, die als Download
 
 - Handout: `r xfun::embed_file("./data/MultilevelModeling.pdf", text = "MultilevelModeling.pdf")`
 - Beispieldaten: `r xfun::embed_file("./data/gpa2.csv", text = "gpa2.csv")`
-- Übungen: 
+- Übungen: `r xfun::embed_file("uebung.Rmd", text = "Übung.Rmd")`
 - Lösungen: `r xfun::embed_file("loesungen.Rmd", text = "Lösungen.Rmd")`
 
 ### Literaturempfehlungen
