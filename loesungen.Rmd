@@ -160,10 +160,10 @@ graph_indi
 ```
 
 # Mehrebenenmodell III
-Berechnen Sie das Intercepts- and Slopes-as-Outcomes Modell. Berücksichtigen Sie hierzu die Variablen `gpa`, `sex` und `time` und geben in der Funktion `lme()` die festen und die zufälligen Effekte an. Betrachten Sie die Ergebnisse der Koeffizienten und hier insbesondere die festen Effekte. Versuchen Sie die Bedeutung die Prädiktoren `sex` und `time:sex` dem Gleichungssystem aus der Präsentation zuzuordnen.
+Berechnen Sie das Intercepts- and Slopes-as-Outcomes Modell. Berücksichtigen Sie hierzu die Variablen `gpa`, `sex` und `time` und geben in der Funktion `lme()` die festen und die zufälligen Effekte an. Betrachten Sie die Befunde und hier insbesondere die festen Effekte. Wie interpretieren Sie die Ergebnisse?
 
 ```{r}
-mod3 <- lme(gpa ~ time*sex, random = ~ time | student_id, data = gpa_data_long)
+mod3 <- lme(gpa ~ time*sex, random = ~ 1 + time | student_id, data = gpa_data_long)
 mod3_coef <- tidy(mod3, conf.int = TRUE)
 kbl(mod3_coef, digits = 2) %>%
   kable_styling(bootstrap_options = "striped")
