@@ -1,6 +1,8 @@
 ---
 title: "AKiP Forschungscamp, 31. Mai--01.Juni 2023 <br /> Kurzworkshop Multilevel Analysis"
-output: html_document
+output:
+ html_document:
+   code_download: true
 ---
 
 ```{r setup, include=FALSE}
@@ -18,7 +20,7 @@ Für die Übungen wird die Statistiksoftware R genutzt. Um die Benutzung von R z
 Im Rahmen der Übungen werden verschiedene Pakete benötigt, die die Funktionalität von R erweitern. Diese können mit folgendem Befehl installiert werden:
 
 ```{r, eval=FALSE}
-install.packages("tidyverse", "nlme", "broom.mixed", "kableExtra")
+install.packages(c("tidyverse", "nlme", "broom.mixed", "kableExtra"))
 ```
 
 ### Materialien
