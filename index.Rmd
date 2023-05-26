@@ -25,6 +25,7 @@ install.packages("tidyverse", "nlme", "broom.mixed", "kableExtra")
 Im Rahmen des Kurses werden verschiedene Materialien benötigt, die als Download zur Verfügung stehen:
 
 - Handout: [multilevel_analysis.pdf](https://uni-koeln.sciebo.de/s/Oci76TnsbUlG6TX)
+<a href="https://uni-koeln.sciebo.de/s/Oci76TnsbUlG6TX" target="_blank">multilevel_analysis.pdf</a>
 - Beispieldaten: `r xfun::embed_file("./data/gpa2.csv", text = "gpa2.csv")`
 - Übungen: `r xfun::embed_file("uebung.Rmd", text = "uebung.Rmd")`
 - Lösungen: `r xfun::embed_file("loesungen.Rmd", text = "loesungen.Rmd")`
