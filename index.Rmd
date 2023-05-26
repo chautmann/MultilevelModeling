@@ -1,5 +1,5 @@
 ---
-title: "AKiP Forschungscamp, 14.-15.09. <br /> Kurzworkshop Mehrebenenanalyse"
+title: "AKiP Forschungscamp, 31. Mai--01.Juni 2023 <br /> Kurzworkshop Multilevel Analysis"
 output: html_document
 ---
 
@@ -24,15 +24,18 @@ install.packages("tidyverse", "nlme", "broom.mixed", "kableExtra")
 ### Materialien
 Im Rahmen des Kurses werden verschiedene Materialien benötigt, die als Download zur Verfügung stehen:
 
-- Handout: `r xfun::embed_file("./data/MultilevelModeling.pdf", text = "MultilevelModeling.pdf")`
+- Handout: `r xfun::embed_file("./data/MultilevelModeling.pdf", text = "multilevel_analysis.pdf")`
 - Beispieldaten: `r xfun::embed_file("./data/gpa2.csv", text = "gpa2.csv")`
-- Übungen: `r xfun::embed_file("uebung.Rmd", text = "Übung.Rmd")`
-- Lösungen: `r xfun::embed_file("loesungen.Rmd", text = "Lösungen.Rmd")`
+- Übungen: `r xfun::embed_file("uebung.Rmd", text = "uebung.Rmd")`
+- Lösungen: `r xfun::embed_file("loesungen.Rmd", text = "loesungen.Rmd")`
 
 ### Literaturempfehlungen
-**R**\
-Wickham, H.,  & Grolemund, G. (2017). *R for data science*. O'Reilly. [Link](https://r4ds.had.co.nz/)
+**Einführung** \
+Hox, J. J., Moerbeek, M., & van de Schoot, R. (2017). *Multilevel analysis: Techniques and applications* (3rd ed.). Routledge. [Link](https://multilevel-analysis.sites.uu.nl) \
+Luke, D. A. (2019). *Multilevel modeling* (2nd ed.). Sage. [Link](https://us.sagepub.com/en-us/nam/multilevel-modeling/book243884)\
+Singer, J. D., & Willett, J. B. (2003). *Applied longitudinal data analysis: Modeling change and event occurrence*. Oxford University Press. [Link](https://doi.org/10.1093/acprof:oso/9780195152968.001.0001) \
 
-**Mehrebenenanalyse** \
-Finch, W. H., Bolin, J. E., & Kelley, K. (2019). *Multilevel modeling using R* (2nd ed.). Chapman and Hall/CRC. [Link](https://doi.org/10.1201/9781351062268)\
-Hox, J. J., Moerbeek, M., & van de Schoot, R. (2017). *Multilevel analysis: Techniques and applications* (3rd ed.). Routledge. [Link](https://multilevel-analysis.sites.uu.nl/)
+**RCT** \
+Tango, T. (2017). *Repeated measures design with generalized linear mixed models for randomized controlled trials*. CRC Press. [Link](https://www.routledge.com/Repeated-Measures-Design-with-Generalized-Linear-Mixed-Models-for-Randomized/Tango/p/book/9780367736385) \
+Twisk, J., Bosman, L., Hoekstra, T., Rijnhart, J., Welten, M., & Heymans, M. (2018). Different ways to estimate treatment effects in randomised controlled trials. *Contemporary Clinical Trials Communications, 10*, 80–85. [Link](https://doi.org/10.1016/j.conctc.2018.03.008)
+
