@@ -30,8 +30,6 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
-<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
@@ -58,11 +56,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-#rmd-source-code {
-  display: none;
-}
-</style>
 
 
 
@@ -223,9 +216,6 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
 
 
@@ -267,13 +257,6 @@ $(document).ready(function () {
 </div><!--/.navbar -->
 
 <div id="header">
-
-<div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
-<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
-</ul>
-</div>
 
 
 
@@ -343,7 +326,6 @@ Communications, 10</em>, 80–85. <a
 href="https://doi.org/10.1016/j.conctc.2018.03.008">Link</a></p>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQUtpUCBGb3JzY2h1bmdzY2FtcCwgMzEuIE1haS0tMDEuSnVuaSAyMDIzIDxiciAvPiBLdXJ6d29ya3Nob3AgTXVsdGlsZXZlbCBBbmFseXNpcyIKb3V0cHV0OgogaHRtbF9kb2N1bWVudDoKICAgY29kZV9kb3dubG9hZDogdHJ1ZQotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKQmVpIGRlbSBLdXJ6d29ya3Nob3Agd2lyZCBkaWUgTWVocmViZW5lbmFuYWx5c2UgYWxzIFZlcmZhaHJlbiBmw7xyIGRpZSBBdXN3ZXJ0dW5nIHZvbiBMw6RuZ3NzY2huaXR0ZGF0ZW4gdm9yZ2VzdGVsbHQuIEVzIGhhbmRlbHQgc2ljaCB1bSBlaW5lIHByYWt0aXNjaGUgRWluZsO8aHJ1bmcsIGJlaSBkZXIgZGVyIEFuc2F0eiBhbmhhbmQgdm9uIMOcYnVuZ2VuIGVycHJvYnQgd2VyZGVuIHNvbGwuCgojIyMgU29mdHdhcmUgdW5kIFBha2V0ZQpGw7xyIGRpZSDDnGJ1bmdlbiB3aXJkIGRpZSBTdGF0aXN0aWtzb2Z0d2FyZSBSIGdlbnV0enQuIFVtIGRpZSBCZW51dHp1bmcgdm9uIFIgenUgZXJsZWljaHRlcm4sIHdpcmQgYWxzIGdyYXBoaXNjaGUgQmVudXR6ZXJvYmVyZmzDpGNoZSB6dXPDpHR6bGljaCBkYXMgUHJvZ3JhbW0gUlN0dWRpbyB2ZXJ3ZW5kZXQuIERpZSBTb2Z0d2FyZSBrYW5uIGtvc3RlbmZyZWkgdW50ZXIgZGVuIGZvbGdlbmRlbiBEb3dubG9hZGxpbmtzIGFiZ2VydWZlbiB3ZXJkZW46CgotIFI6IFtodHRwczovL3d3dy5yLXByb2plY3Qub3JnL10oaHR0cHM6Ly9mdHAuZmF1LmRlL2NyYW4vKQotIFJTdHVkaW86IFtodHRwczovL3d3dy5yc3R1ZGlvLmNvbS9dKGh0dHBzOi8vd3d3LnJzdHVkaW8uY29tL3Byb2R1Y3RzL3JzdHVkaW8vZG93bmxvYWQvI2Rvd25sb2FkKQoKSW0gUmFobWVuIGRlciDDnGJ1bmdlbiB3ZXJkZW4gdmVyc2NoaWVkZW5lIFBha2V0ZSBiZW7DtnRpZ3QsIGRpZSBkaWUgRnVua3Rpb25hbGl0w6R0IHZvbiBSIGVyd2VpdGVybi4gRGllc2Uga8O2bm5lbiBtaXQgZm9sZ2VuZGVtIEJlZmVobCBpbnN0YWxsaWVydCB3ZXJkZW46CgpgYGB7ciwgZXZhbD1GQUxTRX0KaW5zdGFsbC5wYWNrYWdlcyhjKCJ0aWR5dmVyc2UiLCAibmxtZSIsICJicm9vbS5taXhlZCIsICJrYWJsZUV4dHJhIikpCmBgYAoKIyMjIE1hdGVyaWFsaWVuCkltIFJhaG1lbiBkZXMgS3Vyc2VzIHdlcmRlbiB2ZXJzY2hpZWRlbmUgTWF0ZXJpYWxpZW4gYmVuw7Z0aWd0LCBkaWUgYWxzIERvd25sb2FkIHp1ciBWZXJmw7xndW5nIHN0ZWhlbjoKCi0gSGFuZG91dDogW211bHRpbGV2ZWxfYW5hbHlzaXMucGRmXShodHRwczovL3VuaS1rb2Vsbi5zY2llYm8uZGUvcy9PY2k3NlRuc2JVbEc2VFgpCi0gQmVpc3BpZWxkYXRlbjogYHIgeGZ1bjo6ZW1iZWRfZmlsZSgiLi9kYXRhL2dwYTIuY3N2IiwgdGV4dCA9ICJncGEyLmNzdiIpYAotIMOcYnVuZ2VuOiBgciB4ZnVuOjplbWJlZF9maWxlKCJ1ZWJ1bmcuUm1kIiwgdGV4dCA9ICJ1ZWJ1bmcuUm1kIilgCi0gTMO2c3VuZ2VuOiBgciB4ZnVuOjplbWJlZF9maWxlKCJsb2VzdW5nZW4uUm1kIiwgdGV4dCA9ICJsb2VzdW5nZW4uUm1kIilgCgojIyMgTGl0ZXJhdHVyZW1wZmVobHVuZ2VuCioqRWluZsO8aHJ1bmcqKiBcCkhveCwgSi4gSi4sIE1vZXJiZWVrLCBNLiwgJiB2YW4gZGUgU2Nob290LCBSLiAoMjAxNykuICpNdWx0aWxldmVsIGFuYWx5c2lzOiBUZWNobmlxdWVzIGFuZCBhcHBsaWNhdGlvbnMqICgzcmQgZWQuKS4gUm91dGxlZGdlLiBbTGlua10oaHR0cHM6Ly9tdWx0aWxldmVsLWFuYWx5c2lzLnNpdGVzLnV1Lm5sKSBcCkx1a2UsIEQuIEEuICgyMDE5KS4gKk11bHRpbGV2ZWwgbW9kZWxpbmcqICgybmQgZWQuKS4gU2FnZS4gW0xpbmtdKGh0dHBzOi8vdXMuc2FnZXB1Yi5jb20vZW4tdXMvbmFtL211bHRpbGV2ZWwtbW9kZWxpbmcvYm9vazI0Mzg4NClcClNpbmdlciwgSi4gRC4sICYgV2lsbGV0dCwgSi4gQi4gKDIwMDMpLiAqQXBwbGllZCBsb25naXR1ZGluYWwgZGF0YSBhbmFseXNpczogTW9kZWxpbmcgY2hhbmdlIGFuZCBldmVudCBvY2N1cnJlbmNlKi4gT3hmb3JkIFVuaXZlcnNpdHkgUHJlc3MuIFtMaW5rXShodHRwczovL2RvaS5vcmcvMTAuMTA5My9hY3Byb2Y6b3NvLzk3ODAxOTUxNTI5NjguMDAxLjAwMDEpIFwKCioqUkNUKiogXApUYW5nbywgVC4gKDIwMTcpLiAqUmVwZWF0ZWQgbWVhc3VyZXMgZGVzaWduIHdpdGggZ2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVscyBmb3IgcmFuZG9taXplZCBjb250cm9sbGVkIHRyaWFscyouIENSQyBQcmVzcy4gW0xpbmtdKGh0dHBzOi8vd3d3LnJvdXRsZWRnZS5jb20vUmVwZWF0ZWQtTWVhc3VyZXMtRGVzaWduLXdpdGgtR2VuZXJhbGl6ZWQtTGluZWFyLU1peGVkLU1vZGVscy1mb3ItUmFuZG9taXplZC9UYW5nby9wL2Jvb2svOTc4MDM2NzczNjM4NSkgXApUd2lzaywgSi4sIEJvc21hbiwgTC4sIEhvZWtzdHJhLCBULiwgUmlqbmhhcnQsIEouLCBXZWx0ZW4sIE0uLCAmIEhleW1hbnMsIE0uICgyMDE4KS4gRGlmZmVyZW50IHdheXMgdG8gZXN0aW1hdGUgdHJlYXRtZW50IGVmZmVjdHMgaW4gcmFuZG9taXNlZCBjb250cm9sbGVkIHRyaWFscy4gKkNvbnRlbXBvcmFyeSBDbGluaWNhbCBUcmlhbHMgQ29tbXVuaWNhdGlvbnMsIDEwKiwgODDigJM4NS4gW0xpbmtdKGh0dHBzOi8vZG9pLm9yZy8xMC4xMDE2L2ouY29uY3RjLjIwMTguMDMuMDA4KQoK</div>
 
 
 
@@ -377,11 +359,6 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("index.Rmd");
-});
-</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
