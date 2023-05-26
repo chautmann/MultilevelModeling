@@ -155,7 +155,7 @@ graph_indi <- graph_fixed +
                         aes(x = _____, y = _____,
                             color = as.factor(student_id)),
                         linetype = "dotted",
-                        size = 0.7)
+                        linewidth = 0.7)
 graph_indi
 ```
 
