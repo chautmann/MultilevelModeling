@@ -36,6 +36,7 @@ Laden Sie die Datendatei `gpa2.csv` mit dem Befehl `read_csv2()`. Speichern Sie 
 
 ```{r}
 gpa_data <- read.csv2(file = "./data/gpa2.csv")
+names(gpa_data)[1] <- "student"
 head(gpa_data)
 str(gpa_data)
 ```
