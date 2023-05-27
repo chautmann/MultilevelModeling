@@ -1,5 +1,5 @@
 ---
-title: "AKiP Forschungscamp, 31. Mai--01.Juni 2023 <br /> Kurzworkshop Multilevel Analysis"
+title: "AKiP Forschungscamp, 31. Mai--01. Juni 2023 <br /> Kurzworkshop Multilevel Analysis"
 output:
  html_document
 ---
