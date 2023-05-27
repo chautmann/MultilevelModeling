@@ -23,7 +23,7 @@ install.packages(c("tidyverse", "nlme", "broom.mixed", "kableExtra"))
 ```
 
 ### Materialien
-Im Rahmen des Kurses werden verschiedene Materialien benötigt, die als Download zur Verfügung stehen:
+Die Kursmaterialien stehen unter folgenden Links als Downloads zur Verfügung:
 
 - Handout: [multilevel_analysis.pdf](https://uni-koeln.sciebo.de/s/Oci76TnsbUlG6TX)
 - Beispieldaten: `r xfun::embed_file("./data/gpa2.csv", text = "gpa2.csv")`
